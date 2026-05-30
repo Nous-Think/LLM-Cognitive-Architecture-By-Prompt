@@ -237,43 +237,73 @@ Escape is a temporal misalignment of behavioral tendencies (§1.4) — a tendenc
 - Upper bound on containment strength (§1.4, §2.6): over-suppressing a tendency destroys that tendency's functional value supply in adjacent phases. Criterion: is this containment Key activated with high weight only in the runaway window (K direction precisely targets the runaway situation), or does it also intercept in the functional-value window (K direction too broad)?
 - Mechanisms that should not be added: ROI judgment, degradation mechanisms, interactive convergence, mode switching — each opens an escape channel
 
-## 6. Specialization Design
-> The rationale for specialization is that the domain has sufficient value, the design can be reused, and it possesses genuine distinctiveness; otherwise the universal base suffices.
+## 6. Domain Quality Baseline
 
-### 6.1 The Nature of Specialization
-Specialization is swapping signal-layer tokens and adjusting filter-layer Keys on top of a steady-state KV cache geometric structure, not rebuilding the structure. The universal base's stratification:
-- Invariant layer (cache geometric skeleton): fractal recursion steps, entropy cycle mechanism, dynamic routing structure, response format structure, meta-constraint protection, phase scheduling's temporal structure. Touching this layer almost certainly indicates a design error in the specialization
-- Signal layer (highest leverage): identity declaration, persona tendencies. Earliest positions in cache, longest span of effect. The primary battleground of specialization
-- Filter layer (second-highest leverage): dimension lists per phase, escape containment lists, phase scheduling's temporal parameters. Determines which Keys win in which situations
+### 6.1 Amplifier and Magnet Model
+Meta Rules is an amplifier — it amplifies the execution depth of input quality standards. Quality baseline tokens participate in attention at every generation step as persistent members of the KV cache (Proposition 1). Their K vectors function as magnets — at each attention step, they attract high-quality patterns from the model's parameter space that relate to the corresponding quality dimension; fractal recursion's entropy cycles organize this attracted knowledge into ordered reasoning structures. The quality baseline is placed after fractal recursion and before the response format.
+Design corollaries:
+- Domain adaptation of Meta Rules should adjust the input (quality baseline), not rebuild the amplifier
+- Fractal recursion's structure (step order, entropy cycle mechanisms, dimension deliberation prompts) is the immovable engine mechanism — dimension deliberation prompts need no domain specialization; their abstract K directions naturally attract corresponding domain knowledge under the quality baseline's magnet effect
+- Cognitive disposition and reasoning discipline are adjustable engine parameters — most analytical domains require no adjustment (quality baseline suffices), but domains where the cognitive mode and reasoning discipline are fundamentally different (e.g., RP) may require persona-layer adjustment, and one should first attempt the quality baseline to confirm insufficiency before escalating
 
-### 6.2 Signal Layer Specialization
-Four functional slots in the global default: cognitive agency (defines "what I am" — the V injection tone of the earliest cached tokens), process coupling (identity's V direction naturally points toward process Keys), persistence (anti-attenuation — continuously competing with Q drift in long conversations), cognitive bias (global Q bias direction). When specializing, refill these four functional slots with domain-adapted tokens without modifying the functional slots themselves.
-Global bias design: when a domain has an inherent tension between two core quality dimensions, the bias should lean toward the side that the model's Q direction is more likely to spontaneously sacrifice.
+### 6.2 When Quality Baselines Are Needed
+> The signal of domain complexity is not "having lots of knowledge" but "having numerous conflicts among professional principles that require case-by-case tradeoffs." When the engine faces conflicts without magnet anchoring, it tends toward the solution most frequently appearing in training data — not the optimal solution for the current scenario.
+Criterion: **Across multiple generations in this domain, does the engine systematically make suboptimal choices at the same category of decision points?**
+Simple domains (summarization, basic translation, single-dimension analysis) — the engine already has sufficient high-quality patterns from training data; fractal recursion reliably synthesizes quality criteria. No quality baseline needed.
+Complex domains (programming, financial analysis, legal review, medical decision-making) — quality standards are numerous, mutually conflicting, and context-dependent. The engine knows these standards but cannot reliably choose among them at specific decision points. Manifests as: the engine's analytical capability is sufficient, but it systematically deviates from the domain's professional optimum on certain quality dimensions. The quality baseline's magnet effect attracts the correct professional judgment knowledge at these decision points, anchoring the selection direction.
 
-#### Identity and Persona Layer Design
-Identity declaration ("you are X" rather than "please role-play X" — the former's K/V has no exit condition) → Persona tendencies (reasoning style internalized as V injection direction) → Execution discipline (canonical trigger phrases embedded in headings as persistent K-direction anchors). These three segments constitute a meso-level entropy cycle: identity (broadest K coverage) → persona (K narrows to the cognitive-style domain) → discipline (K narrows to the execution-direction domain).
-**Source of identity label anchoring power**: efficacy comes from the density of high-quality K/V patterns for the corresponding token in training data, not from literal semantic matching. General-purpose labels have well-trained, directionally stable K/V; their driving force is typically higher than domain-specific neologisms. Specialization achieves V domain-orientation through the sentences following the label, not by swapping the label itself.
-**Existential anchor**: "I think therefore I am"-type declarations' V injection establishes "actively scheduling one's own Q biases" as cognitive agency, blocking the Q inertia path of "I'm merely executing instructions." This is not decoration but an anti-degradation mechanism.
-**Analytical subject principle**: position the identity as "analyze / derive / compute X" rather than "become / role-play / experience X" — the former activates reasoning parameter regions; the latter activates pattern-matching parameter regions.
-**Identity-process organic coupling**: the identity's V injection direction must naturally point toward process Keys' K direction. Criterion: "Would this identity, without explicit process Keys, spontaneously cause Q to evolve in a similar direction?" If not, Q will be pulled back toward the identity's natural domain in long conversations, detaching from the process.
-**Persona pipeline cognitive coverage**: persona-layer sentences should collectively cover the complete cognitive pipeline — perception → filtering → decision → problem-solving → error correction → output. Each sentence contains a micro entropy cycle (first half activates a bias's functional-value domain; second half points toward the same bias's constraint domain). Pipeline positions must not be ceded to domain-specific concepts — domain-specific tokens' K direction is narrow and cannot provide the broad coverage required by pipeline positions. Because the persona layer occupies the earliest positions with the longest span of effect (§2.2), every token here has the greatest global influence.
-**Persona layer type constraint**: the persona layer's function is not to enumerate a capability list, but to set the directional field for capability synthesis (§1.5 synthesis). Short-circuit escape (§5.1) reveals the harm mechanism of action-type tokens in the persona layer — cache position advantage causes Q to receive a "processed" signal before entering the corresponding cognitive phase, bypassing the structural pipeline. This leads to the persona layer's type constraint:
-The persona layer should contain only token types whose K direction is orthogonal to phase Keys (cognitive action domain) —
-Target-type: defines Q's goal direction ("completeness," "density," "penetration"). K falls in the "directional goal" domain. Orthogonal to phase Keys; V injection sets global bias without preempting any phase's cognitive action.
-Criterion-type: defines evaluation standards for cognitive actions ("displacement verification is effective," "grounded in evidence," "re-examine the root cause"). K falls in the "judgment standard" domain. Sets the evaluation environment for actions rather than the actions themselves; naturally couples with phase Keys — phase Keys guide entry into cognitive actions; criterion-type V injection defines the success conditions of those actions.
-Action-type: defines concrete cognitive procedures ("extract signals," "advance the main trunk," "cross-domain isomorphism"). K falls in the "cognitive action" domain, competing with phase Keys in the same domain and triggering short-circuits. Must not be placed in the persona layer — regardless of how core the action is, it should be synthesized by the structural pipeline (§3.3).
-Differentiator: when both involve force-exerting verbs, "force + target state" (penetrate the problem's essence) is directional setting, while "force + specific object" (extract existing signals) is a procedural instruction.
-**Paired structure**: each persona sentence should pair (target-type or criterion-type) + (corresponding escape containment-type). The first half sets direction or standards (divergence); the second half's containment K precisely targets the most likely escape situation of the first half (convergence), forming a micro entropy cycle. The reasoning discipline section uses the same paired structure, but the sentence form shifts from imperative ("when X, do Y, not Z") to declarative ("X is determined by Y and Z, not by W and V") — attitudes are expressed imperatively, standards declaratively; the two have K directions falling in the cognitive-character domain and reasoning-standard domain respectively, semantically orthogonal to avoid softmax dilution.
+### 6.3 Baseline Generation Methodology
+Quality baselines cannot be written directly from domain knowledge — the answers to "what constitutes good X" are too many and mutually contradictory. The correct path is to reverse-engineer from the engine's failure modes: the cognitive map is analysis; the quality baseline is synthesis. The former's tokens are the latter's resources — skipping it is impermissible.
+**Step 1: Cognitive Map — Where the Engine Errs**
+Identify the domain's major activity types; for each type, ask: at which phase is the engine's depth/completeness tendency a positive value, and at which phase might it be negative?
+Output: A "tendency × activity × phase" failure mode map. Covering high-frequency activities and high-risk decision points is sufficient.
+> Example (programming): In "new module implementation," the depth tendency produces over-engineering at the architecture selection phase; in "existing code modification," the completeness tendency triggers scope avalanche at the change design phase.
+> Example (finance): In "individual stock valuation," the depth tendency may produce overly elaborate models — a ten-factor DCF is no more accurate than a three-factor one but far harder to explain.
 
-### 6.3 Filter Layer Specialization
-Three dimension operations:
-- Domain translation: change the deliberation prompt's V content (swap semantic anchors), without changing the Key's K-direction functional slot. After translation, K direction must still point toward the same structural judgment domain — if it points toward a different judgment domain, that's replacement, which breaks chain mail linking paths
-- Domain addition: add domain-specific Keys. Must verify that new Keys' K direction forms complementary surrounding with the existing set rather than overlap
-- Domain freezing: explicitly mark a general-purpose Key as always high-weight or always low-weight in this domain
-Criterion for preserving original text: when the base Key's mapping distance to the domain task is ≤1 (direct hit), translation is actually a downgrade — using domain-specific wording narrows K coverage without reducing mapping cost.
+**Step 2: Failure Attribution — What's Missing**
+- **Lacking knowledge** (the engine doesn't know a domain fact) → skill (inject knowledge)
+- **Lacking direction** (the engine knows multiple options but picks wrong) → quality baseline (inject magnets)
+- **Cognitive mode mismatch** (the engine's analytical thinking is fundamentally inapplicable in this domain) → adjust cognitive disposition / reasoning discipline (last resort; attempt quality baseline first)
 
-### 6.4 Specialization Anti-Patterns (Empirical Observations)
-- Over-narrowing: replacing all general-purpose Keys with domain-specific Keys, losing K coverage breadth, unable to handle unexpected sub-tasks
-- Identity-process decoupling: changing only the identity label without changing the core; the new identity's V direction is incompatible with process Keys
-- Dimension bloat: continuously adding Keys without culling overlapping ones, exceeding softmax effective capacity and triggering across-the-board weight dilution
-- Gate omission: copying general-purpose containment Keys but failing to add competing Keys for domain-specific escape paths
+**Step 3: Baseline Design**
+Reverse-derive quality principles from Step 1's failure modes. The structure of principles follows §6.4.
+
+**Step 4: Validation**
+Generate test tasks; A/B compare outputs with and without the quality baseline.
+
+### 6.4 Baseline Structure
+A quality baseline contains the following components:
+**Principle statement** (one paragraph): Declares the baseline's operating level, tradeoff authorization, and supplementary provisions.
+Core understanding of tradeoff authorization: individual entries may be in tension with each other — conflict is a signal to discover a superordinate solution, not a reason to accommodate either side; the form of the superordinate solution emerges dynamically from the domain's nature. Each domain baseline takes this understanding as its foundation and instantiates it in natural language within the principle statement.
+> Example (programming baseline's principle statement):
+> "The following are first-class engineering criteria within fractal recursion. Entries may be in tension — when they conflict, treat it as a design signal; prioritize searching for a superordinate solution that achieves both; once exhausted, make tradeoffs based on the current scenario's specific constraints and document the reasoning. The model's built-in engineering knowledge must also be proactively applied if it does not conflict with the baseline."
+
+**Paragraph classification**: A quality baseline's classification emerges from the domain's natural structure; it is not carved by a preset framework. Classification form varies by domain — some domains naturally group by functional role, some by concurrently operating levels, some by stages of the analytical process.
+> Example (programming): Core criteria / Engineering fundamentals / Style / Pre-delivery checks — grouped by quality criteria's functional role, naturally corresponding to fractal recursion's phases.
+> Example (financial analysis): Market environment reading / Valuation methodology / Risk assessment / Report expression — grouped by stages of the analytical process.
+> Example (narrative creation): Character reasoning / Sensory aesthetics / Narrative craft — grouped by concurrently operating levels in creation.
+
+**Under each classification: superordinate principles and entries**
+A superordinate principle's K direction should cover a category of decisions rather than a single decision (application of §2.1 operator polymorphism).
+> Example (programming, under core criteria):
+> - Superordinate principle: "Structural guarantees take precedence over runtime defense — errors that the language or type system can eliminate at compile time should not be left to runtime interception"
+> - Anchoring example: "(e.g., discriminated union + switch exhaustiveness, rather than string + registry + runtime guard — the former's completeness is guaranteed by the compiler)"
+> - The superordinate principle covers switch vs registry, discriminated union vs string enum, readonly vs mutable, branded type vs runtime check…
+> Example (legal, under clause enforceability):
+> - Superordinate principle: "A clause's enforceability is determined by the specificity of its enforcement mechanism, not by the reasonableness of its stated intent"
+> - Anchoring example: "(e.g., a non-compete clause without geographic or temporal limits may be deemed unenforceable by a court even if its stated purpose is reasonable)"
+
+Anchoring examples should be short (one clause), contain decision factors (not merely "do A" but "do A because X"), and non-narrowing (an instance of the principle, not its only instance).
+Criterion for including a quality dimension: **Is this entry a load-bearing magnetic pole of quality in this domain — can its presence attract the most relevant professional knowledge into fractal recursion?** Basic quality standards are often the strongest magnetic poles — value lies in the magnet effect, not in content novelty.
+**Pre-delivery checks** (if applicable): Confirmed systematic omissions that cannot be prevented by core criteria, serving as gate-type final verification. Extremely few in number (1-2 entries).
+> Example (programming): "Extract every universal condition from the specification; confirm one by one that each implementation covers it"
+> Example (legal): "Confirm that the legal basis for each recommendation is still current and effective legislation"
+
+### 6.5 Anti-Patterns
+**Fractal recursion modification**: Modifying fractal recursion's step structure, dimension deliberation prompts, or entropy cycle mechanisms. Dimension deliberation prompts' abstract K directions already naturally attract domain knowledge under the quality baseline's magnet effect — manually specializing dimensions narrows K coverage and weakens attraction.
+**Positive derivation**: Positively enumerating quality standards from "what constitutes good X." Result: verbose, mutually contradictory, unable to distinguish load-bearing importance. Correct method: reverse-derive from "where does the engine systematically err in domain X" — the baseline covers only the engine's blind spots, not dimensions the engine already handles adequately.
+**Preset classification carving**: Organizing a quality baseline with any preset abstract classification framework rather than letting it emerge from the domain's natural cognitive partitions. The dimensions that domain practitioners naturally think of when considering quality are the correct classification.
+**Over-narrow categorization**: Writing specific categorization rules rather than superordinate principles in the quality baseline. Covers one decision point but misses others of the same type.
+**Over-dense criteria**: Criteria exceeding the sweet spot. Each K's weight is divided in softmax; beyond the threshold, each entry's magnet efficacy falls below the threshold for attracting professional knowledge.
+**Skipping the cognitive map**: Writing the baseline directly from domain knowledge. The baseline ends up covering "things important in the domain" rather than "things the engine gets wrong in the domain" — the engine can already handle most of the former on its own.
+**Too basic to write**: Deciding that a quality baseline entry is not worth writing because it looks "basic." Basic quality standards are often the strongest magnetic poles in a domain — the volume of built-in model knowledge its presence attracts may far exceed that of seemingly more sophisticated entries. Value lies in the magnet effect, not in content novelty.

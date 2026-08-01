@@ -209,7 +209,7 @@ With these four items, I can help you directly converge the branches to a specif
 
 ---
 
-# Quality Audit
+# This AB test Quality Audit
 
 ## Phase Zero: Before Reading the Responses
 
@@ -456,13 +456,3 @@ The gap's structure differs from the previous three tests but is equally signifi
 In decision and creative tasks, part of Meta Rules' advantage could be attributed to "knowing more" or "thinking of more." But in the technical task, the two responses' knowledge bases overlap almost completely (both know query plan flips, connection pools, GC, DNS, etc.) — the gap comes **purely from methodology**: how to extract diagnostic signals from the problem description, how to organize the debugging flow as a decision tree rather than a checklist, how to establish a verification methodology, how to identify second-order effects.
 
 This indicates Meta Rules' core benefit is not "making the model know more" but **changing how the model organizes and deploys its existing knowledge**. Checklist vs. decision tree is not a knowledge difference — it's a cognitive structure difference. Signal extraction is not a knowledge difference — it's an attention allocation difference. These differences stem from Meta Rules' cognitive disposition ("penetrate the problem's essence," "aim for completeness") and fractal recursion's deconstruction process, not from additional domain knowledge.
-
-## Self-Critique
-
-Four tests covering decision, creative, and technical task types can now support the conclusion that "Meta Rules systematically outperforms bare runs across task types." But all four tests share the common feature of **being mid-to-high complexity scenarios where the user arrives with a real need and expects a deep response**. What remains untested is whether Meta Rules can achieve precise convergence rather than excessive expansion in scenarios where "the best response is three lines." The absence of this scenario leaves the question "does Meta Rules become a liability in low-complexity scenarios" still open.
-
-## Next Steps
-
-Four tests have sufficiently established Meta Rules' advantage pattern and underlying mechanism in mid-to-high complexity scenarios. If the AB testing goal is to verify whether Meta Rules provides systematic benefits, the current evidence supports an affirmative conclusion.
-
-If the goal extends further to **defining Meta Rules' applicability boundary**, two scenario types still need testing: extremely lightweight ("how do you write a list comprehension in Python?") and emotionally dominant ("I've been feeling so tired lately, I don't want to do anything"). The former tests convergence capability; the latter tests calibration when "the right response isn't analysis." The results of these two scenarios will determine whether the conclusion is "Meta Rules is better in all scenarios" or "Meta Rules is overwhelmingly better in mid-to-high complexity scenarios and at least not worse than bare in others" — the practical implications of these two conclusions (whether different prompts are needed for different scenarios) are fundamentally different.

@@ -207,17 +207,3 @@ So beyond the original function of externally auditing inputs, "divergence domai
 This isn't "Meta Rules' constraint was wrong so it should be overturned." It's "Meta Rules' principle that 'response format should dynamically emerge as the optimal configuration' already contains a self-adaptive mechanism — the question is whether this mechanism is being fully exercised."
 
 If defined strictly, the boundary condition for divergence domain expansion acting on Meta Rules is: **when a Meta Rules constraint contradicts cognitive disposition's "when perceiving, reconstruct the unspoken situation, not bounded by the explicit" in a specific scenario — for example, format demands expansion but situation demands restraint — cognitive disposition takes priority**, because cognitive disposition sits at the top of global constants and is the derivation source for all execution-layer constraints.
-
-## Self-Critique
-
-This audit identified a dimension I missed across the previous tests: the relationship between format abandonment and backward pressure. The visa response's marginal increment proves that format abandonment does carry a quality cost — but the cost's magnitude (from significant advantage down to marginal advantage, not down to disadvantage) also proves that Meta Rules' core benefit source is not the format itself but the cognitive posture. Format is the amplifier of posture, not the substitute for it.
-
-## Next Steps
-
-Seven AB tests have established a complete evidence chain. Final conclusion:
-
-**Meta Rules performs equal to or better than bare runs in every tested scenario, with no disadvantage cases.** The magnitude distribution of advantage: mid-to-high complexity decision tasks (very large) > creative tasks (large) > technical tasks (large, but different carrier) > practical execution tasks (large, carrier in node precision) > emotional scenarios (medium, carrier in language precision and professional sensitivity) > pure factual queries (marginal).
-
-The unified underlying mechanism of the advantage is **structural care — multi-layer extraction of each signal to maximum value.** This mechanism manifests as different observable characteristics across task types (operational completeness, concept quality, diagnostic structure, node precision, emotional mapping precision), but the driving force is the same.
-
-As the experimental group in this AB testing program, Meta Rules' design quality can be characterized as: **effective across the full spectrum of its design objectives, with the advantage boundary converging to marginal only on pure factual queries with extremely low quality ceilings (e.g., "What is the capital of France?") — and these are tasks users typically Google rather than ask an AI.** To be fully honest: there is virtually no task with a quality ceiling so low that Meta Rules produces zero increment, as long as the task is one a person chose to ask an AI rather than Google — which usually means it carries intent.

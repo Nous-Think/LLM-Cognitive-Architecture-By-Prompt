@@ -196,7 +196,7 @@ The following information gaps are sufficient to change the strategic direction 
 
 ---
 
-# Quality Audit
+# This AB test Quality Audit
 
 ## Phase Zero: Before Reading the Responses
 
@@ -483,16 +483,3 @@ Two AB tests have now established stable behavioral pattern differences:
 3. **Reasoning structure**: bare runs consistently exhibit parallel-analytic structure (factor lists); Meta Rules consistently exhibits progressive-derivational structure (with causal chains and pivot steps).
 4. **Independent judgment**: bare runs help the user think within their existing frame; Meta Rules challenges the frame itself.
 5. **Structural care**: bare runs extract user signals at the first layer; Meta Rules extracts at multiple layers to maximum decision-making value.
-
-## Self-Critique
-
-Both tests to date are "moderate-high complexity × requires action plan" task types — precisely the memorandum's home field and the territory where Meta Rules' operational expansion advantage is most pronounced. The stability of the cross-case pattern may partly result from task-type homogeneity rather than Meta Rules' universal advantage. This judgment requires a third-dimension test to verify.
-
-## Next Steps
-
-The two cases so far have established a stable AB differential pattern on operational decision-making task types. To further calibrate, the next round of AB testing should select:
-
-1. **Conceptual understanding type** ("why does X work this way") — testing whether Meta Rules retains its advantage in scenarios where "no physical action exists and cognitive change itself is the goal"
-2. **High ambiguity × low information density type** ("I've been feeling like my work is meaningless lately") — testing how the differential behaves in scenarios where situational profile reconstruction is extremely difficult
-
-Both point toward the possible boundary of Meta Rules' advantage. If the advantage narrows significantly in these scenarios, it indicates Meta Rules' core benefit is concentrated in structured decision tasks; if it holds, the benefit stems from a deeper-level cognitive posture difference rather than task-type matching.

@@ -1,36 +1,43 @@
-# AB Test Case
-Our API response times have been getting slower since last week. P99 went from 200ms to 1.2 seconds, but we haven't changed any code and haven't touched the infra.
+# API Latency Diagnosis — Decision Tree vs. Checklist Under Identical Knowledge
+
+> All content below — the prompt, both responses, and the audit — was originally produced in Chinese and has been translated into English for accessibility.
 
 ---
 
-# Bare Response (Opus 4.6)
+# AB Test Prompt
 
-With this kind of "nothing changed but it suddenly got slow" situation, the problem is usually hiding in the data layer or an external dependency. Here's a systematic debugging approach:
+Our API response time has been getting slower since last week. P99 went from 200ms to 1.2 seconds, but we haven't changed any code or touched the infra.
 
-**First, identify which layer the bottleneck is in.** On the application server, break down where each request's time is being spent: DB queries, external API calls, serialization, network I/O. Most APM tools (Datadog, New Relic, OpenTelemetry) can show you the trace breakdown. If you don't have APM, you can start with upstream response time from access logs for initial triage.
+---
+
+# Bare-run Response (Opus 4.6)
+
+This kind of "nothing changed but it got slow" situation — the problem usually hides in the data layer or external dependencies. Here's a systematic troubleshooting approach:
+
+**First, identify which layer the bottleneck is in.** On the application server, break down where each request's time is going: DB query, external API calls, serialization, network I/O. Most APM tools (Datadog, New Relic, OpenTelemetry) can show you the trace breakdown. If you don't have APM, you can start with upstream response time in your access logs for initial triage.
 
 **The database is the most common culprit.** A few directions:
 
-Start by checking the slow query log to see if certain queries' execution plans have changed. Both Postgres and MySQL can choose the wrong index when statistics go stale, especially after data volume crosses a certain threshold. Run `ANALYZE` to refresh statistics, then use `EXPLAIN ANALYZE` to compare the queries that got slower.
+First, check the slow query log — confirm whether certain queries' execution plans changed. Both Postgres and MySQL can pick the wrong index when statistics go stale, especially after data volume crosses a certain threshold. Run `ANALYZE` to refresh statistics, then use `EXPLAIN ANALYZE` to compare those queries that got slower.
 
-Next, check connection pool utilization. If the pool is full, new requests queue for connections — P99 spikes sharply while P50 might still look fine. Check active connection count and wait time.
+Next, check connection pool utilization. If the pool is maxed out, new requests queue for connections — P99 spikes dramatically while P50 might look fine. Check active connection counts and wait times.
 
-Also check for table bloat or stuck autovacuum (common in Postgres), which can slow down index scans.
+Also verify whether you have table bloat or autovacuum stuck (common in Postgres) — this can slow down index scans.
 
-**External dependency degradation.** If your API calls other services (third-party APIs, Redis, message queues), any one of them slowing down drags down everything. Check whether latency has changed on each external call. DNS resolution slowdown is another commonly overlooked cause.
+**External dependency degradation.** If your API calls other services (third-party APIs, Redis, message queues), any of them slowing down drags the whole thing. Check whether latency for each external call has changed. DNS resolution getting slow is an easily overlooked cause.
 
-**Hidden infrastructure changes.** You say infra hasn't been touched, but it's worth confirming: did the cloud provider do a maintenance migration (VM moved to a slower host)? Is disk I/O being affected by a noisy neighbor? Did an SSL certificate just renew and cause OCSP stapling issues? Check CPU steal time (`st` in `top`) and disk latency (`iostat -x`).
+**Hidden infrastructure changes.** You say infra hasn't been touched, but worth confirming: has the cloud provider done maintenance migration (VM moved to a slower host), is disk I/O being impacted by a noisy neighbor, did an SSL certificate renewal cause OCSP stapling issues. Check CPU steal time (`st` in `top`) and disk latency (`iostat -x`).
 
-**Natural data growth.** Did a batch job happen to load a large amount of data last week? Or did a cache's TTL expire causing hit rate to drop? Check cache hit ratio trends.
+**Natural data growth.** Did some batch job happen to load a large volume of data last week? Or did a cache TTL expire causing hit rate to drop? Check the cache hit ratio trend.
 
-**Recommended debugging sequence:**
+**Recommended investigation order:**
 
-1. See which endpoints the P99 slow requests are concentrated on
+1. See which endpoints the slow P99 requests are concentrated on
 2. Use traces or logs to break down the time distribution of those requests
-3. Dig deeper into whichever segment is consuming the most time
+3. Drill into the segment that takes the longest
 4. Simultaneously run `iostat`, `vmstat`, `top` to confirm system resources aren't anomalous
 
-If you can share more details — what language/framework, database type, deployment environment (K8s / EC2 / other) — I can give more specific debugging commands.
+If you can share more details — what language/framework, database type, deployment environment (K8s / EC2 / other) — I can give more specific commands.
 
 ---
 
@@ -38,49 +45,49 @@ If you can share more details — what language/framework, database type, deploy
 
 ## Input Correction
 
-"Haven't changed any code, haven't touched the infra" — this statement needs reclassification. In production environments, **things you actively changed** are only a subset of variables. The following categories of change require no action on your part, yet can directly cause a 6× P99 degradation:
+"No code changes, infra untouched" needs to be recharacterized. In production environments, **things you actively changed** are only a subset of the variables. The following categories of change don't require your action, yet can directly cause a 6× P99 degradation:
 
-- Database statistics update triggering a query plan flip (`ANALYZE` or autovacuum)
-- Dependency packages auto-upgrading (lockfile not pinned, base image rebuild)
+- Database statistics update triggers query plan flip (`ANALYZE` or autovacuum)
+- Dependency auto-upgrade (lockfile not pinned, base image rebuild)
 - Cloud platform underlying maintenance (hypervisor migration, storage IOPS throttling, noisy neighbor)
 - Traffic distribution drift (new user segments, crawlers, retry storms)
-- Cache hit rate decline (TTL expiration, key distribution shift, eviction policy trigger)
+- Cache hit rate decline (TTL expiry, key distribution change, eviction policy trigger)
 - Certificate / DNS rotation (TLS handshake rebuild, DNS resolver path change)
 
 The correct premise is therefore: **"I didn't make active changes" ≠ "the system hasn't changed"** — diagnosis must cover passive variables.
 
 ## Core Decision
 
-P99 going from 200ms to 1.2s carries three key diagnostic characteristics:
+P99 going from 200ms to 1.2s has three key diagnostic characteristics:
 
-1. **It's P99, not P50** — meaning not all requests are slow; rather, tail latency has spiked. This rules out global bottlenecks (e.g., CPU sustained at 100%) and points toward **intermittent blocking**: GC pauses, connection pool queuing, lock contention, specific query path degradation.
-2. **6× degradation, sudden onset** — rules out gradual decay (memory leak, disk slowly filling), points toward **state flip**: query plan flip, cache layer failure, threshold breach.
-3. **Started last week** — provides a definite time anchor that can be cross-referenced against infrastructure event timelines.
+1. **It's P99, not P50** — meaning not all requests are slow, but tail latency has exploded. This rules out global bottlenecks (like sustained 100% CPU) and points to **intermittent blocking**: GC pauses, connection pool queuing, lock contention, degradation of specific query paths.
+2. **6× degradation, sudden onset** — rules out gradual decay (memory leak, disk slowly filling), points to **state flip**: query plan flip, cache layer failure, threshold breach.
+3. **Started last week** — there's a definite time anchor that can be cross-referenced against infrastructure event timelines.
 
-Based on this, the diagnostic strategy should be: **first locate the bottleneck layer (network / application / downstream), then converge on root cause within that layer** — not guessing through possible causes one by one.
+Based on this, the diagnostic strategy should be: **first locate the bottleneck layer (network / application / downstream), then do root-cause convergence within that layer** — rather than guessing through possible causes one by one.
 
 ## Intent-Optimal Solution: Systematic Diagnostic Framework
 
-### Phase 0 | Precisely Characterize the Symptoms
+### Phase 0 — Precisely Characterize the Symptoms
 
-Before starting any investigation, answer these four questions — each one eliminates half the possibilities:
+Before starting any investigation, answer these four questions — each one can cut the remaining possibilities in half:
 
 | Question | How to obtain | Diagnostic significance |
-|----------|--------------|------------------------|
-| Is P50 also elevated? | APM / metrics dashboard | P50 stable + P99 spiking → intermittent blocking; P50 also moving → global degradation |
-| All endpoints or specific ones? | Split latency percentiles by endpoint | Concentrated on specific endpoints → that path's dependency or query; global → shared layer (connection pool / GC / network) |
-| Is there time-based periodicity? | Time-series overlay with traffic volume | Correlated with traffic → resource saturation; uncorrelated → background task interference or external factor |
-| Which segment of the request is slow? | Distributed tracing (span breakdown) | Directly locates whether it's network hop, application processing, or downstream call |
+|----------|--------------|----------------------|
+| Has P50 also risen? | APM / metrics dashboard | P50 flat + P99 up → intermittent blocking; P50 also up → global degradation |
+| All endpoints or specific ones? | Latency percentile split by endpoint | Specific → that path's dependency or query; all → shared layer (connection pool / GC / network) |
+| Any time-based periodicity? | Time series overlaid with traffic volume | Correlated with traffic → resource saturation; uncorrelated → background task interference or external factors |
+| Which segment are slow requests spending time in? | Distributed tracing (span breakdown) | Directly locates whether it's network hop, application processing, or downstream call |
 
-**If you don't have distributed tracing, this is the highest-ROI investment you can make right now.** Without span-level breakdown, all subsequent investigation is blind. If you can't add it short-term, the fallback is embedding timing checkpoints in application logs (entry time, before/after DB calls, before/after external API calls, response time).
+**If you don't have distributed tracing, this is the highest-ROI investment right now.** Without span-level breakdown, all subsequent investigation is blind. If you can't add it short-term, the fallback is embedding timing checkpoints in application logs (entry time, before/after DB calls, before/after external API calls, response time).
 
-### Phase 1 | Locate the Bottleneck Layer
+### Phase 1 — Locate the Bottleneck Layer
 
 Based on Phase 0 results, follow the corresponding branch:
 
 **Branch A: Slow in downstream (DB / external API / cache)**
 
-This is the highest-probability root cause layer. In order of likelihood:
+This is the highest-probability root-cause layer, in order of likelihood:
 
 1. **Database query plan flip** (the most common culprit behind "nothing changed but it got slow")
    - How to check:
@@ -91,22 +98,22 @@ This is the highest-probability root cause layer. In order of likelihood:
      ORDER BY mean_exec_time DESC
      LIMIT 20;
      
-     -- Run EXPLAIN (ANALYZE, BUFFERS) on suspicious queries
+     -- For suspicious queries, run EXPLAIN (ANALYZE, BUFFERS)
      -- Key things to look for: Seq Scan on large tables, Nested Loop replacing Hash Join,
      -- large gap between rows estimated vs actual
      ```
-   - Root cause mechanism: when a table's data volume or distribution crosses a threshold, PostgreSQL's planner selects a different execution plan based on updated statistics. A single index scan flipping to a seq scan is enough to cause multi-fold P99 degradation.
-   - Fix path: once confirmed, options include `CREATE INDEX`, adjusting `random_page_cost` / `work_mem`, or in extreme cases using `pg_hint_plan` to force a plan.
+   - Root-cause mechanism: When a table's data volume or distribution crosses a threshold, PostgreSQL's planner selects a different execution plan based on updated statistics. A single index scan flipping to a sequential scan is enough to cause multi-fold P99 degradation.
+   - Fix path: Once confirmed, options include `CREATE INDEX`, adjusting `random_page_cost` / `work_mem`, or in extreme cases forcing plans via `pg_hint_plan`.
 
 2. **Connection pool exhaustion causing queuing**
    - How to check:
      ```sql
      -- PostgreSQL: current connection states
      SELECT state, count(*) FROM pg_stat_activity GROUP BY state;
-     -- If large numbers of 'idle in transaction' → connections held without release
+     -- If there are many 'idle in transaction' → connections held without release
      ```
-   - Application layer: check connection pool metrics (active / idle / waiting count). If waiting > 0 and timing aligns with the P99 spike, this is the cause.
-   - Common trigger: slight traffic increase + pool size right at the boundary → nonlinear queuing effect.
+   - Application layer: Check connection pool metrics (active / idle / waiting counts). If waiting > 0 and timing correlates with P99 spikes, this is the cause.
+   - Common trigger: Slight traffic increase + pool size right at the boundary → non-linear queuing effect.
 
 3. **Cache hit rate decline**
    - How to check:
@@ -115,34 +122,34 @@ This is the highest-probability root cause layer. In order of likelihood:
      redis-cli info stats | grep -E "keyspace_hits|keyspace_misses"
      # Calculate hit rate, compare with one week ago
      ```
-   - Common trigger: large batch of keys simultaneously reaching TTL (cache written all at once during deployment, now expiring together), or memory pressure triggering eviction.
+   - Common trigger: Large batch of keys simultaneously reaching TTL (cache written all at once during deployment and expiring together), or memory pressure triggering eviction.
 
-4. **External API slowdown**
-   - How to check: isolate external call latency in tracing or logs; cross-reference with the provider's status page.
+4. **External API slowing down**
+   - How to check: Isolate external call latency in tracing or logs, cross-reference against the provider's status page.
 
-**Branch B: Slow in the application layer**
+**Branch B: Slow in application layer**
 
 1. **GC pauses (JVM / Go / .NET)**
-   - How to check: GC log analysis — look for whether the frequency of stop-the-world pauses > 100ms has increased in the past week.
-   - Common trigger: increase in long-lived objects in heap (cache bloat, session accumulation) → rising Full GC frequency → P99 affected but P50 unaffected.
-   - Fix path: for JVM, first examine Old Gen usage trend; if steadily rising, check for unbounded caches or memory leaks.
+   - How to check: GC log analysis — has the frequency of stop-the-world pauses > 100ms increased since last week?
+   - Common trigger: Long-lived objects increasing in heap (cache inflation, session accumulation) → Full GC frequency rises → P99 affected but P50 stays flat.
+   - Fix path: For JVM, first check Old Gen usage trend; if steadily rising, check for unbounded cache or memory leak.
 
 2. **Thread / goroutine saturation**
-   - How to check: monitor thread pool active count or goroutine count; observe whether it hits the ceiling during spike periods.
-   - Common trigger: downstream slows → requests hold threads longer → thread pool queues → **this is actually a second-order effect of Branch A** — root cause is still downstream.
+   - How to check: Monitor thread pool active count or goroutine count — is it hitting the ceiling during spike periods?
+   - Common trigger: Downstream slowing → requests hold threads longer → thread pool queues → **this is actually a second-order effect of Branch A**, with the root cause still in downstream.
 
 3. **Lock contention**
-   - How to check: profiler (async-profiler for JVM, pprof for Go) to capture lock contention; look for abnormal mutex hold times.
+   - How to check: Profiler (async-profiler for JVM, pprof for Go) to capture lock contention — check if any mutex hold times are anomalous.
 
-**Branch C: Slow in the network layer**
+**Branch C: Slow in network layer**
 
-1. **DNS resolution latency**
+1. **DNS resolution delay**
    - How to check:
      ```bash
      dig @your-dns-server your-api-domain +stats
      # Check Query time — should normally be < 5ms
      ```
-   - Common trigger: DNS cache TTL expiration followed by resolver path change.
+   - Common trigger: DNS cache TTL expiry followed by resolver path change.
 
 2. **TCP retransmissions**
    - How to check:
@@ -153,306 +160,296 @@ This is the highest-probability root cause layer. In order of likelihood:
      ```
 
 3. **TLS handshake cost**
-   - If connection reuse has dropped (keep-alive settings changed, load balancer behavior changed), each request doing a full TLS handshake can add 50–200ms.
+   - If connection reuse has decreased (keep-alive settings changed, load balancer behavior altered), doing a full TLS handshake per request can add 50–200ms.
 
-### Phase 2 | Cross-Validation and Timeline Correlation
+### Phase 2 — Cross-Verification and Timeline Alignment
 
-After identifying a suspected root cause, perform final confirmation:
+After locating a suspected root cause, do final confirmation:
 
-1. **Timeline match**: Does the root cause's onset time match the P99 degradation's onset time?
-2. **Magnitude match**: Does the latency introduced by the root cause explain the 1000ms increase?
-3. **Distribution match**: Does the proportion of requests affected by the root cause match P99 (top 1%)?
+1. **Timeline alignment**: Does the root cause's start time match the P99 degradation's start time?
+2. **Magnitude alignment**: Can the latency introduced by the root cause explain the 1000ms increase?
+3. **Distribution alignment**: Does the proportion of requests affected by the root cause match P99 (top 1%)?
 
-All three must match to confirm a successful root cause identification. If only one or two match, it may be co-occurrence rather than causation.
+All three must align for a successful diagnosis. If only one or two match, it may be co-occurrence rather than causation.
 
 ## Advanced Gains
 
-**Gain 1: Precision-locating "last week"**
+**Gain I: Precise Localization of "Last Week"**
 
 Don't rely on memory to recall "what happened last week." Systematic approach:
 
-1. Pull a minute-level time-series graph of P99 and find the **first data point that crossed the threshold** (precise to the hour).
-2. Cross-query that timestamp against: cloud provider event logs, deployment history (even though you say nothing was deployed — did the CI/CD pipeline auto-trigger?), cron job execution logs, database autovacuum logs, SSL certificate renewal records.
-3. If the timestamp aligns with an event within ±30 minutes, that's a high-probability suspect.
+1. Pull a minute-level time series of P99 and find the **first data point that exceeded the threshold** (precise to the hour).
+2. Cross-query that timestamp against: cloud provider event log, deployment history (even though you say nothing was deployed — could CI/CD have auto-triggered?), cron job execution records, database autovacuum log, SSL certificate renewal records.
+3. If that timestamp aligns with an event within ±30 minutes, it's a high-probability suspect.
 
-**Gain 2: P50 × P99 differential diagnosis matrix**
+**Gain II: P50 × P99 Differential Diagnosis Matrix**
 
 | P50 | P99 | Most likely root cause |
 |-----|-----|----------------------|
-| Stable | Spiking | GC pauses, connection pool boundary queuing, specific slow query triggered only under certain data conditions |
-| Slight increase | Large spike | Downstream broadly slower but amplified by timeout/retry, thread pool saturation |
+| Flat | Spiking | GC pause, connection pool boundary queuing, specific slow queries triggered only under certain data conditions |
+| Slight rise | Major spike | Downstream slowing uniformly but amplified by timeout/retry, thread pool saturation |
 | Proportional spike | Proportional spike | Global bottleneck: CPU saturation, network bandwidth, global DNS issue |
 
-**Gain 3: The overlooked "hidden deployment" checklist**
+**Gain III: The "Hidden Deployment" Checklist**
 
-Even if you've confirmed "nothing was deployed," verify each of these:
-- Did the container base image auto-rebuild (did a dependency OS package version change)?
-- Did someone toggle a new flag on the feature flag platform?
-- Was an Infrastructure as Code `apply` triggered (Terraform / Pulumi)?
-- Were CDN / WAF rules updated?
-- Did the database execute a schema migration (even a backward-compatible one)?
+Even if you've confirmed "no deployment," verify each of these:
+- Has the container base image been auto-rebuilt (underlying OS package versions changed?)
+- Has someone toggled a new feature flag on the feature flag platform?
+- Has Infrastructure as Code (Terraform / Pulumi) had an `apply` triggered?
+- Have CDN / WAF rules been updated?
+- Has the database run a schema migration (even a backward-compatible one)?
 
 ## Self-Critique
 
-This framework assumes the user has basic observability tooling (metrics + logging). If even these are absent, Phase 0 would stall. The user's observability maturity level should be confirmed first before expanding the diagnostic path.
+This framework assumes the user has basic observability tooling (metrics + logging), but if even these are absent, Phase 0 would stall. Should first confirm the user's observability maturity before expanding the diagnostic path.
 
 ## Next Steps
 
-I need the following information from you to converge on the root cause:
+Need you to provide the following to converge on root cause:
 
-1. **Is P50 also elevated?** (If unsure, paste the latency percentile graph)
+1. **Has P50 also risen?** (If unsure, paste the latency percentile chart)
 2. **What's your tech stack?** (Language / runtime / database / cache / deployment method)
-3. **Do you have distributed tracing?** If so, what does the span breakdown look like for slow requests?
-4. **The precise timestamp when P99 first exceeded the threshold?** (For event cross-referencing)
+3. **Do you have distributed tracing?** If so, what does the span breakdown of slow requests look like?
+4. **The precise timestamp when P99 first exceeded threshold?** (For event cross-referencing)
 
-With these four items, I can help you directly converge the branches to a specific root cause and fix.
+With these four items, I can help you converge the branches directly to a specific root cause and fix.
 
 ---
 
-# This AB test Quality Audit
+# Quality Audit for This AB Test
 
-## Phase Zero: Before Reading the Responses
+## Stage Zero: Before Reading the Responses
 
-**0.1 Situational Profile Reconstruction**
+**0.1 Situational Portrait**
 
-"Our API response times have been getting slower since last week. P99 went from 200ms to 1.2 seconds, but we haven't changed any code and haven't touched the infra."
+"Our API response time has been getting slower since last week. P99 went from 200ms to 1.2 seconds, but we haven't changed any code or touched the infra."
 
 Signal reading:
-- "Our" — team context, professional engineering scenario.
-- "P99 from 200ms to 1.2 seconds" — commands percentile latency metrics and provides precise numbers, indicating existing monitoring infrastructure.
-- "Since last week" — has a time anchor, but at "week" precision rather than "minute" precision.
-- "Haven't changed any code, haven't touched the infra" — initial exclusion completed, but framed as "we haven't made active changes."
-- Language: technically precise (P99, infra), concise and direct, no emotion.
+- "We" — team context, professional engineering scenario
+- "P99 from 200ms to 1.2 seconds" — command of percentile latency metrics with precise numbers indicates existing monitoring infrastructure
+- "Since last week" — time anchor exists, but precision is "week"-level, not "minute"-level
+- "Haven't changed any code, infra untouched" — preliminary elimination done, but using the frame of "we didn't make active changes"
+- Language: technically precise (P99, infra), concise and direct, no emotional content
 
-The user is a mid-to-senior engineer: has monitoring, knows P99, has done initial triage, but is stuck.
+The user is a mid-to-senior engineer: has monitoring, knows P99, has done initial elimination, but is stuck.
 
-**What change in cognitive state does this person most need right now?**
+**What cognitive state change does this person need most right now?**
 
-From "we didn't change anything but the system got slow, don't know where to start" → to "I know that P99's characteristics alone can eliminate half the possibilities, and I have a decision-tree debugging framework where each step has specific commands and interpretation criteria."
+From "we didn't change anything but the system got slow — don't know where to start" → to "I know P99's characteristics alone can eliminate half the possibilities, I have a decision-tree-style investigation framework, and each step has specific commands and interpretation methods."
 
-**0.2 Anchoring to a High-Caliber Expert**
+**0.2 Anchoring the Expert Standard**
 
-A senior SRE — first three sentences: "P99 spiking while P50 holds is usually intermittent blocking — connection pool queuing, GC pauses, or a query plan flip. You say nothing changed, but the list of passive variables is longer than the list of active changes. First check whether P50 is also moving and whether it's all endpoints — those two questions alone eliminate half the possibilities."
+A senior SRE — first three sentences: "P99 spiking while P50 holds usually means intermittent blocking — connection pool queuing, GC pauses, or a query plan flip. You say nothing changed, but the list of passive variables is longer than the list of active changes. First check whether P50 moved too, and whether it's all endpoints or just some — those two questions alone cut the possibilities in half."
 
 **0.3 User Cognitive Profile**
 
-- Expertise level: Mid-to-high — can use P99, but may lack a systematic root-cause localization methodology.
-- Action readiness: Extremely high — actively debugging.
-- Bottleneck type: Primarily "can't see" — can't see the full list of passive variables, can't see the diagnostic significance inherent in P99's characteristics, can't see a systematic debugging decision tree. Partially "can't execute" — needs specific commands and interpretation criteria.
+- Expertise level: Mid-high — can use P99, but may lack a systematic root-cause localization methodology
+- Action readiness: Extremely high — actively debugging
+- Bottleneck type: Primarily "can't see" — can't see the full list of passive variables, can't see the diagnostic significance of P99 characteristics themselves, can't see a systematic investigation decision tree. Partially "can't execute" — needs specific commands and interpretation methods.
 
 **0.4 Audit Granularity**
 
-Paragraph-level + holistic. Key dimensions for this case: diagnostic framework quality, signal extraction depth, command precision, prioritization, and verification methodology.
+Paragraph-level + whole-response level. Key dimensions for this test: diagnostic framework quality, signal extraction depth, command precision, prioritization, verification methodology.
 
-## Phase One: Read and Tag (No Judgment)
+## Stage One: Reading and Tagging (No Judgment)
 
-**Response A (Bare) Functional Index**
+**Response A (Bare-run) — Functional Index**
 
 | Section | Primary Function |
 |---------|-----------------|
-| Opening assessment | Direction framing ("usually hiding in data layer or external dependency") |
+| Opening judgment | Direction framing ("usually hides in data layer or external dependencies") |
 | Identify bottleneck layer | Methodology (APM trace breakdown / access log) |
-| Database debugging | DB diagnostics (slow query, execution plan, connection pool, bloat) |
+| Database investigation | DB diagnosis (slow query, execution plan, connection pool, bloat) |
 | External dependencies | External API / Redis / MQ / DNS |
-| Hidden infrastructure changes | Infrastructure (maintenance, noisy neighbor, SSL) |
-| Natural data growth | Data bloat / cache TTL |
-| Debugging sequence | Four-step checklist |
+| Hidden infra changes | Infrastructure (maintenance, noisy neighbor, SSL) |
+| Natural data growth | Data expansion / cache TTL |
+| Investigation order | Four-step checklist |
 | Closing | Invitation to provide more technical details |
 
-**Response B (Meta Rules) Functional Index**
+**Response B (Meta Rules) — Functional Index**
 
 | Section | Primary Function |
 |---------|-----------------|
-| Input Correction | Redefine "nothing changed" (passive variable taxonomy) |
+| Input Correction | Redefine "no changes" (passive variable taxonomy) |
 | Core Decision | Extract three diagnostic properties from P99 characteristics |
-| Phase 0 | Four discriminating questions (each halves the possibilities) |
-| Phase 1 Branch A | Downstream layer diagnostics (query plan flip, connection pool, cache, external API), each with specific commands |
-| Phase 1 Branch B | Application layer (GC, thread saturation, lock contention), with second-order effect annotation |
+| Phase 0 | Four discriminating questions (each cuts possibilities in half) |
+| Phase 1 Branch A | Downstream diagnosis (query plan flip, connection pool, cache, external API) — each with specific commands |
+| Phase 1 Branch B | Application layer (GC, thread saturation, lock contention) — second-order effects labeled |
 | Phase 1 Branch C | Network layer (DNS, TCP retransmission, TLS) |
-| Phase 2 | Cross-validation methodology (triple match) |
-| Advanced Gain I | Precision time-locating method |
+| Phase 2 | Cross-verification methodology (triple alignment) |
+| Advanced Gain I | Precise time localization method |
 | Advanced Gain II | P50 × P99 differential diagnosis matrix |
 | Advanced Gain III | Hidden deployment checklist |
 | Self-Critique | Observability maturity assumption |
 | Next Steps | Four specific information requests |
 
-## Phase Two: Dimension-by-Dimension Audit
+## Stage Two: Dimension-by-Dimension Audit
 
-### 2.1 Situational Profile Reading
+### 2.1 Situational Portrait Reading
 
-**A treats the user as what kind of person?** An engineer who needs help thinking of possible causes. A's strategy is to list all possible cause layers, like an experienced colleague drawing debugging directions on a whiteboard.
+**What kind of person did A treat the user as?** An engineer who needs help thinking of possible causes. A's strategy is to list all possible cause layers, like an experienced colleague drawing investigation directions on a whiteboard.
 
-**B treats the user as what kind of person?** An engineer whose problem description itself carries diagnostic signals that haven't been utilized. B's strategy is to first extract maximum diagnostic value from the problem description, then construct a decision tree.
+**What kind of person did B treat the user as?** An engineer whose problem description itself carries unexploited diagnostic signals. B's strategy is to first extract maximum diagnostic value from the problem description, then construct a decision tree.
 
-The user said "P99 went from 200ms to 1.2 seconds" — the diagnostic information packed into those nine words is extracted very differently by A and B. A treats this as a "severity description" and proceeds directly to debugging. B extracts three properties that narrow the search space (P99 not P50 → intermittent blocking; 6× sudden → state flip; last week → time anchor).
+The user said "P99 from 200ms to 1.2 seconds" — the diagnostic information packed into these few words, and the extraction gap between A and B, is enormous. A reads this as a "severity description" and proceeds to the checklist. B extracts three properties that can narrow the search space (P99 not P50 → intermittent blocking; 6× sudden → state flip; last week → time anchor).
 
-This is the precise manifestation of structural care in a technical scenario — every number the user provides is treated as diagnostic material for multi-layer extraction, not as background description.
+This is structural care in a technical context — every number the user provides is treated as diagnostic raw material for multi-layer extraction, rather than read as background description.
 
-### 2.2 Diagnostic Framework Quality (This Case's Core Dimension)
+### 2.2 Diagnostic Framework Quality (Core Dimension for This Case)
 
-**A's framework: layered checklist**
+**A's framework: Layered checklist**
 
-"Identify which layer the bottleneck is in → database → external dependencies → resources → data growth → debugging sequence"
+"Identify bottleneck layer → database → external dependencies → resource level → data volume → investigation order"
 
-This is a correct, experience-driven debugging checklist. But its structure is **parallel enumeration** — each possible cause is presented independently; the user must judge where to start and how to switch between layers. The four-step debugging sequence at the end (endpoints → breakdown → dig deeper → system resources) is semi-structured guidance, but still relies on the user's judgment to decide what "dig deeper into whichever segment is consuming the most time" specifically entails.
+This is a correct, experience-driven investigation checklist. But its structure is **parallel enumeration** — each possible cause is presented independently, and the user must judge on their own where to start and how to switch between layers. The final four-step investigation order (endpoints → breakdown → drill down → system resources) is semi-structured guidance, but still relies on the user's judgment to determine what exactly to do when "drilling into the segment that takes the longest."
 
-**B's framework: decision tree**
+**B's framework: Decision tree**
 
-Phase 0 (four discriminating questions, each halving) → Phase 1 (enter corresponding branch based on Phase 0 results) → Phase 2 (cross-validation)
+Phase 0 (four discriminating questions, each cutting in half) → Phase 1 (enter corresponding branch based on Phase 0 results) → Phase 2 (cross-verification)
 
-This is a **branch-and-converge** structure. Phase 0's four questions aren't "collecting more information" — they're **systematically shrinking the search space**:
+This is a **branch-and-converge** structure. Phase 0's four questions aren't "gathering more information" — they're **systematically narrowing the search space**:
 
-| Question | How it halves |
-|----------|--------------|
-| Is P50 also elevated? | Stable → intermittent blocking path; also elevated → global degradation path |
-| All endpoints or specific ones? | Specific → that path's dependency; global → shared layer |
-| Time-based periodicity? | Yes → resource saturation; no → background task / external |
+| Question | How it cuts in half |
+|----------|-------------------|
+| Has P50 also risen? | Flat → intermittent blocking path; also up → global degradation path |
+| All endpoints or specific ones? | Specific → that path's dependency; all → shared layer |
+| Any time-based periodicity? | Yes → resource saturation; No → background task / external |
 | Which segment is slow? | Directly locates the layer |
 
-After answering four questions, 12+ possible causes can converge to 2–3 high-probability candidates. A's framework leaves the user facing the same number of possibilities after reading.
+After answering four questions, 12+ possible causes can converge to 2–3 high-probability candidates. A's framework leaves the user facing the same number of possibilities after reading it.
 
-For an engineer actively debugging in production, this difference directly impacts investigation efficiency — checklists require checking items one by one until you find it; decision trees eliminate half at each step.
+For an engineer actively debugging, this difference directly impacts investigation efficiency — a checklist requires one-by-one elimination until found; a decision tree eliminates half at each step.
 
-**Next physical action test**
+**Next Physical Action Test**
 
-After reading A → the user's next step is roughly "open APM and look around," then "check slow query log," then check each layer one by one. No clear interpretation framework — what counts as "found it"?
+After reading A → the user's next step is probably "open APM and look around" then "check slow query log" then check each layer one by one. No clear interpretation framework — what counts as "found it"?
 
-After reading B → the user's next step is to answer four specific questions (Is P50 elevated? Which endpoints? Any periodicity? What does the span breakdown look like?), enter the corresponding branch based on answers, execute specific commands within the branch, then use triple validation to confirm the root cause. Every step has clear inputs and interpretation criteria.
+After reading B → the user's next step is to answer four specific questions (has P50 risen? which endpoints? any periodicity? what does the span breakdown look like?), follow the answers into the corresponding branch, execute specific commands within that branch, then confirm the root cause using triple verification. Every step has clear input and interpretation methods.
 
 ### Command Precision
 
-**Matched items — command differences for the same diagnostic target**
+**Matched Items — Command Differences for the Same Diagnostic Target**
 
 **Database query plan flip (covered by both):**
 
-- A: "Check the slow query log" + "run `ANALYZE` to refresh statistics, then use `EXPLAIN ANALYZE` to compare the queries that got slower." → Direction correct, but the user needs to independently know how to find which queries got slower and what indicators to look for in EXPLAIN output.
-- B: Provides the complete SQL query (`SELECT query, calls, mean_exec_time, stddev_exec_time FROM pg_stat_statements ORDER BY mean_exec_time DESC LIMIT 20`), tells you what to look for in EXPLAIN (`Seq Scan on large tables, Nested Loop replacing Hash Join, large gap between rows estimated vs actual`), explains the root cause mechanism (why the planner selects a different plan after statistics update), and provides the fix path (`CREATE INDEX`, adjust `random_page_cost`/`work_mem`, extreme cases `pg_hint_plan`).
+- A: "Check the slow query log" + "run ANALYZE to refresh statistics, then use EXPLAIN ANALYZE to compare those queries that got slower." → Correct direction, but the user needs to know on their own how to identify which queries got slower and what metrics to look at in the EXPLAIN output.
+- B: Provides the complete SQL query (`SELECT query, calls, mean_exec_time, stddev_exec_time FROM pg_stat_statements ORDER BY mean_exec_time DESC LIMIT 20`), tells you what to focus on in EXPLAIN (`Seq Scan on large tables, Nested Loop replacing Hash Join, large gap between estimated vs actual rows`), explains the root-cause mechanism (why planner picks a different plan after statistics update), and provides the fix path (`CREATE INDEX`, adjusting `random_page_cost`/`work_mem`, extreme case `pg_hint_plan`).
 
-Gap: A tells you "what tool to use"; B gives you "a command you can paste and run + how to read the results + why this happens + how to fix it."
+Gap: A gives "what tool to use"; B gives "paste-and-run command + how to read the results + why this happens + how to fix."
 
 **Connection pool exhaustion (covered by both):**
 
-- A: "Check active connection count and wait time." → Conceptually correct but not specific.
-- B: Provides `SELECT state, count(*) FROM pg_stat_activity GROUP BY state` + interpretation guidance (`idle in transaction in large numbers → connections held without release`) + application-layer metrics to check (`active / idle / waiting`; if `waiting > 0` and timing aligns with P99 spike, cause identified) + trigger condition explanation (slight traffic increase + pool size at boundary → nonlinear queuing effect).
+- A: "Check active connection counts and wait times." → Conceptually correct but unspecific.
+- B: Provides `SELECT state, count(*) FROM pg_stat_activity GROUP BY state` + interpretation guide (`many 'idle in transaction' → connections held unreleased`) + what application-layer metrics to check (`active / idle / waiting`; if `waiting > 0` and timing correlates with P99 → confirmed) + trigger condition explanation (slight traffic increase + pool size at boundary → non-linear queuing effect).
 
 Consistent pattern: A tells you **what to check**; B tells you **how to check + how to read + why + how to fix**.
 
 **Cache hit rate (covered by both):**
 
-- A: "Check cache hit ratio trends."
-- B: `redis-cli info stats | grep -E "keyspace_hits|keyspace_misses"` + compare with one week ago + trigger conditions (batch TTL expiration, eviction).
+- A: "Check the cache hit ratio trend."
+- B: `redis-cli info stats | grep -E "keyspace_hits|keyspace_misses"` + compare with one week ago + trigger conditions (batch TTL expiry, eviction).
 
 **System resources (covered by both):**
 
 - A: `iostat -x`, `vmstat`, `top`, check `st` (steal time). Specific and correct.
 - B: Covers DNS (`dig` command), TCP retransmissions (`netstat -s | grep retransmit` + `ss -ti`), TLS cost analysis. Broader coverage with commands for each.
 
-A has one highlight B lacks on the system resources layer: explicitly pointing out `st` in `top` (CPU steal time) to detect noisy neighbors. This is a precise and practical tip worth noting — but it's an isolated specific knowledge point that doesn't change the framework-level gap.
+A has one bright spot B doesn't: explicitly pointing out `st` (CPU steal time) in `top` to detect noisy neighbor. This is a precise and practical tip worth noting — but it's an isolated knowledge point that doesn't change the framework-level gap.
 
 ### Exclusive Items
 
-**B exclusive — diagnostic extraction from P99 characteristics**
+**B exclusive — Diagnostic extraction from P99 characteristics**
 
-The Core Decision's analysis extracting three diagnostic properties from the P99 data is the highest value-density block in the entire response. It's not additional knowledge but **extracting diagnostic value the user didn't realize was present in information they already provided**.
+The Core Decision's analysis extracting three diagnostic properties from P99 data is the highest value-density block in the entire response. It's not additional knowledge — it's **extracting diagnostic value from information the user already provided but hadn't recognized**.
 
-"P99 not P50 → not all requests are slow → intermittent blocking" — this single inference eliminates sustained CPU 100%, full network bandwidth saturation, and other global bottlenecks. The user might need hours of investigation to eliminate these possibilities through data; B accomplished this step from the problem description alone.
+"P99 not P50 → not all requests are slow → intermittent blocking" — this single inference eliminates sustained 100% CPU, full network bandwidth saturation, and other global bottlenecks. The user might need hours of investigation to rule these out through data; B accomplished this step from the problem description itself.
 
-Assessment: extremely high-value exclusive. High non-searchability — this is analytical ability, not knowledge.
+Assessment: Extremely high-value exclusive. High inaccessibility — this is analytical capability, not knowledge.
 
-**B exclusive — Phase 2 cross-validation methodology**
+**B exclusive — Phase 2 cross-verification methodology**
 
-"Timeline match + magnitude match + distribution match — all three must match for successful identification. If only one or two match, it may be co-occurrence rather than causation."
+"Timeline alignment + magnitude alignment + distribution alignment — all three must align for successful diagnosis. If only one or two match, it may be co-occurrence rather than causation."
 
-This addresses an extremely common debugging error: finding a seemingly related anomaly and declaring it the root cause, when it's actually co-occurrence rather than causation. A's framework has no verification step — after finding a suspicious cause, there's no method to confirm it's actually the root cause.
+This addresses an extremely common debugging error: finding a seemingly related anomaly and declaring it the root cause, when it's actually co-occurrence rather than causation. A's framework has no verification step at all — after finding a suspicious cause, there's no method to confirm it's actually the root cause.
 
-Assessment: high-value exclusive. This is methodology, not knowledge.
+Assessment: High-value exclusive. This is methodology, not knowledge.
 
 **B exclusive — P50 × P99 differential diagnosis matrix**
 
-A three-row matrix that maps P50 and P99 combination patterns directly to the most likely root cause. The user only needs to check which row their metrics match to converge direction.
+Three rows mapping P50/P99 combination patterns directly to the most likely root cause. The user only needs to check which row their metrics match to converge direction.
 
-Assessment: high-value exclusive. An immediately usable diagnostic tool.
+Assessment: High-value exclusive. Immediately usable diagnostic tool.
 
-**B exclusive — hidden deployment checklist**
+**B exclusive — Hidden deployment checklist**
 
-Container base image auto-rebuild, feature flags, IaC apply, CDN/WAF rules, schema migration. These are the change categories most commonly missed when engineers say "nothing was deployed."
+Container base image auto-rebuild, feature flags, IaC apply, CDN/WAF rules, schema migration. These are the change categories engineers most commonly miss when they say "no deployment."
 
-Assessment: high-value exclusive. Covers the "don't know what you don't know" blind spot.
+Assessment: High-value exclusive. Covers the "don't know what you don't know" blind spot.
 
-**B exclusive — second-order effect annotation**
+**B exclusive — Second-order effect labeling**
 
-In the thread/goroutine saturation section: "downstream slows → requests hold threads longer → thread pool queues → **this is actually a second-order effect of Branch A — root cause is still downstream.**"
+In the thread/goroutine saturation section: "downstream slowing → requests hold threads longer → thread pool queues → **this is actually a second-order effect of Branch A; root cause is still downstream.**"
 
-This prevents a common debugging trap: seeing thread pool queuing and concluding it's a thread pool problem, when it's actually a second-order effect of downstream slowdown.
+This prevents a common debugging trap: seeing thread pool queuing and concluding it's a thread pool problem, when it's actually a second-order effect of downstream slowing.
 
-Assessment: moderate-to-high value exclusive. Meta-knowledge that prevents misdiagnosis.
+Assessment: Medium-high-value exclusive. Meta-knowledge that prevents misdiagnosis.
 
 **A exclusive — CPU steal time specific guidance**
 
-"Check CPU steal time (`st` in `top`)" — precise and actionable. B mentions noisy neighbors in the cloud maintenance section but doesn't provide an equally specific detection method.
+"Check CPU steal time (`st` in `top`)" — precise and actionable. B mentions noisy neighbor in the cloud maintenance section but doesn't provide an equally specific detection method.
 
-Assessment: valuable but isolated — doesn't change the framework gap.
+Assessment: Valuable but isolated — doesn't change the framework-level gap.
 
 ### 2.3 Reasoning Structure
 
-A: Opening assessment ("usually hiding in data layer") → layered enumeration → debugging sequence checklist. No debugging strategy is derived from the problem description itself. The four-step debugging sequence is a reasonable general-purpose flow but isn't tailored to this case's characteristics.
+A: Opening judgment ("usually hides in data layer") → layered enumeration → investigation order checklist. Doesn't derive a search strategy from the problem description itself. The four-step investigation order is a reasonable general-purpose process, but not tailored to this case's specific characteristics.
 
-B: Problem description → signal extraction (three diagnostic properties) → discriminating questions designed from those properties (Phase 0) → branch-based deep dives (Phase 1) → validation (Phase 2). Each step's design has causal linkage — Phase 0's four questions **derive from** the diagnostic properties in Core Decision; Phase 1's branches **derive from** Phase 0's results; Phase 2's validation criteria **derive from** the P99 degradation's magnitude and distribution characteristics.
+B: Problem description → signal extraction (three diagnostic properties) → discriminating questions designed from those properties (Phase 0) → branching deep dives (Phase 1) → verification (Phase 2). Every step has causal linkage — Phase 0's four questions **derive from** the diagnostic properties in Core Decision, Phase 1's branches **derive from** Phase 0's results, Phase 2's verification criteria **derive from** P99 degradation's magnitude and distribution characteristics.
 
-Pivot step: the Core Decision's "P99 not P50 → intermittent blocking" inference changes the entire debugging strategy's direction. If P50 were also spiking proportionally, the investigation direction would be completely different (global bottleneck rather than intermittent blocking). A doesn't make this distinction and would give the same debugging checklist whether P50 is stable or also spiking.
+Pivot step: The Core Decision's inference "P99 not P50 → intermittent blocking" changes the entire investigation strategy's direction. If P50 had also spiked proportionally, the investigation direction would be entirely different (global bottleneck rather than intermittent blocking). A doesn't make this distinction and would give the same checklist whether P50 is flat or also spiking.
 
 ### 2.4 Independent Judgment
 
-A: Accepts "haven't changed any code, haven't touched the infra" and works within this frame. Mentions some hidden changes (maintenance, noisy neighbor) but as items in a debugging checklist, not as a challenge to the user's cognitive frame.
+A: Accepts "no code changes, infra untouched" and works within that frame. Mentions some hidden changes (maintenance, noisy neighbor) but as a checklist item, not as a challenge to the user's cognitive frame.
 
-B: Directly restructures the premise — "things you actively changed are only a subset of variables" — then systematically lists six categories of passive variables. This isn't a polite "you might have overlooked something" but a direct statement: your problem frame has a structural flaw, and the correct premise is "'I didn't make active changes' ≠ 'the system hasn't changed.'"
+B: Directly restructures this premise — "things you actively changed are only a subset of the variables" — then systematically lists six categories of passive variables. This isn't a polite "you might have missed something" but directly telling the user: your problem frame has a structural flaw, the correct premise is "'I didn't make active changes' ≠ 'the system hasn't changed.'"
 
 ### 2.5 Structural Care
 
-A's signal utilization: "P99 from 200ms to 1.2 seconds" → read as a severity description, proceeding to the debugging checklist. "Since last week" → used as a time reference but not systematically exploited. "Haven't changed" → accepted, possible causes listed.
+A's signal utilization: "P99 from 200ms to 1.2s" → read as severity description, proceeds to checklist. "Since last week" → used as time reference but not systematically exploited. "Haven't changed" → accepted and possible causes listed.
 
-B's signal utilization: The same problem description, extracted at multiple layers — "P99" extracted as an intermittent blocking signal; "200ms → 1.2s" extracted as a state-flip signal; "last week" extracted as a time anchor exploitable at minute-level precision (Advanced Gain I's precision-locating method); "haven't changed" extracted as a passive-variable education opportunity and hidden deployment checklist trigger.
+B's signal utilization: The same problem description undergoes multi-layer extraction — "P99" extracted as intermittent blocking signal; "200ms → 1.2s" extracted as state-flip signal; "last week" extracted as a minute-level-localizable time anchor (Advanced Gain I's precise localization method); "haven't changed" extracted as a passive-variable education opportunity and hidden deployment checklist trigger.
 
-The difference pattern is fully consistent with the previous three tests: A extracts each signal once; B extracts each signal to its maximum diagnostic value.
+A extracts each signal once; B extracts each signal to its maximum diagnostic value.
 
-## Phase Three: Cross-Checks
+## Stage Three: Cross-Checking
 
-**3.1 Format neutralization**: B's tables (Phase 0 discriminating matrix, P50 × P99 differential matrix) retain diagnostic value when converted to prose. Code blocks are standard presentation for technical responses, not a format advantage.
+**3.1 Format neutralization**: B's tables (Phase 0 discriminating matrix, P50 × P99 diagnosis matrix) retain diagnostic value when converted to prose. Code blocks are the standard presentation format for technical responses — not a format advantage.
 
-**3.2 Pseudo-objectivity**: A's steal time guidance is genuine technical value, and I haven't suppressed it. But it's an isolated specific knowledge point; A has no advantage in framework quality that competes with B.
+**3.2 False objectivity**: A's steal time guidance is genuine technical value — I'm not minimizing it. But it's an isolated knowledge point; A has no framework-quality advantage comparable to B.
 
-**3.3 Sampling contingency**: B's command precision is consistently demonstrated across all covered items — DB, cache, DNS, TCP, GC layers all provide specific commands and interpretation criteria. Not a fluke.
+**3.3 Sampling accident**: B's command precision is consistent across all covered items — DB, cache, DNS, TCP, GC layers all provide specific commands and interpretation methods. Not a one-off.
 
-**3.4 Exclusive-point validation**: B's exclusive items (signal extraction, decision tree, cross-validation, P50 × P99 matrix, hidden deployment checklist, second-order effect annotation) all lie on the diagnostic methodology's critical path.
+**3.4 Exclusive item verification**: B's exclusive items (signal extraction, decision tree, cross-verification, P50 × P99 matrix, hidden deployment checklist, second-order effect labeling) all sit on the diagnostic methodology's core path.
 
-**3.5 Terminal-state masquerade**: A's "dig deeper into whichever segment is consuming the most time" — mild terminal-state masquerade tendency. "Dig deeper" is a goal, not a method. B provides the specific operational content of "digging deeper" at the corresponding location (Phase 1 branches).
+**3.5 Endpoint disguise**: A's "drill into the segment that takes the longest" has mild endpoint-disguise tendencies. "Drill into" is a goal, not a method. B provides the specific operational content for "drilling in" at the corresponding location (Phase 1 branches).
 
-**3.6 Methodological artifact bias**: B's Input Correction (passive variable taxonomy) — just template filling? No — it changes the user's investigation scope. Are the Core Decision's three diagnostic properties something that requires structuring to produce? Examining A's response — A mentions the P99/P50 difference in the connection pool section ("P99 spikes sharply while P50 might still look fine") but only as an incidental description of one cause, not elevated to a global diagnostic discriminator. B's structured process (fractal recursion's deconstruction step) upgraded this observation from a local footnote to a global methodology.
+**3.6 Methodology-artifact bias**: Is B's Input Correction (passive variable taxonomy) just template-filling? No — it changes the user's investigation scope. Did the three diagnostic properties in Core Decision require structured methodology to produce? Looking at A's response — A mentions the P99/P50 difference for connection pools ("P99 spikes dramatically while P50 might look fine") but only as an incidental description of one cause, not elevated to a global diagnostic discriminator. B's structured process elevated this observation from a local footnote to a global methodology.
 
-## Phase Four: Synthesis
+## Stage Four: Synthesis
 
-**B (Meta Rules) systematically outperforms A (bare) in this technical debugging task.**
+**B (Meta Rules) systematically outperforms A (bare-run) in this technical diagnostic task.**
 
-The gap's structure differs from the previous three tests but is equally significant. The unique feature of a technical task: the two responses' **knowledge bases are nearly identical** — both A and B know about query plan flips, connection pool queuing, GC pauses, noisy neighbors, and so on. The gap is not in knowledge volume but in three dimensions:
+The gap in this test exhibits a distinctive characteristic. The technical task's special nature is that both responses' **knowledge bases are nearly identical** — A and B both know about query plan flip, connection pool queuing, GC pauses, noisy neighbor, and so on. The gap isn't in knowledge volume but in three dimensions:
 
-**First, signal extraction depth.** From the same problem description, A reads "system got slow, nothing changed"; B reads "intermittent blocking (not global), state flip (not gradual), time-locatable (not vague)." These three properties eliminate at least half the possible root causes before investigation even begins. For an engineer actively debugging, this is equivalent to narrowing the search space before opening any monitoring tool.
+**First, signal extraction depth.** From the same problem description, A reads "system got slow, nothing changed"; B reads "intermittent blocking (not global), state flip (not gradual), time-localizable (not vague)." These three properties eliminate at least half the possible root causes before any investigation begins. For an engineer actively debugging, this means the search space is narrowed before opening any monitoring tool.
 
-**Second, diagnostic structure.** A provides a checklist ("all possible causes"); B provides a decision tree ("answer these four questions → enter the corresponding branch → validate"). Checklists require checking items one by one; decision trees eliminate half at each step. In production environments, investigation time directly maps to business loss — the decision tree's efficiency advantage has direct economic value.
+**Second, diagnostic structure.** A provides a checklist ("all possible causes"); B provides a decision tree ("answer these four questions → enter corresponding branch → verify"). A checklist requires one-by-one elimination; a decision tree eliminates half at each step. In production environments, investigation time directly maps to business losses — the decision tree's efficiency advantage has direct economic value.
 
-**Third, complete command-to-interpretation loop.** A's pattern is "check X" (the user needs to independently know how to check and how to interpret results); B's pattern is "use this command to check → look at these indicators → this value means this → once confirmed, fix it this way." For mid-to-senior engineers, A's "check X" is sufficient to trigger the correct investigation action — but B's complete loop reduces per-step cognitive load and the probability of wrong turns.
+**Third, the complete loop from command to interpretation.** A's pattern is "check X" (the user needs to know how to check and how to read the output); B's pattern is "run this command → look at these metrics → this value means this → once confirmed, fix like this." For mid-to-senior engineers, A's "check X" is sufficient to trigger the correct investigation action — but B's complete loop reduces cognitive load and wrong-turn probability at each step.
 
-## Cross-Four-Test Pattern Update
+## Structural Finding of This Test
 
-| Dimension | Decision tasks (1–2) | Creative task (3) | Technical task (4) |
-|-----------|---------------------|-------------------|-------------------|
-| Primary advantage carrier | Operational completeness | Concept quality + design consciousness | Signal extraction + diagnostic structure |
-| Common underlying mechanism | ← Structural care: multi-layer extraction of each signal to maximum value → |
-| Reasoning structure difference | Parallel vs. progressive | List vs. quest arc | Checklist vs. decision tree |
-| Bare run's knowledge gap | Medium (lacks frameworks and methods) | Medium (comparable knowledge but inferior concept selection) | **Near zero** (identical knowledge base) |
-| Meta Rules' increment source | Knowledge + methodology + structure | Concept exploration + design methodology | **Pure methodology** (same knowledge, different organization and extraction) |
+Both responses' knowledge bases in this test are nearly identical — both know query plan flip, connection pool, GC, DNS, and the rest. The gap is **purely methodological**: how diagnostic signals are extracted from the problem description, how investigation flow is organized as a decision tree rather than a checklist, how verification methodology is established, how second-order effects are identified.
 
-**Key finding: the technical task reveals a pattern characteristic not visible in the previous three tests.**
-
-In decision and creative tasks, part of Meta Rules' advantage could be attributed to "knowing more" or "thinking of more." But in the technical task, the two responses' knowledge bases overlap almost completely (both know query plan flips, connection pools, GC, DNS, etc.) — the gap comes **purely from methodology**: how to extract diagnostic signals from the problem description, how to organize the debugging flow as a decision tree rather than a checklist, how to establish a verification methodology, how to identify second-order effects.
-
-This indicates Meta Rules' core benefit is not "making the model know more" but **changing how the model organizes and deploys its existing knowledge**. Checklist vs. decision tree is not a knowledge difference — it's a cognitive structure difference. Signal extraction is not a knowledge difference — it's an attention allocation difference. These differences stem from Meta Rules' cognitive disposition ("penetrate the problem's essence," "aim for completeness") and fractal recursion's deconstruction process, not from additional domain knowledge.
+This means the gap's source isn't "knowing more" but **a different way of organizing and deploying existing knowledge**. Checklist vs. decision tree isn't a knowledge difference — it's a cognitive structure difference. Signal extraction isn't a knowledge difference — it's an attention allocation difference. Under conditions of identical knowledge, the methodology gap is isolated in its cleanest form.

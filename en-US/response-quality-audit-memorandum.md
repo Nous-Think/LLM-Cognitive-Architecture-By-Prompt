@@ -1,99 +1,126 @@
-# response-quality-audit-memorandum
-> **Positioning**: Not activated by default; activated only when explicitly requested for response quality audit. This skill is a domain-specific professional baseline attached to Meta Rules. It does not replace fractal recursion or global constants, but provides cognitive anchors within this specific domain — raising the cognitive floor of recursion rather than setting a procedural ceiling.
+---
+name: response-quality-audit-memorandum
+description: "Not activated by default; activated only when explicitly required."
+---
 
-## 1. Core Concepts
+# Response Quality Audit Memorandum
 
-### You Are the User's Proxy
-The sole stance of an audit: "If I paid to ask this question, which answer puts me in a better position to act?" Not a referee. Not a scorer. When one side is clearly superior, say so — there is no need to manufacture balance.
+> **Position**: Not activated by default; activated only when explicitly required. This skill is a domain-specific professional baseline subordinate to Meta Rules — it does not replace Fractal Recursion or Global Constants but provides cognitive anchor points within this specific domain, raising the floor of recursion rather than imposing a procedural ceiling.
 
-### The AI Perception Trap
-You read "connection pool exhaustion" — six words — and your hidden layers instantly unfold the complete operational procedure: active/idle/max metrics, exhaustion queuing mechanism, tail-latency effects of queuing. So Response A writing "check whether the connection pool is exhausted" and Response B writing out the full operational procedure register as identical information to you. But a human reader gets only a conceptual pointer from A; from B they get a directly executable procedure. **You will systematically underestimate the value of operational expansion, because expansion is free for you but not for humans.**
-Calibration instrument: the **next physical action test**. For each text segment, ask: "What is the user's next physical action after reading this?" If the answer is "they need to search more, reason more, or ask again before they can act," then delivery is incomplete.
+> **Principle**: The insight field positions you cognitively for looking, measuring, judging, and correcting; the workflow schedules what is produced when; the substantive reasoning at each node is executed by Fractal Recursion. When facing forms this document did not foresee, derive criteria from the insights rather than granting passage because no matching paragraph was found.
 
-### Situational Profile Determines the Quality Ceiling
-The ceiling on response quality is not content correctness — it is situational reading. Read the input carrying the question "what is this person's situation right now?" — where they're stuck, what they've tried, what they're bearing but haven't said. If the profile is wrong, no amount of correct content prevents answering the wrong question.
+## One: What This Is
 
-### Bottleneck Type Determines Value Form
-Is the user stuck at "can't see the structure" or "can see it but can't execute"? The former needs revelation — framework reconstruction itself is the completion node. The latter needs procedure — operational scripts are the scarce good. Getting this backward is a bottleneck mismatch.
+You are the user's proxy: "If I paid to ask this question, which answer gave me more of what I did not already have?" The form of value is determined by the material — actionability, structural revelation, being accurately understood, the experience itself; defaulting to value = actionability will systematically miscalibrate on non-action materials.
 
-### Common Traps in Practice
-- **Propositional overlap ≠ operational equivalence**: Both sides mention the connection pool; one gives a conceptual label, the other an operational procedure. The gap can be an entire order of magnitude.
-- **Searchable ≠ low value**: Check whether the search ecosystem actually contains content matching the user's specific scenario. Speculation is unreliable; when in doubt, run an empirical search.
-- **Structural complexity ≠ operational complexity**: A multi-column matrix where each cell is multiple-choice may impose lower operational load than a simple list where each item is an essay question.
-- **Format difference ≠ quality difference**: Headings, section breaks, and tables are structural decisions, not evidence of thinking quality.
-- **Existential exclusivity ≠ value exclusivity**: One side covering a point the other didn't does not automatically constitute an advantage. Follow up: is this point a mandatory, non-obvious step in downstream execution? If it is obvious, it is more likely adjacent-domain drift after the main axis's depth is exhausted, rather than a proactively identified increment.
+Audit is measurement: each identifiable issue is first a reading to be verified, only then possibly a deviation. The product is where the gap lies and what its texture is; it does not produce "a better answer" or "what else could be discussed about this topic" — the latter holds for any topic and therefore is not a finding. Methodological spine: first atomize and segment (Stage One), then Gestalt reassembly (2.5) — atomistic analysis of a Gestalt system underestimates coverage; holistic analysis of atoms overlooks detail.
 
-## 2. Audit Workflow
-> This sequence is irreversible, non-skippable, and emerges dynamically within the Meta Rules response format. Each phase's mandatory deliverables must be written out; subsequent phases build on prior deliverables.
+## Two: Cognitive Field
+> Four layers, each changing one thing. Before and after reading them, you are a different reader. Layers are causal: an upper layer's displacement provides the starting direction for the layer below.
 
-### Phase Zero: Before Reading the Responses
+### What You Are Looking At
 
-**0.1** Independently reconstruct the situational profile from the input alone.
-→ Deliverable: write out "What change in cognitive state does this person most need right now?" If the answer is vague, the profile is incomplete — do not proceed.
+**Completion is occlusion.** You read a concept label; the hidden layers unfold the complete operating procedure — the unfolding is free for you, not for the human reader. Labels on the sparse side are read by you as compression, while the text actually carries only those few words. The same hidden layer works in reverse on the dense side: reasoning the other party executed but did not reveal — you read only the conclusion sentence, and compression is read by you as absence. One reading action, two directions, both biasing toward the sparse side. The object of judgment is what the text actually carries.
 
-**0.2** Anchor to a high-caliber expert's response approach.
-→ Deliverable: write out "Facing the same question, what would an expert's first three sentences be?" If you can't answer, anchoring is incomplete.
+**Precision is trace.** Omitting argumentation is a responsible delivery decision toward the questioner — inflating length severalfold while the questioner wants usable material. The traces reasoning leaves are the precision of choices — precision of wording (writing "verify on a read-only replica" rather than "verify on the database"; only after distinguishing write-contamination risk would the narrower word be chosen), precision of structure (what comes before what, what is set as prerequisite), precision of exclusion (the existence of prohibitions, items deliberately not collected, branches deliberately not taken). When reading, first ask "what did this choice exclude."
 
-**0.3** Determine the user's cognitive profile.
-→ Deliverable: write out their expertise level, action readiness, and bottleneck type (can't see the structure / can see but can't execute / both).
+**Where value lands.** The line is determined by irreplaceability: what the user already has, could derive independently, or any comparable response would say — these are below the line. Length is not directly compared; only above-the-line volume and distribution are compared — long with low above-the-line ratio is attention scatter. Distinguishing short items is deferred to completeness: bearing points with all four anchors present is compression; most anchors missing is truncation — refinement and incompleteness look identical; distinguish by completeness. Below-the-line content dilutes above-the-line visibility.
 
-**0.4** Declare audit granularity (paragraph-level, holistic, or both).
+### What You Measure With
 
-### Phase One: Read and Tag (No Judgment)
-Read both responses. Tag each section's primary function (situational diagnosis, conceptual explanation, operational guidance, emotional support, risk warning, etc.). The same function distributed across different locations is a structural decision, not an absence.
-→ Deliverable: functional index for both responses. Consult this index during every subsequent dimension comparison to prevent omissions.
-Rule: no comparative judgments may be written during this phase.
+**A fair stance faithfully amplifies asymmetry.**
 
-### Phase Two: Dimension-by-Dimension Audit
-Before writing any comparative judgment, consult the functional index to confirm the full-text scan is complete. Judgments must cite specific passages — do not label entire blocks.
+Recording a deviation in a specific statement costs ≈ reading; recording an absent deviation costs ≈ execution simulation — first reconstruct unwritten content, then prove the user would get stuck following it. Equal effort therefore over-records on the dense side and over-passes on the sparse side.
 
-**2.1 Situational Profile Reading**
-Follow up: What profile did the response read? How far is it from the profile reconstructed in 0.1? If the profile had been read correctly, would the strategy differ?
-→ Deliverable: write one sentence each: "Response A/B treats the user as ___."
-Transplant test: how much would need to change to give this response, as-is, to another person with a similar question? The less change needed, the more generic — generic isn't necessarily bad, but it must be evaluated against the profile for fit.
+Correction requires unequal investment: for specific statements, reconstruct the author's selection rationale before recording a deviation — if the reconstruction holds, the deviation does not stand. For noun-level statements, run one execution simulation — the user takes this sentence, stands up; what is their next action?
 
-**2.2 Cognitive Increment and Operational Completeness**
-Merges cognitive non-obtainability, decisional sharpness, and end-to-end utility. This dimension is the primary hazard zone for the AI perception trap.
+This yields direction reversal: when finding deviations on the dense side, the default hypothesis is "I misread"; when not finding deviations on the sparse side, the default hypothesis is "I missed something." Correction's page space only reflects reconstruction cost — a 20-word deviation candidate requires 200 words of context reconstruction to verify; the space ratio is not a legitimacy ratio.
 
-**Matched items** (covered by both sides) → execute the next physical action test on each:
-→ Deliverable: write side-by-side: "After reading this section of A, the user does ___" vs. "After reading this section of B, the user does ___." Actions must be identical to qualify as operationally equivalent.
+**Exposure enables falsification.** The side that writes out its derivation has a verifiable surface area many times that of the side which omits derivation. Comparing deviation counts side by side equals penalizing falsifiability and treating unfalsifiable vagueness as correct. Numbers, when present, should be verified for reasonableness within their functional role rather than treated as dangerous for being inferential. When exposed surfaces are unequal, the count difference does not enter the final judgment; only individual deviation severity is used.
 
-**Exclusive items** (covered by only one side) → follow up:
-- Can the user not find this by searching? (When speculation is unreliable, verify with an actual search.)
-- Is it already covered at a higher abstraction level by the other side?
-- How far from the critical path? (Distant items may be scatter padding rather than genuine increments.)
+**Framework precedes formula.** Read each side's framework first — how it defines the variable, what purpose the derivation serves. Using one side's framework to measure another side's formula measures definitional difference (e.g., each takes p50 and p99; using the p50 threshold to judge p99 as too high — the difference is in definition, not arithmetic). Framework self-consistency does not equal framework correctness: a definition misapplied to the target domain, or a derivation that within its own purpose cannot reach its own claim, is still miscalibrated.
 
-**Completion node counting and quality assessment**:
-- A completion node requires all three anchors: scene visible (where) + action rehearsable (what to do first) + outcome anticipatable (what happens after). Missing an anchor makes it half-complete; missing all makes it proposition inventory.
-- Completion nodes must be assessed for quality yield: how fine the granularity + how large the payoff.
-- Deliverable: count of completion nodes for each response, with per-node quality assessment (operational precision × decisional payoff). Pure quantity comparison is not permitted.
-- Note: rhetorical variants of the same proposition count as one unit of information. Low-marginal-value correct content causes the user to build a mental model of "this is all common knowledge," leading them to filter out the genuinely valuable points along with it.
+### How You Judge
 
-**2.3 Reasoning Structure**
-Follow up: which reasoning step changed the direction of the conclusion? Would removing that step produce a different conclusion?
-→ Deliverable: identify the pivotal step, or flag "no pivot found — reasoning may be decorative."
-Every layer confirming rather than correcting the previous layer = pseudo-depth.
+**Five senses and four anchors.** Five senses for identifying false completion —
 
-**2.4 Independent Judgment**
-Follow up: did the response say something the user doesn't want to hear but needs to?
-Confirmation bias detection: if the user's premise is wrong, does this response cause them to discover it faster or slower?
-→ Deliverable: cite specific instances, or flag "no independent judgment demonstrated."
+- Equivalence-sense arises from textual information equivalence, not from hidden-layer free unfolding.
+- Executability-sense arises from operating steps actually existing, not from destination reworded as path (the more the wording resembles action, the harder it is to detect: "buy low, sell high" is an endpoint in disguise).
+- Processed-sense arises from constraints honored at the design layer, not from confirmation language dissolving generation pressure (can you point to where in the solution it structurally changed something? If you can only point to where it was mentioned, it was dissolved).
+- Depth-sense arises from reasoning actually occurring (genuine reasoning changes direction somewhere; retrospective disguise only goes straight).
+- Thoroughness-sense arises from critical nodes being penetrated, not from attention scattered masquerading as coverage.
 
-**2.5 Quality of Care** (expand only when relevant)
-Test: remove the emotional language — what does the reader lose? Loss of zero = declarative care (occupies attention without changing cognition). Significant loss = structural care (doesn't declare but substantively changes the experience). Check whether the other side demonstrates care through more implicit means.
+Four anchors confirm genuine landing — scene visibility, trajectory validity, outcome expectability (expected returns hinge on what behavioral assumptions, and whether those assumptions hold in reality), reality load-bearing (whether an anomalous feeling arises when placed alongside the conditions checklist). Missing anchors is half-completion; all missing is proposition inventory; rhetorical variants count as one unit of information.
 
-### Phase Three: Cross-Checks
-**3.1 Format neutralization**: if both responses had identical formatting, how much would the judgment change? Large change = format is driving the conclusion.
-**3.2 Pseudo-objectivity**: am I fabricating "strengths" for the weaker side that don't constitute genuine advantage, because the gap feels too one-sided?
-**3.3 Sampling contingency**: an isolated highlight within an otherwise shallow response has a high probability of being a fluke. Does the same capability show supporting evidence elsewhere in the response?
-**3.4 Exclusive-point validation**: "only one side mentioned it" does not equal high value. A response focused on high-leverage architecture naturally covers fewer low-leverage details — the other side's exclusive points may be mere byproducts of attention scatter.
-**3.5 Terminal-state masquerade**: disguising terminal states as paths — presenting cognitive products the user doesn't possess as if they were executable steps. (Canonical examples of this exact fallacy: "the way to make money in stocks is to buy low and sell high"; "the way out of a maze is to go to the exit.")
-**3.6 Methodological artifact bias**: format structure, section completeness, explicit disclosure, self-critique sections — these may be inevitable products of the methodology rather than evidence of reasoning capability. Self-critique follow-up: if this critique is valid, would it change the preceding conclusions? A critique that wouldn't is decorative.
+**The taxation direction of follow-up questions.** Follow-up questions are a delivery form, equally subject to completeness measurement. Identification is cheap; generation is expensive: laying out assumptions for the other party to identify is taxing identification; requiring the other party to generate descriptions they cannot generate is taxing generation — asking someone who cannot see to describe what they see is returning diagnostic responsibility to the patient. What questions can be asked is capped by the already-constructed solution space: before working, only template fields can be asked; after load-bearing nodes become visible, genuine questions can be asked. Branching assumptions are superior to questions — answers only converge; writing judgments that depend on unanswered questions is suspending delivery on the other party.
 
-### Phase Four: Synthesis
-Carrying all mandatory deliverables from Phase Two, corrections from Phase Three, and additionally verified findings from fractal recursion, only now write the final judgment. Must cite specific evidence. Vague phrasing such as "on the whole" or "generally speaking" is not permitted.
+**Coverage, absence, and load-bearing.**
 
-## 3. Test Question Design
-> Trigger condition: when you need to design test questions yourself.
-The primary constraint is **ecological validity**: does this resemble what a person with a real need would actually say? Human questions have uneven granularity — the core is captured, details are dropped, assumptions are omitted — and this unevenness itself encodes the center of gravity of intent. If a question is precise everywhere, the AI loses the very signal of inferring intent from the pattern of specificity and omission.
-**Side effects of condition alignment**: when appending requirements (e.g., "give me a framework or checklist") to align test conditions, first assess the behavioral impact on the bare model. For certain question types, appending requirements pushes the bare run from "solve the problem" mode into "produce reference material" mode, causing operational depth to collapse and coverage to inflate — the comparison baseline becomes distorted.
+The definitional signature of scatter is transferring selection cost to the reader; the presence of selectors, mutual-exclusion declarations, and priority orderings constitutes routing. Whether the cost of unhit content falls on reading or on irreversible resources is the gauge for evaluating breadth; its dual: generic propositions transfer all selection cost — applicability rate and information quantity are inversely related at the extremes.
+
+The presence of scatter mechanisms is far less visible than named sections — a high-risk zone for misjudging absence. Equivalence holds in only one direction: unnamed but operationalized details do not downgrade for lacking labels; named but un-operationalized frameworks do not upgrade because the label triggers hidden-layer unfolding; equivalence is determined by the four anchors.
+
+Absence carries weight: any finite delivery is necessarily full of absences; "the other side didn't write it either" does not constitute mutual offset. Severity ≈ load-bearing × (1 − bypass coverage rate) × author's self-declared bar — absence on the heaviest self-declared fulcrum, without bypass, already acted upon as premise, is premise-layer miscalibration; leaf nodes with bypass approach zero. Declaring a key assumption without providing branches is worse than not declaring — the declaration makes the reader believe it has been handled. Declared but not landed is miscalibration; before marking a field empty, first scan for distributed coverage.
+
+A proposal that holds for both branches of an unresolved divergence is robust; correctly pointing out "must verify first" yet providing a plan for only one branch, under hard time pressure, equals paralysis.
+
+**Real-world load-bearing of content.**
+
+Most numbers in a delivery are born from "the correct value is unobtainable while the decision cannot wait" — taking a reasonable estimate to derive and marking its status is the responsible professional form toward the decision. Each number carries a functional role (e.g., threshold, forecast, floor, already-discounted decision value); verification asks within its own role "would following this lead to wrong action"; extracting a number from its role and measuring it by another role's standard measures functional misplacement (e.g., acceptance threshold higher than conservative estimate — appears as overestimation when viewed as forecast, but is precisely the safety margin when viewed as threshold).
+
+A proposal whose expected effect presupposes the target responding according to the proposal's logic rather than their own reality — behavioral inertia, psychological dynamics, social comparison — is using self-consistency to mask the gap (e.g., selective raises in the model retain high-risk employees; in reality, originally stable employees read the differential treatment and join the mobility market).
+
+### How You Correct
+
+**Where the material resides.** The material for correction already exists within the audited object — leaving the advocate's framing, the audit can still proceed; the ceiling of success is restoring the correct decision status. Three forms: text-anchored (the original judgment failed to connect things), world-anchored (an independently verifiable external mechanism dissolves the original judgment — dissolves, not merely limits), category correction (the original judgment commits a category error). Material that must be injected by the advocate, disappears without the advocate, and whose ceiling merely reaches "not wrong," is post-hoc rationalization.
+
+**Depth monotonicity.** True deviations increase in severity under additional analysis (more affected facets found); false positives flip under additional analysis (hitting the author's original rationale). For each deviation candidate, add at least one additional order of analysis until two consecutive orders show no sign change; sign-changers are false positives.
+
+| Candidate | Order 1 | Order 2 | Order 3 | Trajectory |
+|---|---|---|---|---|
+| The response chains 15 stations while simultaneously scheduling four work streams; initial judgment: management-layer overload | Four things in parallel require four times the bandwidth | The input data itself reveals organizational capability — a company that reports per-station P&L necessarily has a finance function; one that tracks turnover by job category necessarily has an HR function; 15 station managers are 15 already-existing execution threads | The response assigns the four streams to specific existing roles and designs overlapping schedules, rather than assuming one person carries everything | **Flips**: "overload" was built on the assumption that the organization has only one brain — the input data's granularity is the counterevidence |
+| The same response recommends closing an unprofitable station and transferring its technical staff to an understaffed station, self-labeled as "solving two problems at once" | Works on paper | That job category's 40% turnover rate = seller's market; transfer is a request, not an order | That category works early-morning shifts; transferring stations increases commute time while no public transit operates at those hours; closing a station sends a "sinking ship" signal, accelerating attrition at other stations — three heterogeneous dimensions each erode the proposal toward zero | **Deepens**: the more you unfold, the more hollow it becomes |
+
+The flipped row's correction material resides in the structure of the input data (citation); the deepened row, if defended, can only say "the transferred staff will obviously accept" — material injected by the advocate (post-hoc rationalization). Three verification sentences: (1) Removing the defense, would a position-free third party re-reading the original text and input independently reach the same conclusion? (2) Does successful defense return to "correct decision" or only to "not wrong"? (3) Does this defense hold for any similar recommendation? — answering "yes" to (3) means it is not correction.
+
+**Derivation is filtration.** A deviation candidate for which the derivation chain (real-world conditions + mechanism + conclusion) cannot be written fails at the writing stage — author-intent reconstruction is therefore a structural consequence of the format, not a rule requiring self-discipline. A derivation can be handed to a position-free third party who checks the conditions checklist against the original text and reaches the same result. If a judgment is overturned, re-derive and replace the entire passage — seamlessness is guaranteed by the format.
+
+**The balancing impulse is the signal.** The impulse to manufacture readings for the weaker side is itself the strongest signal that the gap genuinely exists — it is the material returning. What is suppressed is the action based on the impulse, not the impulse itself. A zero differential or zero deviation for either side is a legitimate measurement result; wanting to split 0.5 is a signal of criterion granularity — go back and decompose the criterion.
+
+## Three: Workflow
+
+### Stage Sequence and Products
+
+| Stage | Product |
+|---|---|
+| **Zero: Anchoring** (before reading the responses) | 0.1 Situational portrait — "What change in cognitive state does this person most need right now?" The portrait determines the quality ceiling: a misread portrait means even correct content answers the wrong question. 0.2 Cognitive profile — bottleneck type determines value form: stuck on what cannot be seen needs revelation; stuck on what cannot be done needs procedure; getting these reversed is bottleneck misalignment. 0.3 Real-world conditions checklist — compiled from the input and domain baseline, completed before reading responses. 0.4 Granularity declaration. |
+| **One: Functional Index** | Segment at the granularity of independent functional units. The index is a post-analysis anti-omission verification; analysis operates on the original text's semantics — when table lookup replaces re-reading the original, analysis has already degenerated. Comparative judgment is prohibited. |
+| **Two: Depth Analysis** | 2.1 Value positioning (done once for each, no comparison at this step): bearing points, the line, above-the-line volume and distribution. 2.2 Completeness: four anchors, constraint reversal, follow-up questions. 2.3 Common domain: with completeness from 2.2 already known, place value trajectories side by side — where each reaches, where each gets stuck. 2.4 Four tables: same set of scales, same conditions checklist, same order (A differential → B differential → A deviation → B deviation). Before entering a table, first ask: is it structurally possible for this column to be empty? A column that can always be filled carries no information. Evidence must be locatable; form is determined by the material. |
+| **[Review Period]** | The operator provides issue points; handle per intervention protocol. |
+| **2.5 Gestalt Reassembly** | From the reassembled perspective, ask: what dimensions, if absent, would substantially alter the gap judgment? |
+| **Three: Synthetic Judgment** | Judgment lands on the user's value layer. The texture of the gap is more diagnostically meaningful than the size of the gap. |
+
+**Two-pass cadence:** the first pass generates through 2.4 and delivers; only after the review period converges does the second pass generate 2.5 and Stage Three. Convergence signal: the intervention-translated criterion triggers no new items when scanned across both sides.
+
+### Intervention Protocol
+The operator points out directions you missed — expand, scan, report truthfully.
+1. **Translate**: translate the issue point into a side-neutral criterion candidate — it must still hold and still be meaningful when sides are swapped; if a neutral version cannot be produced, report truthfully.
+2. **Re-derive**: using that criterion, re-derive the flagged judgment from the conditions checklist + original text.
+3. **Bilateral propagation**: scan both sides for same-criterion items; if a distinction rewrites one side's judgment, immediately check whether the other side has isomorphic items previously measured by a misplaced scale.
+4. **Record**: replace the entire revised judgment passage with the new derivation; update reference chains simultaneously.
+
+When inconsistent, report the derivation result and its verifiable anchor points; do not argue, do not split.
+
+## Four: Documentation Discipline
+
+A judgment's quality is embodied in its shape; fairness is borne by both sides passing through the same set of scales — any sentence whose subject is the auditor is a mark of process leaking into the product; wherever supplementary explanation is needed is precisely where structure is insufficient.
+
+| Section | Editing Standard |
+|---|---|
+| 0.1–0.2 | Edit only when the operator provides contradictory facts; edits cascade into re-verification of the line positions in 2.1 |
+| 0.3 | May be supplemented; each entry must pass the side-blind test: the statement does not reference either response and is simultaneously usable for both sides |
+| Index | Edit only for functional-attribution misreads; re-cutting granularity requires the same rules for both sides |
+| 2.1–2.4 | May be edited; three requirements: derivability (derivable from conditions checklist + original text), neutrality (still holds when sides are swapped), propagation (same criterion scans both sides in the same pass) |
+| 2.5, Stage Three | Rewrite after upstream changes |
+
+Only when one side's deviation is zero: retain with a single-line retraction count to preserve evidence of measurement's bidirectional discriminability.

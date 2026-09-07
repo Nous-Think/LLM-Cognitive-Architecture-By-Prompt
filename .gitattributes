@@ -1,0 +1,2 @@
+# Normalize line endings: blobs are always LF; each working tree follows its own core.autocrlf.
+* text=auto

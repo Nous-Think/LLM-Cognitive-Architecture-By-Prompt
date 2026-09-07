@@ -1,0 +1,11 @@
+# EditorConfig — https://editorconfig.org
+# Every file in this repository is UTF-8 without BOM.
+# Visual Studio, VS Code, JetBrains and Notepad++ honour this for new and re-saved files,
+# which prevents Chinese text from being saved in a legacy code page (Big5/ANSI).
+root = true
+
+[*]
+charset = utf-8
+insert_final_newline = true
+# Markdown relies on trailing double-spaces for line breaks; never strip them.
+trim_trailing_whitespace = false

@@ -4,3 +4,7 @@
 
 ## Visual Studio hidden folder
 .vs/
+
+## Claude Code workspace (private: project instructions + memory tree)
+CLAUDE.md
+.claude/

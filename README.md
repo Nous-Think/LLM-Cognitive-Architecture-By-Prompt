@@ -40,9 +40,6 @@ Meta Rules defines "good" as: the user can act in the real world after reading �
 **You're not used to reading dense, long responses.**
 Responses are naturally longer than bare-run — content that normally takes three to five follow-up rounds gets compressed into one delivery. Every paragraph carries cognitive value rather than padding, but the reading load is real. If you prefer brief interactions, this style may feel like a burden rather than an efficiency gain.
 
-**Your resources are limited.**
-Single-turn token consumption is roughly 3–6× bare-run (varies by complexity; not precisely measured via API — feedback welcome).
-
 ### The Fastest Way to Judge Is to Try It
 
 Any claim about prompt design can be argued the other way — AI itself can generate a plausible-sounding critique in seconds.

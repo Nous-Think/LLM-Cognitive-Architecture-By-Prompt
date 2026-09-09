@@ -4,7 +4,9 @@
 
 **ReadMe**: [English](README.md) | [繁體中文](README.zh-TW.md)
 
-**Prompt**: [English](en-US/meta-rules.md) | [繁體中文](zh-TW/元規則.md)
+**Prompt (Claude)**: [English](en-US/meta-rules/Claude_Meta_Rules.md) | [繁體中文](zh-TW/元規則/Claude_Meta_Rules.md)
+
+**Prompt (DeepSeek)**: [English](en-US/meta-rules/DeepSeek_Meta_Rules.md) | [繁體中文](zh-TW/元規則/DeepSeek_Meta_Rules.md)
 
 **Prompt Design Memorandum**: [English](en-US/prompt-design-memorandum.md) | [繁體中文](zh-TW/提示詞設計備忘錄.md)
 
@@ -57,7 +59,7 @@ Tested across Claude, GPT, Gemini, and DeepSeek (web interface only):
 - Claude shows the most consistent and highest gains — reliably triggering cognitive behaviors that other setups don't produce on their own. Both editions work: the Chinese edition thinks more broadly, the English edition goes deeper into detail.
 - GPT shows clear effect only with the English version; the Chinese version is ineffective. GPT also appears to have a routing layer: tasks that look simple on the surface are routed to a lighter processing path, and on those tasks the difference with or without Meta Rules is shallow — the effect only shows on tasks that are not simple at face value.
 - Gemini responds better to the English version, but its training bias toward search-engine-style quick answers keeps both reasoning and output too short for the framework to fully unfold. Cognitive shifts are observable but constrained.
-- DeepSeek likewise responds better to the English edition; the Chinese edition's effect is comparatively faint.
+- The English version of DeepSeek performs better; the Chinese version also has a noticeable impact, but in most cases its depth and quality cannot match those of the English version.
 
 The findings below are primarily based on Claude.
 

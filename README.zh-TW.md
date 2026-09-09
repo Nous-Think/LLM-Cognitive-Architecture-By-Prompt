@@ -4,7 +4,9 @@
 
 **ReadMe / 請閱讀**: [English](README.md) | [繁體中文](README.zh-TW.md)
 
-**Prompt / 提示詞**: [English](en-US/meta-rules.md) | [繁體中文](zh-TW/元規則.md)
+**Prompt / 提示詞（Claude）**: [English](en-US/meta-rules/Claude_Meta_Rules.md) | [繁體中文](zh-TW/元規則/Claude_Meta_Rules.md)
+
+**Prompt / 提示詞（DeepSeek）**: [English](en-US/meta-rules/DeepSeek_Meta_Rules.md) | [繁體中文](zh-TW/元規則/DeepSeek_Meta_Rules.md)
 
 **prompt-design-memorandum / 提示詞設計備忘錄**: [English](en-US/prompt-design-memorandum.md) | [繁體中文](zh-TW/提示詞設計備忘錄.md)
 
@@ -57,7 +59,7 @@
 - Claude 收益最穩且最高——能穩定觸發其他組合不自發產出的認知行為。中英文版都有效：中文版思維更廣，英文版細節更深入。
 - GPT 只有英文版有明顯效果，中文版無效。另外 GPT 似乎有一層路由機制：字面上看起來簡單的任務會被路由到較輕的處理路徑，這類任務有無元規則差異都不深刻，效果要在字面上就不簡單的任務才看得出來。
 - Gemini 英文版效果較佳，但受快速問答的訓練傾向影響，推理和回應篇幅都偏短，展開空間不足。認知變化存在但未能充分展現。
-- DeepSeek 同樣是英文版效果較好，中文版的影響反而不明顯。
+- DeepSeek 英文版效果較好，中文版同樣有顯然影響但是深度和品質多數情況比不上英文版。
 
 以下主要基於 Claude 系列的測試結果。
 

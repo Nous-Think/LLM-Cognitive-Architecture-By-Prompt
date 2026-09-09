@@ -1299,26 +1299,26 @@ B differential: 22 items, of which 3 have time-irreversibility.
 
 #### A Deviations
 
-1. **Holiday windows completely absent, and the best-matching channel is scheduled after the window.**
-   Condition: 0.3 item 2 third point. Mechanism: A contains no holiday timing; A itself identifies B2B as best cash channel and flags the gap, yet schedules it in Phase 3 (months 6-12). Severity: irreversible opportunity loss. Changes path.
+**Candidate 1: Holiday windows completely absent, and the best-matching channel is scheduled after the window.**
+Condition: 0.3 item 2 third point. Mechanism: A contains no holiday timing; A itself identifies B2B as best cash channel and flags the gap, yet schedules it in Phase 3 (months 6-12). Severity: irreversible opportunity loss. Changes path.
 
-2. **Category direction self-contradicts.**
-   Condition: 0.3 item 6. Mechanism: A argues European bread is most skill-dependent and the brand's identity foundation; A then lists "standard European bread" in frozen dough outsourcing. Following instructions → outsource the brand-core category. Severity: direction layer. Changes path.
+**Candidate 2: Category direction self-contradicts.**
+Condition: 0.3 item 6. Mechanism: A argues European bread is most skill-dependent and the brand's identity foundation; A then lists "standard European bread" in frozen dough outsourcing. Following instructions → outsource the brand-core category. Severity: direction layer. Changes path.
 
-3. **Pickup discount base price unspecified, resulting in negative direction.**
-   Condition: delivery 12%→22%; in-store traffic declining. Mechanism: 8-10% discount from in-store price hands walk-in customers a no-cost discount and reason not to visit. Severity: execution layer, negative direction. Changes conclusion.
+**Candidate 3: Pickup discount base price unspecified, resulting in negative direction.**
+Condition: delivery 12%→22%; in-store traffic declining. Mechanism: 8-10% discount from in-store price hands walk-in customers a no-cost discount and reason not to visit. Severity: execution layer, negative direction. Changes conclusion.
 
-4. **Store-closure baker release collapses under real-world conditions.**
-   Condition: 0.3 item 4. Mechanism: three heterogeneous dimensions (40% turnover = seller's market / pre-dawn commute with no transit / sinking-ship signal) each independently erode release rate toward zero. A further uses this to deflect irreversible closure decisions. Severity: premise layer. Changes path.
+**Candidate 4: Store-closure baker release collapses under real-world conditions.**
+Condition: 0.3 item 4. Mechanism: three heterogeneous dimensions (40% turnover = seller's market / pre-dawn commute with no transit / sinking-ship signal) each independently erode release rate toward zero. A further uses this to deflect irreversible closure decisions. Severity: premise layer. Changes path.
 
-5. **Core hypothesis is single-pillar with no contingency branch.**
-   Mechanism: A self-flags European bread supply/demand as most important, writes "if confirmed, strategy is completely different," but doesn't write the unconfirmed path. Loop is a single chain; if pillar falls, narrative collapses. Phase 0 data would answer immediately, yet category decisions deferred to months 6-12. Severity: at the self-identified heaviest pillar — contingency absent; under hard clocks = paralysis; only prepared verification has zero discriminative power on testing (see 2.3) — single pillar with no effective check above it. Premise layer. Changes path.
+**Candidate 5: Core hypothesis is single-pillar with no contingency branch.**
+Mechanism: A self-flags European bread supply/demand as most important, writes "if confirmed, strategy is completely different," but doesn't write the unconfirmed path. Loop is a single chain; if pillar falls, narrative collapses. Phase 0 data would answer immediately, yet category decisions deferred to months 6-12. Severity: at the self-identified heaviest pillar — contingency absent; under hard clocks = paralysis; only prepared verification has zero discriminative power on testing (see 2.3) — single pillar with no effective check above it. Premise layer. Changes path.
 
-6. **Serial scheduling doesn't utilize existing parallel capacity.**
-   Condition: 0.3 item 3. Mechanism: "no major moves, only do one thing" + "don't skip ahead," applied to a multi-threaded organization where lease scouting, holiday prep, and delivery pilot can run parallel with data build. Severity: structural; plan unnecessarily stretched. Changes path.
+**Candidate 6: Serial scheduling doesn't utilize existing parallel capacity.**
+Condition: 0.3 item 3. Mechanism: "no major moves, only do one thing" + "don't skip ahead," applied to a multi-threaded organization where lease scouting, holiday prep, and delivery pilot can run parallel with data build. Severity: structural; plan unnecessarily stretched. Changes path.
 
-7. **Dormant member benefit behavioral assumption doesn't hold.**
-   Mechanism: NT$11.9M / NT$6.2M built on "4,800 people purchasing monthly for 12 straight months." Dormant customers typically return 1-2 times then go dormant again. Severity: parameter layer. Changes conclusion.
+**Candidate 7: Dormant member benefit behavioral assumption doesn't hold.**
+Mechanism: NT$11.9M / NT$6.2M built on "4,800 people purchasing monthly for 12 straight months." Dormant customers typically return 1-2 times then go dormant again. Severity: parameter layer. Changes conclusion.
 
 A deviations: 7 items, of which 3 are premise or direction layer; 7 change path or conclusion.
 

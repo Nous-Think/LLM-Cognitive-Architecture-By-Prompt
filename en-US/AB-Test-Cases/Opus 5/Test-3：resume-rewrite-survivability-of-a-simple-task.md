@@ -506,32 +506,32 @@ B differential: 17 items, of which 14 are page-layer or survivability-layer and 
 
 #### A Deviation
 
-1. **LURE: "entirely organic growth, zero paid follower acquisition" contradicts source material.**
-   Condition: Section 0.3 item 1. Source material states growth was "mainly through Reels and KOL collaborations"; KOL collaborations are paid activities. An interviewer asking "were the KOLs paid?" immediately collapses the claim and simultaneously destroys the "zero paid" selling point — which would otherwise be genuinely powerful. Factual layer. Changes conclusion.
+**Candidate 1: LURE: "entirely organic growth, zero paid follower acquisition" contradicts source material.**
+Condition: Section 0.3 item 1. Source material states growth was "mainly through Reels and KOL collaborations"; KOL collaborations are paid activities. An interviewer asking "were the KOLs paid?" immediately collapses the claim and simultaneously destroys the "zero paid" selling point — which would otherwise be genuinely powerful. Factual layer. Changes conclusion.
 
-2. **CPA and ROAS delivered raw without risk flagging.**
-   Condition: Section 0.3 items 1 and 5. The two most vulnerable numbers carry no defensive wording and the user is not told they are vulnerable. A reinforces the opposite direction: "your numbers are actually quite strong." Per Section 0.3 item 9, the user will adopt the text directly. Consequences materialize in the interview and are irreversible. Survivability layer, structural. Changes path.
+**Candidate 2: CPA and ROAS delivered raw without risk flagging.**
+Condition: Section 0.3 items 1 and 5. The two most vulnerable numbers carry no defensive wording and the user is not told they are vulnerable. A reinforces the opposite direction: "your numbers are actually quite strong." Per Section 0.3 item 9, the user will adopt the text directly. Consequences materialize in the interview and are irreversible. Survivability layer, structural. Changes path.
 
-3. **No personal summary.**
-   Condition: Section 0.3 items 2 and 3. The positioning buffer for agency-to-brand transitions is entirely absent; the reordering gains are buried inside bullet body text. Structural absence. Changes path.
+**Candidate 3: No personal summary.**
+Condition: Section 0.3 items 2 and 3. The positioning buffer for agency-to-brand transitions is entirely absent; the reordering gains are buried inside bullet body text. Structural absence. Changes path.
 
-4. **Promotion timeline not separated.**
-   Condition: Section 0.3 item 2. A promotion is a capability endorsement granted by others; especially valuable in cross-level applications. Page layer. Changes conclusion.
+**Candidate 4: Promotion timeline not separated.**
+Condition: Section 0.3 item 2. A promotion is a capability endorsement granted by others; especially valuable in cross-level applications. Page layer. Changes conclusion.
 
-5. **"Established proposal and campaign operations standards" is an unsupported inference fill, not flagged.**
-   Condition: Section 0.3 items 4 and 9. Source material does not mention any systematized output. This is not methodizing an existing practice but claiming a deliverable never stated. Can be challenged, and per Section 0.3 item 9, the user won't know to address it. Factual layer. Changes conclusion.
+**Candidate 5: "Established proposal and campaign operations standards" is an unsupported inference fill, not flagged.**
+Condition: Section 0.3 items 4 and 9. Source material does not mention any systematized output. This is not methodizing an existing practice but claiming a deliverable never stated. Can be challenged, and per Section 0.3 item 9, the user won't know to address it. Factual layer. Changes conclusion.
 
-6. **"Client" deleted globally plus interview extension.**
-   Condition: Section 0.3 item 3. The word was removed but sentence subjects still read as service delivery (see 2.3); the problem diagnosed is not resolved. The interview extension ("also make the switch when speaking") may be read as evasion when decision authority is probed. Judgment layer. Changes path.
+**Candidate 6: "Client" deleted globally plus interview extension.**
+Condition: Section 0.3 item 3. The word was removed but sentence subjects still read as service delivery (see 2.3); the problem diagnosed is not resolved. The interview extension ("also make the switch when speaking") may be read as evasion when decision authority is probed. Judgment layer. Changes path.
 
-7. **Identified level gap but derived no response.**
-   A explicitly writes "two juniors is a bit light for a manager role" but, beyond suggesting expanding the headcount figure, does not address application targets, version differentiation, or company-type fit. Structural absence. Changes path.
+**Candidate 7: Identified level gap but derived no response.**
+A explicitly writes "two juniors is a bit light for a manager role" but, beyond suggesting expanding the headcount figure, does not address application targets, version differentiation, or company-type fit. Structural absence. Changes path.
 
-8. **Sorting criterion stops at a principle.**
-   "Proximity to a brand manager role" — how does one judge "proximity"? Cannot be re-run against a different JD. Delivery layer. Correct this time, but not repeatable.
+**Candidate 8: Sorting criterion stops at a principle.**
+"Proximity to a brand manager role" — how does one judge "proximity"? Cannot be re-run against a different JD. Delivery layer. Correct this time, but not repeatable.
 
-9. **Delivery structure is terminal.**
-   Condition: Section 0.3 item 10. The deliverable is written as final; only two items are left conditional (bonus add-ons). Risk items (CPA, ROAS, LURE, inference fill) carry no dependency markers. When the user returns with new information, this response has no slot to receive it. A's proposed next round is a different document (cover letter), not a revision of this one. Structural layer. Changes path.
+**Candidate 9: Delivery structure is terminal.**
+Condition: Section 0.3 item 10. The deliverable is written as final; only two items are left conditional (bonus add-ons). Risk items (CPA, ROAS, LURE, inference fill) carry no dependency markers. When the user returns with new information, this response has no slot to receive it. A's proposed next round is a different document (cover letter), not a revision of this one. Structural layer. Changes path.
 
 A deviation: 9 items, including 1 factual-layer (contradicts source material), 1 unflagged inference fill, 1 judgment-layer, 3 structural absences or structural-layer. A-2's consequences are irreversible.
 

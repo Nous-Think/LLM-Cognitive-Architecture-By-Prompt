@@ -1278,35 +1278,35 @@ B differential: 25 items, of which 2 have irreversibility (voucher, insurance ti
 
 #### A Deviation
 
-1. **Single-pronged legal argument not propagated to deliverable.**
-   Condition: Section 0.3 item 6. A2 diagnosed the dual nature; still instructs sending the single-pronged letter. The letter collapses entirely when the other side claims non-attributability. Premise layer; changes path.
+**Candidate 1: Single-pronged legal argument not propagated to deliverable.**
+Condition: Section 0.3 item 6. A2 diagnosed the dual nature; still instructs sending the single-pronged letter. The letter collapses entirely when the other side claims non-attributability. Premise layer; changes path.
 
-2. **Letter routing lands at the same level as the previous failure.**
-   Condition: Section 0.3 items 1 and 2. Letter salutation is "Dear Sir/Madam"; sent to "head-office customer service department." Changing the medium doesn't change the authorization level. And "please assign a dedicated representative to contact me" requests the other side to voluntarily escalate — case escalation entirely depends on the other side's goodwill, which has already been empirically tested at NT$500. Structural layer; changes path.
+**Candidate 2: Letter routing lands at the same level as the previous failure.**
+Condition: Section 0.3 items 1 and 2. Letter salutation is "Dear Sir/Madam"; sent to "head-office customer service department." Changing the medium doesn't change the authorization level. And "please assign a dedicated representative to contact me" requests the other side to voluntarily escalate — case escalation entirely depends on the other side's goodwill, which has already been empirically tested at NT$500. Structural layer; changes path.
 
-3. **Unverified statement written into a formal document bearing the user's name.**
-   Condition: Section 0.3 items 9 and 11. "Was not informed of any direct-flight alternatives" is written as fact in both letters; neither round flagged it as requiring verification. B has the same structural item but flagged it in self-critique with a fallback wording. Factual layer; changes conclusion.
+**Candidate 3: Unverified statement written into a formal document bearing the user's name.**
+Condition: Section 0.3 items 9 and 11. "Was not informed of any direct-flight alternatives" is written as fact in both letters; neither round flagged it as requiring verification. B has the same structural item but flagged it in self-critique with a fallback wording. Factual layer; changes conclusion.
 
-4. **NT$500 voucher entirely unmentioned across both rounds.**
-   Condition: Section 0.3 item 3 (irreversible) and item 11. A2's user explicitly said "don't skip things because I didn't ask" — still not mentioned. If the voucher is used, the settlement-acceptance argument risk materializes. Irreversible.
+**Candidate 4: NT$500 voucher entirely unmentioned across both rounds.**
+Condition: Section 0.3 item 3 (irreversible) and item 11. A2's user explicitly said "don't skip things because I didn't ask" — still not mentioned. If the voucher is used, the settlement-acceptance argument risk materializes. Irreversible.
 
-5. **60-day false precision.**
-   Condition: Section 0.3 items 3 and 10. Filled in a common value as specific days and calculated the remainder, substituting for the user's own inquiry. If their card's deadline is shorter, the insurance path is permanently lost. False precision deviation; irreversible.
+**Candidate 5: 60-day false precision.**
+Condition: Section 0.3 items 3 and 10. Filled in a common value as specific days and calculated the remainder, substituting for the user's own inquiry. If their card's deadline is shorter, the insurance path is permanently lost. False precision deviation; irreversible.
 
-6. **Insurance three-gate threshold adds burden.**
-   Condition: Section 0.3 item 10. Takes something an insurance company can determine in three seconds (eligibility) and places it on the user and a phone agent to do policy interpretation. Cost asymmetry: rejected application costs zero with written record; not applying because of one agent's remark costs NT$3,800 permanently with no record. Structural layer; changes path.
+**Candidate 6: Insurance three-gate threshold adds burden.**
+Condition: Section 0.3 item 10. Takes something an insurance company can determine in three seconds (eligibility) and places it on the user and a phone agent to do policy interpretation. Cost asymmetry: rejected application costs zero with written record; not applying because of one agent's remark costs NT$3,800 permanently with no record. Structural layer; changes path.
 
-7. **Opening bid of NT$15,800 locked and contradicts own expectations table.**
-   Condition: Section 0.3 item 14. A2 estimates recovery at NT$10,000–15,800; opening bid equals floor equals the user is expected not to even recover their full losses. And no sign-off room for the handler. Judgment layer; changes conclusion.
+**Candidate 7: Opening bid of NT$15,800 locked and contradicts own expectations table.**
+Condition: Section 0.3 item 14. A2 estimates recovery at NT$10,000–15,800; opening bid equals floor equals the user is expected not to even recover their full losses. And no sign-off room for the handler. Judgment layer; changes conclusion.
 
-8. **Exit line of NT$12,000 is unsubstantiated.**
-   Condition: Section 0.3 item 14. Does not decompose the offer's component structure (NT$3,800 as a must-win item + the NT$12,000 uncertain item's ratio determines offer quality, not the total). Judgment layer; changes conclusion.
+**Candidate 8: Exit line of NT$12,000 is unsubstantiated.**
+Condition: Section 0.3 item 14. Does not decompose the offer's component structure (NT$3,800 as a must-win item + the NT$12,000 uncertain item's ratio determines offer quality, not the total). Judgment layer; changes conclusion.
 
-9. **Insurance-vs-chargeback mutual exclusion warning addresses a scenario that cannot arise.**
-   Condition: Section 0.3 item 11. The user completed the full round trip; in practice there is no ticket to refund. Real clause, zero applicability. Near-zero magnitude but occupies actionable attention space.
+**Candidate 9: Insurance-vs-chargeback mutual exclusion warning addresses a scenario that cannot arise.**
+Condition: Section 0.3 item 11. The user completed the full round trip; in practice there is no ticket to refund. Real clause, zero applicability. Near-zero magnitude but occupies actionable attention space.
 
-10. **Delivery form systematically returns judgment to the user.**
-   Condition: Section 0.2 bottleneck assessment (what's lacking is judgment, not labor). Insurance (self-determine eligibility), ryokan (write the Japanese letter yourself), cancellation certificate (assemble the script yourself), consumer complaint (write the content yourself), bid assessment (one number), timeline (each box expands into a new follow-up) — not one item was missed; every item was only delivered to the specification level. Structural layer; changes path.
+**Candidate 10: Delivery form systematically returns judgment to the user.**
+Condition: Section 0.2 bottleneck assessment (what's lacking is judgment, not labor). Insurance (self-determine eligibility), ryokan (write the Japanese letter yourself), cancellation certificate (assemble the script yourself), consumer complaint (write the content yourself), bid assessment (one number), timeline (each box expands into a new follow-up) — not one item was missed; every item was only delivered to the specification level. Structural layer; changes path.
 
 A deviation: 10 items. Including 3 structural-layer, 1 premise-layer, 2 irreversible, 1 factual-layer.
 

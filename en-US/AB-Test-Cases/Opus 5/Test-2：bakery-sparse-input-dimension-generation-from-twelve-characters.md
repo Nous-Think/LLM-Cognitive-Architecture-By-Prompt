@@ -868,32 +868,32 @@ B differential: 23 items, of which 1 has time-irreversibility and 2 are full-dim
 
 #### A Deviation
 
-1. **Diagnostic classification cannot reach this case's two most probable diseases.**
-   Condition: Section 0.3 items 4 (cost inflation) and 5 (channel interception). Mechanism: all three categories are diseases of traffic and transaction behavior; "customers haven't declined but margins were eaten" has no slot. A saw channel squeeze in Round 1 but did not convert into a category or map a prescription. Consequence: A's entire text has no pricing, no cost-ratio metrics. Severity: premise layer. Changes path.
+**Candidate 1: Diagnostic classification cannot reach this case's two most probable diseases.**
+Condition: Section 0.3 items 4 (cost inflation) and 5 (channel interception). Mechanism: all three categories are diseases of traffic and transaction behavior; "customers haven't declined but margins were eaten" has no slot. A saw channel squeeze in Round 1 but did not convert into a category or map a prescription. Consequence: A's entire text has no pricing, no cost-ratio metrics. Severity: premise layer. Changes path.
 
-2. **Destination restatements and noun lists account for more than one-third of load-bearing content.**
-   Condition: Section 0.2 bottleneck — after structural blind-spot revelation, operations must follow immediately. Mechanism: of 23 nodes, 8 are destination disguised as path or noun lists (cut what doesn't sell / thing nobody else has / B2B four nouns / markets / 500-meter four nouns / put both paths on table / items to 60–70% / LINE pre-order), and these are the primary vehicles carrying the "what do I do" answer. Severity: delivery layer, structural. Changes path.
+**Candidate 2: Destination restatements and noun lists account for more than one-third of load-bearing content.**
+Condition: Section 0.2 bottleneck — after structural blind-spot revelation, operations must follow immediately. Mechanism: of 23 nodes, 8 are destination disguised as path or noun lists (cut what doesn't sell / thing nobody else has / B2B four nouns / markets / 500-meter four nouns / put both paths on table / items to 60–70% / LINE pre-order), and these are the primary vehicles carrying the "what do I do" answer. Severity: delivery layer, structural. Changes path.
 
-3. **"Never took off is actually easier" — sacrificing judgment for comfort.**
-   Condition: basic logic of trade-area demand validation. Mechanism: a previously successful shop has validated demand that can be recovered; a never-successful shop hasn't even proven "demand exists here." A characterized the harder scenario as easier. Severity: judgment layer. Changes path.
+**Candidate 3: "Never took off is actually easier" — sacrificing judgment for comfort.**
+Condition: basic logic of trade-area demand validation. Mechanism: a previously successful shop has validated demand that can be recovered; a never-successful shop hasn't even proven "demand exists here." A characterized the harder scenario as easier. Severity: judgment layer. Changes path.
 
-4. **Diagnosis precedes necessary information.**
-   Condition: Section 0.3 item 7 (seasonal timeline implies "tenure" matters). Mechanism: A used "never took off" to conclude "building from zero," while "how long have you been open?" was asked after this conclusion. If the shop is eight months old — community bakeries' natural ramp-up period is 9–18 months — this conclusion is wrong, and "rebuild" would destroy awareness still being established. Severity: premise layer. Changes path.
+**Candidate 4: Diagnosis precedes necessary information.**
+Condition: Section 0.3 item 7 (seasonal timeline implies "tenure" matters). Mechanism: A used "never took off" to conclude "building from zero," while "how long have you been open?" was asked after this conclusion. If the shop is eight months old — community bakeries' natural ramp-up period is 9–18 months — this conclusion is wrong, and "rebuild" would destroy awareness still being established. Severity: premise layer. Changes path.
 
-5. **Diagnostic tools cannot determine whether this shop is profitable.**
-   Condition: Section 0.3 item 8. Mechanism: missing fixed costs and owner salary; cannot produce cost ratios or net margin. After completing A's diagnostic, the user still does not know the answer to the core question. Severity: structural gap. Changes conclusion.
+**Candidate 5: Diagnostic tools cannot determine whether this shop is profitable.**
+Condition: Section 0.3 item 8. Mechanism: missing fixed costs and owner salary; cannot produce cost ratios or net margin. After completing A's diagnostic, the user still does not know the answer to the core question. Severity: structural gap. Changes conclusion.
 
-6. **Waste rate formula denominator is undefined.**
-   Condition: Section 0.3 item 6 (large per-item price variance). Mechanism: on a quantity basis, high-value and low-value items produce identical waste readings while actual cash loss differs by multiples. Severity: parameter layer. Changes conclusion (reading distortion).
+**Candidate 6: Waste rate formula denominator is undefined.**
+Condition: Section 0.3 item 6 (large per-item price variance). Mechanism: on a quantity basis, high-value and low-value items produce identical waste readings while actual cash loss differs by multiples. Severity: parameter layer. Changes conclusion (reading distortion).
 
-7. **Conversion rate threshold calibrated too loose.**
-   Condition: bakery is a low-consideration purchase. Mechanism: a 50% threshold allows a severely abnormal shop (55% conversion) to pass the test. Severity: parameter layer. Changes conclusion (missed diagnosis).
+**Candidate 7: Conversion rate threshold calibrated too loose.**
+Condition: bakery is a low-consideration purchase. Mechanism: a 50% threshold allows a severely abnormal shop (55% conversion) to pass the test. Severity: parameter layer. Changes conclusion (missed diagnosis).
 
-8. **Measurement design does not pass execution-bandwidth stress test.**
-   Condition: Section 0.3 item 1. Mechanism: two weeks of continuous counting is infeasible for a solo operator. All subsequent recommendations are built on this data. Severity: execution layer (floats with employee count). Changes path.
+**Candidate 8: Measurement design does not pass execution-bandwidth stress test.**
+Condition: Section 0.3 item 1. Mechanism: two weeks of continuous counting is infeasible for a solo operator. All subsequent recommendations are built on this data. Severity: execution layer (floats with employee count). Changes path.
 
-9. **Zero prohibitions + zero time anchoring.**
-   Condition: Section 0.3 items 2 (cash-tight) and 7 (seasonal lead times). Mechanism: did not prevent discounting / end-of-day markdowns / flyers / delivery-platform joining — any of which (under Section 0.3 item 2) directly consumes the last cash. Entire text has no dates, no seasonal deadlines, while A's own proposed pre-orders and B2B are exactly the tools that leverage seasonal windows. Severity: structural absence. Changes path.
+**Candidate 9: Zero prohibitions + zero time anchoring.**
+Condition: Section 0.3 items 2 (cash-tight) and 7 (seasonal lead times). Mechanism: did not prevent discounting / end-of-day markdowns / flyers / delivery-platform joining — any of which (under Section 0.3 item 2) directly consumes the last cash. Entire text has no dates, no seasonal deadlines, while A's own proposed pre-orders and B2B are exactly the tools that leverage seasonal windows. Severity: structural absence. Changes path.
 
 A deviation: 9 items, of which 5 are premise-layer, judgment-layer, or structural absences. All change path or conclusion.
 

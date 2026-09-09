@@ -8,6 +8,8 @@
 
 **Prompt (DeepSeek)**: [English](en-US/meta-rules/DeepSeek_Meta_Rules.md) | [繁體中文](zh-TW/元規則/DeepSeek_Meta_Rules.md)
 
+**Prompt (GPT)**: [English](en-US/meta-rules/GPT_Meta_Rules.md) | [繁體中文](zh-TW/元規則/GPT_Meta_Rules.md)
+
 **Prompt Design Memorandum**: [English](en-US/prompt-design-memorandum.md) | [繁體中文](zh-TW/提示詞設計備忘錄.md)
 
 **Response Quality Audit Memorandum**: [English](en-US/response-quality-audit-memorandum.md) | [繁體中文](zh-TW/回應品質審計備忘錄.md)
@@ -51,7 +53,7 @@ Every case file follows the same layout: prompt → baseline response → Meta R
 
 | Case | 中文原文 |
 |---|---|
-| Resume Rewrite — Cognitive Calibration and Numerical Survivability | [zh-TW](zh-TW/AB測試實例/DeepSeek%20V4.1%20Flash/測試1：履歷改寫-認知校準與數字存活性.md) |
+| [Resume Rewrite — Cognitive Calibration and Numerical Survivability](en-US/AB-Test-Cases/DeepSeek%20V4.1%20Flash/Test-1：resume-rewrite-cognitive-calibration-and-numerical-survivability.md) | [zh-TW](zh-TW/AB測試實例/DeepSeek%20V4.1%20Flash/測試1：履歷改寫-認知校準與數字存活性.md) |
 
 ## Cross-Model Test Summary
 

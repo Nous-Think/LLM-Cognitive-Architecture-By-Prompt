@@ -8,6 +8,8 @@
 
 **Prompt / 提示詞（DeepSeek）**: [English](en-US/meta-rules/DeepSeek_Meta_Rules.md) | [繁體中文](zh-TW/元規則/DeepSeek_Meta_Rules.md)
 
+**Prompt / 提示詞（GPT）**: [English](en-US/meta-rules/GPT_Meta_Rules.md) | [繁體中文](zh-TW/元規則/GPT_Meta_Rules.md)
+
 **prompt-design-memorandum / 提示詞設計備忘錄**: [English](en-US/prompt-design-memorandum.md) | [繁體中文](zh-TW/提示詞設計備忘錄.md)
 
 **response-quality-audit-memorandum / 回應品質審計備忘錄**: [English](en-US/response-quality-audit-memorandum.md) | [繁體中文](zh-TW/回應品質審計備忘錄.md)
@@ -51,7 +53,7 @@
 
 | 測試 | English |
 |---|---|
-| [測試1：履歷改寫-認知校準與數字存活性](zh-TW/AB測試實例/DeepSeek%20V4.1%20Flash/測試1：履歷改寫-認知校準與數字存活性.md) | — |
+| [測試1：履歷改寫-認知校準與數字存活性](zh-TW/AB測試實例/DeepSeek%20V4.1%20Flash/測試1：履歷改寫-認知校準與數字存活性.md) | [en](en-US/AB-Test-Cases/DeepSeek%20V4.1%20Flash/Test-1：resume-rewrite-cognitive-calibration-and-numerical-survivability.md) |
 
 ## 跨模型測試摘要
 

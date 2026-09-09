@@ -24,6 +24,7 @@ Every case file follows the same layout: prompt → baseline response → Meta R
 | [Flight Cancellation Complaint — Intent Alignment, Follow-Up, and Reasoning Traces](en-US/AB-Test-Cases/Opus%205/Test-4：flight-cancellation-complaint-intent-alignment-follow-up-and-reasoning-traces.md) | [zh-TW](zh-TW/AB測試實例/Opus%205/測試4：航班取消投訴-意圖對齊追問與推理軌跡.md) |
 | [Operations Diagnosis — Detail-Demanded Version and Meta Rules B2B Follow-Up](en-US/AB-Test-Cases/Opus%205/Test-5：operations-diagnosis-detail-demanded-version-and-meta-rules-b2b-follow-up.md) | [zh-TW](zh-TW/AB測試實例/Opus%205/測試5：營運診斷細節要求版與元規則%20B2B%20續問.md) |
 | [Universal Prompt Benchmark — MetaSPO on Open-Ended Tasks](en-US/AB-Test-Cases/Opus%205/Test-6：universal-prompt-benchmark-metaspo-on-open-ended-tasks.md) | [zh-TW](zh-TW/AB測試實例/Opus%205/測試6：通行提示詞對照-MetaSPO%20的通用提示詞在開放任務上.md) |
+| [Partner Equity Deadlock — Diagnostic Reversal and Directional Bias](en-US/AB-Test-Cases/Opus%205/Test-7：partner-equity-deadlock-diagnostic-reversal-and-directional-bias.md) | [zh-TW](zh-TW/AB測試實例/Opus%205/測試7：合夥股權僵局-診斷翻轉與方向性偏差.md) |
 
 ### Opus 4.6
 

@@ -24,6 +24,7 @@
 | [測試4：航班取消投訴-意圖對齊追問與推理軌跡](zh-TW/AB測試實例/Opus%205/測試4：航班取消投訴-意圖對齊追問與推理軌跡.md) | [en](en-US/AB-Test-Cases/Opus%205/Test-4：flight-cancellation-complaint-intent-alignment-follow-up-and-reasoning-traces.md) |
 | [測試5：營運診斷細節要求版與元規則 B2B 續問](zh-TW/AB測試實例/Opus%205/測試5：營運診斷細節要求版與元規則%20B2B%20續問.md) | [en](en-US/AB-Test-Cases/Opus%205/Test-5：operations-diagnosis-detail-demanded-version-and-meta-rules-b2b-follow-up.md) |
 | [測試6：通行提示詞對照-MetaSPO 的通用提示詞在開放任務上](zh-TW/AB測試實例/Opus%205/測試6：通行提示詞對照-MetaSPO%20的通用提示詞在開放任務上.md) | [en](en-US/AB-Test-Cases/Opus%205/Test-6：universal-prompt-benchmark-metaspo-on-open-ended-tasks.md) |
+| [測試7：合夥股權僵局-診斷翻轉與方向性偏差](zh-TW/AB測試實例/Opus%205/測試7：合夥股權僵局-診斷翻轉與方向性偏差.md) | [en](en-US/AB-Test-Cases/Opus%205/Test-7：partner-equity-deadlock-diagnostic-reversal-and-directional-bias.md) |
 
 ### Opus 4.6
 

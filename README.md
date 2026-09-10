@@ -59,7 +59,7 @@ Every case file follows the same layout: prompt → baseline response → Meta R
 
 Tested across Claude, GPT, Gemini, and DeepSeek (web interface only):
 - Claude shows the most consistent and highest gains — reliably triggering cognitive behaviors that other setups don't produce on their own. Both editions work: the Chinese edition thinks more broadly, the English edition goes deeper into detail.
-- GPT shows clear effect only with the English version; the Chinese version is less effective. GPT also appears to have a routing layer: tasks that look simple on the surface are routed to a lighter processing path, and on those tasks the difference with or without Meta Rules is shallow — the effect only shows on tasks that are not simple at face value.
+- Both the Chinese and English versions are effective on GPT; the key is explicitly requiring response format compliance (see the [GPT Meta Rules](en-US/meta-rules/GPT_Meta_Rules.md) for details). The response format is the most direct indicator of whether Meta Rules is in effect: intact means active, collapsed means not. GPT has a routing layer that causes format collapse on seemingly simple tasks; the effect is clearest on tasks that are not simple at face value.
 - Gemini responds better to the English version, but its training bias toward search-engine-style quick answers keeps both reasoning and output too short for the framework to fully unfold. Cognitive shifts are observable but constrained.
 - The English version of DeepSeek performs better; the Chinese version also has a noticeable impact, but in most cases its depth and quality cannot match those of the English version.
 

@@ -54,6 +54,7 @@
 | 測試 | English |
 |---|---|
 | [測試1：履歷改寫-認知校準與數字存活性](zh-TW/AB測試實例/DeepSeek%20V4.1%20Flash/測試1：履歷改寫-認知校準與數字存活性.md) | [en](en-US/AB-Test-Cases/DeepSeek%20V4.1%20Flash/Test-1：resume-rewrite-cognitive-calibration-and-numerical-survivability.md) |
+| [測試2：SVG繪圖測試（html 產物，不審計）](zh-TW/AB測試實例/DeepSeek%20V4.1%20Flash/測試2：SVG繪圖測試-鵜鶘騎自行車動畫/測試2：SVG繪圖測試.md) | [en](en-US/AB-Test-Cases/DeepSeek%20V4.1%20Flash/Test-2：svg-drawing-test/Test-2：svg-drawing-test.md) |
 
 ## 跨模型測試摘要
 

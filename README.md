@@ -54,6 +54,7 @@ Every case file follows the same layout: prompt → baseline response → Meta R
 | Case | 中文原文 |
 |---|---|
 | [Resume Rewrite — Cognitive Calibration and Numerical Survivability](en-US/AB-Test-Cases/DeepSeek%20V4.1%20Flash/Test-1：resume-rewrite-cognitive-calibration-and-numerical-survivability.md) | [zh-TW](zh-TW/AB測試實例/DeepSeek%20V4.1%20Flash/測試1：履歷改寫-認知校準與數字存活性.md) |
+| [SVG Drawing (HTML artifacts, deliberately un-audited)](en-US/AB-Test-Cases/DeepSeek%20V4.1%20Flash/Test-2：svg-drawing-test/Test-2：svg-drawing-test.md) | [zh-TW](zh-TW/AB測試實例/DeepSeek%20V4.1%20Flash/測試2：SVG繪圖測試-鵜鶘騎自行車動畫/測試2：SVG繪圖測試.md) |
 
 ## Cross-Model Test Summary
 

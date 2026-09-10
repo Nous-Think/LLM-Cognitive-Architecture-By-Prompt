@@ -1,10 +1,1 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
-
-## Visual Studio hidden folder
 .vs/
-
-## Claude Code workspace (private: project instructions + memory tree)
-CLAUDE.md
-.claude/

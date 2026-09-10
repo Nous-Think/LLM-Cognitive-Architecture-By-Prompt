@@ -1,6 +1,6 @@
 # Test-1：svg-drawing-test
 
-> The prompt and this description were originally written in Chinese. The HTML artifacts are the original model outputs with only their visible text translated into English (title, on-screen labels, accessibility text, page description); structure, styles and scripts are untouched. Chinese originals: [zh-TW folder](../../../../zh-TW/AB測試實例/GPT%206/測試1：SVG繪圖測試/).
+> The prompt and this description were originally written in Chinese. The HTML artifacts are the original model outputs with only their visible text translated into English (title, on-screen labels, accessibility text, page description); structure, styles and scripts are untouched. Chinese originals: [zh-TW folder](../../../../zh-TW/AB測試實例/GPT%206/測試1：SVG繪圖測試-鵜鶘騎自行車動畫/).
 
 > Model: GPT 6 | Thinking level: High | Meta Rules: en-US edition (Ver 2.0.0) | Test date: 2026-09-07
 
@@ -23,3 +23,19 @@ Run times are the thinking times shown by the GPT interface.
 - How to view: "Open" plays the animation directly in the browser (GitHub Pages). GitHub links always open in the same tab, so Ctrl+click (⌘+click on Mac) or middle-click to open a new tab. "Source" is the GitHub file view; you can also download the html and open it locally.
 - Max level: the two original artifacts turned out to be near-identical (388 of 407 lines shared) and cannot be treated as independent generations; they have been withdrawn and will be re-run.
 - Edit trace: after submission the html files were changed in two ways only — the `<title>` was prefixed with "model (level) condition" so browser tabs can be told apart (the original title is kept after the colon), and for this English edition the visible text was translated. The rendered animation is unchanged; every change can be checked in the commit history.
+
+# Same Prompt — Other Models
+
+Other models also generated a pelican-on-a-bicycle animation from the same prompt; open them for side-by-side comparison:
+
+| Model | Condition | Thinking level | Run time | Open |
+|---|---|---|---|---|
+| Fable 5.1 | Baseline | High | — | [Open](https://nous-think.github.io/LLM-Cognitive-Architecture-By-Prompt/en-US/AB-Test-Cases/Fable%205.1/Test-1：svg-drawing-test/Fable%205.1%20%28High%29%20Baseline.html) |
+| Fable 5.1 | Meta Rules | High | — | [Open](https://nous-think.github.io/LLM-Cognitive-Architecture-By-Prompt/en-US/AB-Test-Cases/Fable%205.1/Test-1：svg-drawing-test/Fable%205.1%20%28High%29%20Meta%20Rules.html) |
+| Fable 5.1 | Baseline | Extra | — | [Open](https://nous-think.github.io/LLM-Cognitive-Architecture-By-Prompt/en-US/AB-Test-Cases/Fable%205.1/Test-1：svg-drawing-test/Fable%205.1%20%28Extra%29%20Baseline.html) |
+| Fable 5.1 | Meta Rules | Extra | — | [Open](https://nous-think.github.io/LLM-Cognitive-Architecture-By-Prompt/en-US/AB-Test-Cases/Fable%205.1/Test-1：svg-drawing-test/Fable%205.1%20%28Extra%29%20Meta%20Rules.html) |
+| DeepSeek V4.1 Flash | Baseline | High | 8 min 33 s | [Open](https://nous-think.github.io/LLM-Cognitive-Architecture-By-Prompt/en-US/AB-Test-Cases/DeepSeek%20V4.1%20Flash/Test-2：svg-drawing-test/DeepSeek%20V4.1%20Flash%20%28High%29%20Baseline.html) |
+| DeepSeek V4.1 Flash | Meta Rules | High | 14 min 25 s | [Open](https://nous-think.github.io/LLM-Cognitive-Architecture-By-Prompt/en-US/AB-Test-Cases/DeepSeek%20V4.1%20Flash/Test-2：svg-drawing-test/DeepSeek%20V4.1%20Flash%20%28High%29%20Meta%20Rules.html) |
+
+- Fable 5.1: zh-TW edition Ver 2.0.0, tested 2026-09-07.
+- DeepSeek V4.1 Flash: zh-TW edition Ver 2.0.1, tested 2026-09-10.

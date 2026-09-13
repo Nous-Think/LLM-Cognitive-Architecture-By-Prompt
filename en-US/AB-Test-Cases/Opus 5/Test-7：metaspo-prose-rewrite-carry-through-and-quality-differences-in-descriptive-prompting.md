@@ -1,4 +1,4 @@
-# Universal Prompt Benchmark — MetaSPO on Open-Ended Tasks
+# MetaSPO Prose Rewrite — Carry-Through and Quality Differences in Descriptive Prompting
 
 > All content below — the test design, responses, and analysis — was originally produced in Chinese and has been translated into English for accessibility.
 

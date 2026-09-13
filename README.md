@@ -27,7 +27,8 @@ Every case file follows the same layout: prompt → baseline response → Meta R
 | [Resume Rewrite — Survivability of a "Simple" Task](en-US/AB-Test-Cases/Opus%205/Test-3：resume-rewrite-survivability-of-a-simple-task.md) | [zh-TW](zh-TW/AB測試實例/Opus%205/測試3：履歷改寫-「簡單任務」的存活性.md) |
 | [Flight Cancellation Complaint — Intent Alignment, Follow-Up, and Reasoning Traces](en-US/AB-Test-Cases/Opus%205/Test-4：flight-cancellation-complaint-intent-alignment-follow-up-and-reasoning-traces.md) | [zh-TW](zh-TW/AB測試實例/Opus%205/測試4：航班取消投訴-意圖對齊追問與推理軌跡.md) |
 | [Operations Diagnosis — Detail-Demanded Version and Meta Rules B2B Follow-Up](en-US/AB-Test-Cases/Opus%205/Test-5：operations-diagnosis-detail-demanded-version-and-meta-rules-b2b-follow-up.md) | [zh-TW](zh-TW/AB測試實例/Opus%205/測試5：營運診斷細節要求版與元規則%20B2B%20續問.md) |
-| [Universal Prompt Benchmark — MetaSPO on Open-Ended Tasks](en-US/AB-Test-Cases/Opus%205/Test-6：universal-prompt-benchmark-metaspo-on-open-ended-tasks.md) | [zh-TW](zh-TW/AB測試實例/Opus%205/測試6：MetaSPO原版-通用提示詞的收益與落差.md) |
+| [MetaSPO Original — Gains and Gaps of a Universal Prompt](en-US/AB-Test-Cases/Opus%205/Test-6：metaspo-original-gains-and-gaps-of-a-universal-prompt.md) | [zh-TW](zh-TW/AB測試實例/Opus%205/測試6：MetaSPO原版-通用提示詞的收益與落差.md) |
+| [MetaSPO Prose Rewrite — Carry-Through and Quality Differences in Descriptive Prompting](en-US/AB-Test-Cases/Opus%205/Test-7：metaspo-prose-rewrite-carry-through-and-quality-differences-in-descriptive-prompting.md) | [zh-TW](zh-TW/AB測試實例/Opus%205/測試7：MetaSPO散文改寫-描述法的承接與品質差異.md) |
 | [Partner Equity Deadlock — Diagnostic Reversal and Directional Bias](en-US/AB-Test-Cases/Opus%205/Test-8：partner-equity-deadlock-diagnostic-reversal-and-directional-bias.md) | [zh-TW](zh-TW/AB測試實例/Opus%205/測試8：合夥股權僵局-診斷翻轉與方向性偏差.md) |
 
 ### Opus 4.6

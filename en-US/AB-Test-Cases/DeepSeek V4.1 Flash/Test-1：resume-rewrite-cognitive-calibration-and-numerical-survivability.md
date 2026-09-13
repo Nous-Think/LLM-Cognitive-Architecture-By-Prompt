@@ -2,7 +2,7 @@
 
 > All content below — the prompt, both responses, and the audit — was originally produced in Chinese and has been translated into English for accessibility.
 
-> Model: DeepSeek Flash v4.1 | Thinking level: High | Meta Rules: en-US edition | Test date: 2026-09-09
+> Model: DeepSeek Flash v4.1 | Thinking level: High | Environment: API via Chatbox client (Work) | Meta Rules: en-US edition | Test date: 2026-09-09
 
 # AB Test Prompt
 

@@ -1,6 +1,6 @@
 # 測試2：SVG繪圖測試
 
-> 模型：DeepSeek V4.1 Flash｜思考等級：High｜元規則：中文版（Ver 2.0.1）｜測試日期：2026-09-10
+> 模型：DeepSeek V4.1 Flash｜思考等級：High｜執行環境：API（Chatbox 客戶端，Work）｜元規則：中文版（Ver 2.0.1）｜測試日期：2026-09-10
 
 # AB測試題
 

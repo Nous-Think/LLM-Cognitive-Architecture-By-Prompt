@@ -2,7 +2,7 @@
 
 > All content below — the test design, prompts, responses, and analysis — was originally produced in Chinese and has been translated into English for accessibility. The MetaSPO system prompt is quoted in its original English.
 
-> Model: Opus 5 | Thinking level: High | System prompt: MetaSPO Global version (original paper text) | Test date: 2026-09-13
+> Model: Opus 5 | Thinking level: High | Environment: Chat | System prompt: MetaSPO Global version (original paper text) | Test date: 2026-09-13
 
 # Test Purpose
 

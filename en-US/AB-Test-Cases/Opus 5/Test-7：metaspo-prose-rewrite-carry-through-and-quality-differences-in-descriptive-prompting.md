@@ -2,7 +2,7 @@
 
 > All content below — the test design, prompts, responses, and analysis — was originally produced in Chinese and has been translated into English for accessibility. The paraphrased system prompt is quoted in its original English.
 
-> Model: Opus 5 | Thinking level: High | Prompt under test: a MetaSPO content paraphrase written by GPT-5.6 Sol under Meta Rules (not the paper's original text)
+> Model: Opus 5 | Thinking level: High | Environment: Chat | Prompt under test: a MetaSPO content paraphrase written by GPT-5.6 Sol under Meta Rules (not the paper's original text)
 
 # Test Purpose
 

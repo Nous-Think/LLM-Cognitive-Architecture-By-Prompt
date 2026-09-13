@@ -2,7 +2,7 @@
 
 > The prompt and this description were originally written in Chinese. The HTML artifacts are copies of the original model outputs with only their visible text translated into English (title, on-screen labels, accessibility text); structure, styles and scripts are untouched. Chinese originals: [zh-TW folder](../../../../zh-TW/AB測試實例/DeepSeek%20V4.1%20Flash/測試2：SVG繪圖測試-鵜鶘騎自行車動畫/).
 
-> Model: DeepSeek V4.1 Flash | Thinking level: High | Meta Rules: zh-TW edition (Ver 2.0.1) | Test date: 2026-09-10
+> Model: DeepSeek V4.1 Flash | Thinking level: High | Environment: API via Chatbox client (Work) | Meta Rules: zh-TW edition (Ver 2.0.1) | Test date: 2026-09-10
 
 # AB Test Prompt
 

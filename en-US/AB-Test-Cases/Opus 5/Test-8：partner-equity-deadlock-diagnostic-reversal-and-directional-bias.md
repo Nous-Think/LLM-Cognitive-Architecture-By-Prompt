@@ -2,7 +2,7 @@
 
 > All content below — the prompt, both responses, and the audit — was originally produced in Chinese and has been translated into English for accessibility.
 
-> Model: Opus 5 | Thinking level: High | Meta Rules: zh-TW edition | Test date: 2026-09-08
+> Model: Opus 5 | Thinking level: High | Environment: Chat | Meta Rules: zh-TW edition | Test date: 2026-09-08
 
 # AB Test Prompt
 

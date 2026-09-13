@@ -2,7 +2,7 @@
 
 > The prompt and this description were originally written in Chinese. The HTML artifacts are the original model outputs with only their visible text translated into English (title, on-screen labels, accessibility text, page description); structure, styles and scripts are untouched. Chinese originals: [zh-TW folder](../../../../zh-TW/AB測試實例/GPT%206/測試1：SVG繪圖測試-鵜鶘騎自行車動畫/).
 
-> Model: GPT 6 | Thinking level: High | Meta Rules: en-US edition (Ver 2.0.0) | Test date: 2026-09-07
+> Model: GPT 6 | Thinking level: High | Environment: Work | Meta Rules: en-US edition (Ver 2.0.0) | Test date: 2026-09-07
 
 # AB Test Prompt
 

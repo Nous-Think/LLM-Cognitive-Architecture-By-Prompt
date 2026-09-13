@@ -2,7 +2,7 @@
 
 > All content below — the test design, responses, and analysis — was originally produced in Chinese and has been translated into English for accessibility.
 
-> Model: Opus 5 | Thinking level: High | Meta Rules: zh-TW edition
+> Model: Opus 5 | Thinking level: High | Environment: Chat | Meta Rules: zh-TW edition
 
 # Test Purpose
 

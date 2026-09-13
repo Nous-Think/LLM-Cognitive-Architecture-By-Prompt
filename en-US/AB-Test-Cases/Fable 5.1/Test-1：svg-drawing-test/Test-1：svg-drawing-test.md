@@ -2,7 +2,7 @@
 
 > The prompt and this description were originally written in Chinese. The HTML artifacts are the original model outputs with only their visible text translated into English (title, on-screen labels, accessibility text, page description); structure, styles and scripts are untouched. Chinese originals: [zh-TW folder](../../../../zh-TW/AB測試實例/Fable%205.1/測試1：SVG繪圖測試-鵜鶘騎自行車動畫/).
 
-> Model: Fable 5.1 | Thinking level: High, Extra | Meta Rules: zh-TW edition (Ver 2.0.0) | Test date: 2026-09-07
+> Model: Fable 5.1 | Thinking level: High, Extra | Environment: Chat | Meta Rules: zh-TW edition (Ver 2.0.0) | Test date: 2026-09-07
 
 # AB Test Prompt
 

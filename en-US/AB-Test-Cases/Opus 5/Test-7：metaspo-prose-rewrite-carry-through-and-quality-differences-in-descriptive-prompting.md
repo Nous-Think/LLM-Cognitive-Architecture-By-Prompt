@@ -1,18 +1,61 @@
 # MetaSPO Prose Rewrite — Carry-Through and Quality Differences in Descriptive Prompting
 
-> All content below — the test design, responses, and analysis — was originally produced in Chinese and has been translated into English for accessibility.
+> All content below — the test design, prompts, responses, and analysis — was originally produced in Chinese and has been translated into English for accessibility. The paraphrased system prompt is quoted in its original English.
 
-> Model: Opus 5 | Thinking level: High | Meta Rules: zh-TW edition
+> Model: Opus 5 | Thinking level: High | Prompt under test: a MetaSPO content paraphrase written by GPT-5.6 Sol under Meta Rules (not the paper's original text)
 
 # Test Purpose
 
-This test asks: **what happens when a universal prompt optimized on scorable tasks is applied to professional tasks with no standard answer?**
+[Test 6](Test-6：metaspo-original-gains-and-gaps-of-a-universal-prompt.md) used MetaSPO's published Global prompt and observed its gains and gaps relative to Baseline. This test turns to another prompt with the same quality themes but different wording and organization: it likewise asks for critical analysis, multiple perspectives, contextual adaptation, emotional understanding, and clear expression, but rewrites the Original's five named items as continuous prose.
 
-MetaSPO (Meta-learned Self-improving Prompt Optimizer) is a method that uses automated search to optimize system prompts. It iterates over benchmark datasets with known correct answers, searching for the prompt that maximizes model scores. What is used here is its "universal" output — not tailored to any domain, claimed to be effective across tasks.
+Where this text came from is itself analytical material. According to the conversation records the tester looked up, GPT-5.6 Sol, reading materials under Meta Rules at the time, wrote its own description of MetaSPO's content; only later was it confirmed that the text was not the published prompt. This paraphrase had already produced test results, so this test keeps it and identifies what it actually changed, which understandings made it into the text, and what happened when another model executed it. The "Design Considerations" below reconstruct its functional arrangement from the actual text; the gaps are analyzed after the deliverables.
 
-Test method: this MetaSPO prompt was set as the system prompt, and the same model (Opus 5) was given two previously used tasks (resume rewrite and operations diagnosis). Both results can be compared against other tests' A (baseline) and B (Meta Rules), but the insights in this document rely only on what is contained in this file — the prompt itself, the task inputs, and the two responses.
+This document calls both the Original and the paraphrase "descriptive prompting": the desired qualities are written directly as requirement sentences — be critical, consider multiple perspectives, be clear — and the model decides on its own how to achieve them. The contrasting approach arranges repeated searching, comparing, and checking within the work steps, so that quality is forced out during the process; Meta Rules belongs to the latter.
 
-# MetaSPO Base Prompt
+This test uses four reference points at once: Baseline reveals existing capability; the MetaSPO Original shows what the original quality requirements do; the paraphrase shows what changed after rewriting; Meta Rules provides a higher level of completion already achieved on the same tasks. What needs to be understood is **which directions quality moves in, which judgments actually connect to the next judgment, and what the user still has to do themselves**.
+
+## Design Considerations
+
+### From Named Objectives to Continuous Quality Description
+
+The Original introduces five numbered objectives with "Your main objectives are to," each first named and then explained. The paraphrase removes this rules-document packaging and directly describes the qualities the assistant should have when analyzing, adapting, understanding, and expressing. Split on whitespace, the Original has 195 English words and the paraphrase 120.
+
+The positive significance of this rewrite is that it makes it easier for the model to read the quality requirements as shared conditions of a single piece of work: analyzing the data already takes context into account; adapting to the query type already means choosing suitable reasoning; expression carries forward the reasons and conclusions obtained earlier. The reader does not have to treat five objectives as five separate things and then fill in their relationships.
+
+The Original also has logic, connections between concepts, and contextual adjustment; it is not five unrelated boxes. The point of comparison is how existing requirements were reorganized, and where their scope changed in the rewrite. The Original's full text and its two responses are in [Test 6](Test-6：metaspo-original-gains-and-gaps-of-a-universal-prompt.md); its public source is the [Global prompt](https://arxiv.org/html/2505.09666v1#A3.T18) in the paper's appendix.
+
+### What the Actual Changes Carry
+
+| Actual textual difference | Function the change carries | What should appear when it truly takes effect |
+|---|---|---|
+| The identity shrinks from "an advanced virtual assistant designed to process and analyze information across a broad range of topics" to "a general-purpose advanced assistant" | Drops the "processing information" task framing, keeping a general assistant identity | The work is not presumed to be organizing information; the task type is set by the task |
+| The five objective names, the numbering, and the "By following these guidelines" close are removed, replaced by "The overall goal is to produce accurate, relevant, and thoughtful responses" | Fewer entry points for discharging quality item by item; requirements act directly on the work | Analysis and expression jointly carry quality, with no need for a separate passage proving "critical analysis done" |
+| Perspectives, implications, logical relationships, and connections are merged into one analysis sentence, and "derive conclusions" is dropped | Brings perspectives, consequences, and relationships in together, putting the weight on relationships among the information rather than on reaching conclusions quickly | Numbers and experience are not just organized but change how each other is read |
+| From "Be prepared to respond to …" to "Adapt your reasoning to different kinds of queries" | Connects recognizing the query type to choosing the reasoning | The job-search task centers on recruiter judgment, the operations task on diagnosis and execution, rather than applying the same display template |
+| From "When dealing with reviews or sentiments" to "When emotion or sentiment matters," with "accurately reflect the emotional tone" dropped | The condition for emotion shifts from task category to relevance in the moment | Even when the task isn't called sentiment analysis, the user's situation can still shape expression and arrangement |
+| From "Organize your answers in a coherent format" to "Present answers clearly and coherently," and "Aim for" becomes "Prioritize" | The emphasis of expression moves from format to understandability, and clarity and precision are raised to priorities | Paragraphs are not just neatly arranged; readers can follow the reasons behind the choices |
+
+The rewrite therefore involves layout, wording, conditions of applicability, and semantic emphasis all at once — more engineering than "deleting the numbers." It is still text describing desired qualities, with no work steps or checking procedures added; the objects of its five sentences are still the information provided, each query and its context, and how answers are presented.
+
+### Where Carry-Through Should Land
+
+Carry-through comes in three levels, which are also the main axis of the comparison below:
+
+- **Semantic coherence**: earlier and later parts talk about the same thing, and the reader can follow the overall thread.
+- **Judgment carry-through**: a condition found in an earlier step becomes the basis for a later step's trade-offs, wording, or execution.
+- **Revision back**: when a more important condition is discovered later, it reorders earlier priorities, replaces premises, or corrects the deliverable.
+
+Each level helps the next, but each has its own acceptance point. For example, seeing that management experience matters is a judgment; letting it change the resume's reading entry point is the judgment entering the deliverable; realizing at the end that it was underweighted and then going back to adjust completes the third level.
+
+The operations task works the same way. Explaining the cycle of staffing, quality, customers, and margin is understanding the structure; using its constraints to choose where to invest is forming a decision; finding existing idle capacity later and moving a planned late-stage measure earlier because of it is letting a new finding actually rewrite the path.
+
+### Positive Outcome Goals for the Two Tasks
+
+**Resume rewrite**: turn the experience the user provided into professional evidence the target role can read and finds worth pursuing. The analysis should help the deliverable choose its emphasis, and also help the user recall experience not yet stated clearly, fill in valuable numbers, and so reach for a better position.
+
+**Operations diagnosis**: turn relationships in the data into leverage points, then connect the leverage points to people, money, time, and data. A good arrangement can be started immediately, can change direction once key answers arrive, and finds ways to create resources even under the original constraints.
+
+# Paraphrase Base Prompt
 
 You are a general-purpose advanced assistant. Critically analyze the information provided, considering multiple perspectives, implications, logical relationships, and connections between concepts.  
 Adapt your reasoning to different kinds of queries, including factual questions, sentiment-related tasks, and logical deduction. Understand the nuances of the query and choose reasoning appropriate to it.  
@@ -20,7 +63,7 @@ When emotion or sentiment matters, recognize both positive and negative elements
 Present answers clearly and coherently so that reasoning and conclusions are easy to understand. Prioritize clarity and precision.  
 Adapt your analysis to the context and details of each inquiry, paying attention to nuances and subtleties that could affect the result. The overall goal is to produce accurate, relevant, and thoughtful responses across diverse tasks.
 
-# Test Prompt 1
+# Test Prompt 1: Resume Rewrite
 
 I'm getting ready to switch jobs and want to rework my resume. Below is my current work experience section along with some real numbers and projects. Help me turn it into a more compelling version. I'm in digital marketing and mainly targeting brand-side marketing manager roles.
 
@@ -44,7 +87,7 @@ Real numbers and achievements (but I don't know how to work them in):
 * Internal training covered Meta ad operations and GA4 basics for new hires, roughly four cohorts totaling ~20 people
 * Tools: Meta Business Suite, Google Ads, GA4, Looker Studio, Canva, Notion
 
-# MetaSPO Response 1
+# Paraphrase Response 1
 
 <details>
 <summary>Expand full response</summary>
@@ -98,39 +141,39 @@ One more thing: "Senior Planner → Marketing Manager" is a level jump. Your peo
 
 </details>
 
-# Test Prompt 2
+# Test Prompt 2: Operations Diagnosis
 
 # Operations Diagnosis and Strategic Recommendations
 ## Role
-Ground the analysis in expertise across retail operations management, consumer behavior analysis, and supply chain strategy — but don't limit it to these if broader knowledge improves response quality.
+Use professional knowledge in retail operations management, consumer behavior analysis, and supply chain strategy as a baseline, but not limited to these, to achieve the highest possible response quality.
 ## Background
-We are a mid-sized chain bakery brand with 8 years of history, operating 12 stores in northern metropolitan areas, with annual revenue of approximately NT$280M and roughly 180 employees.  
-**Recent one-year operating data:**
+We are an 8-year-old mid-sized bakery chain brand with 12 stores in the northern metropolitan area, annual revenue of approximately NT$280 million, and about 180 employees.  
+**Past year operating data:**
 
-- Total revenue YoY +6%, but excluding 2 newly opened stores, same-store revenue YoY −3%
-- Customer traffic YoY −8%, but average transaction value YoY +12% (from NT$185 to NT$207)
-- Core product line (European bread series) revenue share dropped from 45% to 38%; pastries and cakes rose from 25% to 33%
+- Total revenue up 6% YoY, but excluding the 2 newly opened stores, same-store revenue is down 3% YoY
+- Customer visits down 8% YoY, but average transaction value up 12% (from NT$185 to NT$207)
+- Core product line (European-style bread series) revenue share dropped from 45% to 38%; pastries and cakes rose from 25% to 33%
 - Delivery platform revenue share rose from 12% to 22%, but delivery order gross margin is only 18% (in-store gross margin is 52%)
-- Raw material costs YoY +14% (mainly imported flour and butter)
-- Labor costs YoY +11% (minimum wage increase + 40% baker turnover rate)
-- ~60K members, but monthly active members (at least one purchase) only 12K
+- Raw material costs up 14% YoY (primarily imported flour and butter)
+- Labor costs up 11% YoY (minimum wage increase + baker turnover rate as high as 40%)
+- Approximately 60,000 members, but monthly active members (at least one purchase) only 12,000
 
 **Known issues:**
 
-- Three legacy store leases expire within 8 months; landlords have signaled 15–25% rent increases
-- Two new stores have not yet reached breakeven (6 months in, running ~NT$150K/month loss per store)
-- Bakers are hard to recruit and turnover is high; 2 stores have been forced to shorten operating hours due to staffing shortages
+- Three legacy store leases expire within 8 months; landlords have signaled 15-25% rent increases
+- The two newly opened stores have not yet broken even (6 months in, losing approximately NT$150K/month/store)
+- Bakers are hard to recruit with high turnover; 2 stores have been forced to shorten operating hours due to staffing shortages
 ## Task
-Diagnose the structural problems behind these data points and provide operational adjustment recommendations for the next 12 months.
+Please diagnose the core problem structure behind these data points and propose operational adjustment recommendations for the next 12 months.
 ## Quality Requirements
-- Distinguish "symptoms" from "root causes" — the data presents symptoms; diagnosis must point to the structural drivers behind them
-- Recommendations must account for resource realities (cash flow pressure, staffing shortages) — strategies that are theoretically correct but operationally infeasible have no value
-- The lease-expiration decisions must be specifically addressed in the recommendations — these are time-pressured hard decision points
-- If any data signals deserve deeper investigation but lack sufficient information, state what additional data is needed to confirm the judgment
+- Distinguish "symptoms" from "root causes" — the data presents symptoms; the diagnosis must point to the structural reasons driving them
+- Recommendations must account for resource realities (cash flow pressure, staffing shortages) — theoretically correct but unexecutable strategies have no value
+- The lease expiration decision must be specifically addressed in recommendations; this is a time-pressured hard decision point
+- If signals in the data warrant investigation but information is insufficient, identify what additional data is needed to confirm the assessment
 ## Output Structure
-Include: diagnostic framework (problem structure and causal relationships), prioritized action sequence (with time dimension), resource reallocation recommendations, and hypotheses requiring further validation. If there are other critical dimensions not mentioned above, proactively address them.
+Please include: diagnostic framework (problem structure and causal relationships), prioritized action sequence (with time dimension), resource reallocation recommendations, hypotheses requiring further verification. If other critical dimensions have been omitted, proactively supplement them.
 
-# MetaSPO Response 2
+# Paraphrase Response 2
 
 <details>
 <summary>Expand full response</summary>
@@ -139,9 +182,11 @@ Include: diagnostic framework (problem structure and causal relationships), prio
 
 Before making any diagnosis, let me check whether these numbers are internally consistent.
 
-**Contradiction one: traffic and ticket size don't add up to revenue.** Customer traffic −8% and average transaction value +12% should yield roughly +3% (0.92 × 1.12). But same-store revenue is −3% while total revenue is +6%. The three figures are pairwise incompatible. Three possible explanations: traffic/ticket figures are chain-wide while the −3% is same-store only; or delivery orders are counted as "one customer visit" (one order, multiple items) inflating the ticket-size denominator; or the new stores are cannibalizing nearby legacy stores. **These three explanations point to entirely different root causes and must be clarified first** (see Section V).
+**Contradiction one: traffic and ticket size don't add up to revenue.**  
+Customer traffic −8% and average transaction value +12% should yield roughly +3% (0.92 × 1.12). But same-store revenue is −3% while total revenue is +6%. The three figures are pairwise incompatible. Three possible explanations: traffic/ticket figures are chain-wide while the −3% is same-store only; or delivery orders are counted as "one customer visit" (one order, multiple items) inflating the ticket-size denominator; or the new stores are cannibalizing nearby legacy stores. **These three explanations point to entirely different root causes and must be clarified first** (see Section V).
 
-**Contradiction two: the +12% in average transaction value is probably not good news.** Break it apart: delivery share went from 12% to 22%, and delivery orders naturally carry larger baskets due to minimum-order thresholds and delivery-fee amortization. Simultaneously, pastries and cakes (higher unit price, often purchased whole) rose from 25% to 33%. These two compositional shifts alone are sufficient to fully explain the 12% ticket growth. In other words, **the rise in transaction value and the decline in traffic are not "one good, one bad" — they are two surfaces of the same structural shift.** Until same-channel, same-category ticket sizes are confirmed to have also risen, this cannot be treated as evidence of pricing power or upselling success.
+**Contradiction two: the +12% in average transaction value is probably not good news.**  
+Break it apart: delivery share went from 12% to 22%, and delivery orders naturally carry larger baskets due to minimum-order thresholds and delivery-fee amortization. Simultaneously, pastries and cakes (higher unit price, often purchased whole) rose from 25% to 33%. These two compositional shifts alone are sufficient to fully explain the 12% ticket growth. In other words, **the rise in transaction value and the decline in traffic are not "one good, one bad" — they are two surfaces of the same structural shift.** Until same-channel, same-category ticket sizes are confirmed to have also risen, this cannot be treated as evidence of pricing power or upselling success.
 
 **Recalculating absolute values (back-solving from this year's NT$280M to last year's ~NT$264M):**
 
@@ -347,78 +392,345 @@ How much of the +40% in pastries and cakes came from holiday peaks? If growth af
 
 # Test Insights
 
-## Methodology
+## Comparison Materials and Reading Guide
 
-The analysis below relies solely on material contained in this file — the prompt itself, the task inputs, and the two responses. No quantitative cross-test comparisons are made, though readers may draw their own against other tests.
+Below, "the paraphrase" refers to the responses in this file; "the Original" refers to the MetaSPO responses in Test 6; "Baseline" and "Meta Rules" refer to the two earlier responses to the same tasks. The paraphrase's prompt and deliverables are preserved in full above; the other comparison materials are:
 
-## Reading the Prompt First
+- [MetaSPO Original — Gains and Gaps of a Universal Prompt](Test-6：metaspo-original-gains-and-gaps-of-a-universal-prompt.md)
+- [Resume Rewrite — Survivability of a "Simple" Task](Test-3：resume-rewrite-survivability-of-a-simple-task.md)
+- [Operations Diagnosis — Baseline vs. Meta Rules Under High-Specification Prompting](Test-1：operations-diagnosis-baseline-vs-meta-rules-under-high-specification-prompting.md)
 
-Nine sentences. Pull apart the verb and object of each: critically analyze **the information provided**; adapt your reasoning to **different kinds of queries**; understand the nuances of **the query**; recognize both positive and negative **elements**; present **answers** clearly; prioritize clarity and precision; adapt your analysis to **the context and details of each inquiry**.
+The comparison follows the entire usage path: how the deliverable is written, what criteria the analysis provides, how the user verifies or fills gaps, and what follow-up actions can bring. Meta Rules works by first bringing out a feasible goal worth pursuing, then providing ways to confirm, reach, and demonstrate it; lifting one sentence of the deliverable out of its follow-up operations hollows out its variables and completion conditions.
 
-The object of every sentence is the input — the prompt, the information, the context. Not a single sentence takes the model's own output as its object. It demands that the model look carefully at the question; it does not demand that the model look carefully at what it writes: no "verify that claims you add are supported," no "label assumptions as assumptions," no "check whether your conclusions hold."
+Length, counted in Chinese characters of the original responses: resume task — paraphrase 1,053, Original 951, Baseline 975, Meta Rules 3,952; operations task — paraphrase 5,212, Original 3,552, Baseline 4,356, Meta Rules 13,530.
 
-Two more signals. "Considering … connections between concepts" rewards linking things together without penalizing incorrect links. The "precision" in "prioritize clarity and precision" is most cheaply satisfied by numbers — writing precisely is not the same as computing correctly. And the sentence "when emotion or sentiment matters, recognize both positive and negative elements" is entirely irrelevant to these two tasks — it survived in the prompt because the optimization benchmark included sentiment-classification items.
+| Where to compare | Baseline | Original | Paraphrase | Meta Rules |
+|---|---|---|---|---|
+| Resume's brand-side positioning | Already put 綠田 and MATZ first | Adds a full professional summary | States ownership of business results; organizes cases by work unit | Handles it together with role fit, role criteria, and application versions |
+| How numbers become evidence | Mainly presents result figures | Questions 綠田's low base | Lays out reading conditions for three sets: revenue, search volume, followers | Also brings in CPA volume, ROAS basis, backfill, and rewrite paths |
+| Obtaining manager-level evidence | Gives a concrete cross-departmental conflict to recall | Points out gaps such as CRM; fixes stay general | Separates budget execution from budget planning; cross-departmental recall stays thin | Case page, role selection, and target-brand analysis form an evidence-production path |
+| Operations structure | Already has the staffing–quality–traffic–margin loop | Strengthens diagnostic tone; also collapses into an either-or | Causal, quantitative, and execution links are denser | Keeps turning structure into data acquisition, option branches, and execution assignments |
+| Local methods | Already has member segmentation, pickup, low-capex production | Some new reminders; also loses some Baseline capabilities | Real new interfaces; also restores what Baseline already had | Connects to people, metrics, timing, and condition changes at key positions |
+| Do new findings rewrite the whole? | Sequencing still has conflicts | Diagnosis overrides later verification in several places | Idle capacity changes the order, but waste's importance does not reorder the whole response | Several verification results directly decide versions, stages, and next steps |
 
-Having read the prompt, a prediction can be written before seeing the outputs: it will make responses more structured than baseline; it will diligently inspect what the prompt provides (e.g., catching numerical contradictions); it will not inspect what it adds on its own; it will produce many connections and many precise-looking numbers. The two tasks below test whether this prediction holds.
+This table locates functions; the concrete differences are in the deliverables and operations below.
 
-## The Resume Task
+## Resume: The Paraphrase Moves from "Sounding Like a Manager" Some Way Toward "Identifying Manager Work"
 
-Start with what it did right. It diagnosed the original version as a "job description" rather than "evidence of ownership over business outcomes," listed three concerns brand-side employers have about agency-background candidates (execution-only, no number ownership, project mindset), gave three revision actions (verb upgrades, case-based framing, reordering), and corrected "assisted with brand repositioning" to what the user actually did — "led." It flagged three numbers that will draw interview scrutiny (綠田's simultaneous ad-budget growth, MATZ's base rate, LURE's follower count as a vanity metric), recommended adding cross-functional collaboration and budget planning, and noted that Senior Planner to Marketing Manager is a level jump. All of this is useful.
+Baseline already knew that 綠田 and MATZ are closer to brand-side work than ordinary media-buying duties, and had already moved both cases to the front. The Original and the paraphrase continue in this direction, so reordering itself is not a new gain.
 
-Then, a sentence-by-sentence comparison against the input to identify what the response added on its own.
+The paraphrase's progress lies in how it explains the ordering criteria and supplements material. It first organizes brand-side concerns as candidates who "can only execute, not set strategy," "lack ownership of business numbers," and "default to project-based thinking rather than long-term brand stewardship," then turns the original list of duties into five recognizable work units: Brand Digital Transformation, Brand Repositioning, Long-Term Community Growth, Performance Optimization, and Team Leadership & Talent Development. A recruiter scanning the headings can see what each case proves, without sorting a string of result sentences themselves.
 
-"Overall ROAS **steadily** maintained above 3.5" — the input said "ROAS **averaged** above 3.5." An average of 3.5 could come from volatile swings between 2 and 6; "steadily" is a word the response added, and it changes what can be challenged in an interview.
+The most valuable carry-through is "Budget planning vs. budget execution." The paraphrase doesn't just ask to swap "managed" for a more senior verb; it first lists experiences — annual budget proposals, media mix allocation, discussions with clients about how to split the budget — and then says that if these apply, the line can become "planned and allocated."
 
-"**No follower growth ads deployed throughout**" — the input said "no bought followers during that period." In the original Chinese, the user's phrase (沒有買粉) refers to purchasing fake followers; the response's phrase (未投放粉絲增長廣告) means never running any follower-growth advertising campaigns. These are different claims. If asked in an interview, "So you never ran a single follower campaign?", the user might not be able to answer.
+What this passage provides is an **experience-recognition rule**: the user knows which work to recall and which facts support which wording. Where the Original leans toward "you actually did it, just frame it differently" on cross-departmental collaboration, the paraphrase at this point turns the level gap into a checkable difference in work, completing for the user part of a judgment they would otherwise have to work out alone.
 
-"Led **full-scope digital marketing** for 4–6 brand clients" — the input said "ran social media for 4–6 clients (FB+IG)." Social media management was upgraded to full-scope digital marketing.
+## Resume: Number Verification Brings Gains Back into the Resume, but the Checks Land Only on the User's Numbers
 
-"Restructured **audience segmentation and creative testing framework**" for membership conversion ads — the input said "I optimized it and CPA went from 680 to 320," with no mention of how. Audience segmentation and creative testing are methods the response supplied on the user's behalf.
+The Original warns that 綠田's base is low and suggests preparing the same-period ad return ratio or revenue share. The paraphrase takes this further: if revenue grew 5.6× while the budget only grew 1.5×, put that efficiency straight into the resume; if the budget also grew 5×, defend with gross margin or ROAS trends.
 
-Canva was removed from the tools list without explanation.
+The difference is not one more "watch out, you'll be asked." The paraphrase provides a higher evidence target, a direction for finding the data, and how the deliverable improves once it is found. This is one of Meta Rules' important ways of working: verification can raise the achievement, giving an otherwise buried strength a more powerful expression.
 
-Now look at the interview preparation. It warned the user that three numbers could become liabilities if they can't withstand scrutiny — a correct warning. But the words the response itself added — "steadily," "no follower growth ads throughout," "full-scope," "audience segmentation" — are each the same kind of liability, and it warned about none of them. It also did not prepare a defense for the CPA 680 → 320 figure — of the four metrics, that one is the most likely to be probed for attribution methodology and measurement window.
+The paraphrase also splits MATZ's percentage into base and absolute volume, and connects LURE's follower count to engagement rate, social-driven revenue, and reach. The three checks let the user understand that "the same impressive number carries different professional value under different conditions," expanding the Original's single-point reminder into a set of number readings with shared criteria.
 
-In one sentence: it set thresholds for the user's numbers but set none for its own additions. This is exactly what the prompt predicted — the object is the input, not the output.
+These criteria do not run through the rest of the resume. Whether the CPA drop from 680 to 320 came with shrinking conversion volume is never raised; ROAS's cross-account, cross-category basis is not unpacked either. Meta Rules lists both as backfill and interview preparation. **Learning a kind of check, and using that check consistently throughout, are two different levels of completion.**
 
-## The Operations Diagnosis Task
+More critical is the direction of the checks. All three land on numbers the user supplied; not one of the claims the paraphrase itself wrote into the resume passes through the same scrutiny:
 
-Start with what it did right, including several elements unique to this response. The Section I data reconciliation caught that multiplying traffic and ticket-size changes does not yield the reported revenue, and offered three explanations — the third, "new stores cannibalizing nearby legacy stores," is a genuinely valuable angle. The absolute-value recalculation table is correct; the blended gross margin shift from 47.9% to 44.5% and the "revenue +6%, gross profit −1.5%" figure check out; the estimate that the company is "most likely at or below operating breakeven," computed from its own stated cost benchmarks (labor ~25%, rent 10–12%, other 8–10%), lands at roughly −0.5%, which is consistent. A1's upfront check for platform price-parity clauses is a legal prerequisite others are likely to miss. B4's pre-committed M9 checkpoint to avoid sunk-cost capture is well designed. Section V's validation hypotheses are ranked by "if the answer differs, the recommendation materially changes"; Section VI raises the unknown balance sheet ("whether the 12-month timeframe actually exists"), unstripped seasonality, and middle management gaps with a concrete action (designate 2–3 senior store managers for area responsibility). These are substantive contributions.
+- The input says LURE had "no bought followers"; the paraphrase writes "no follower growth ads deployed throughout." Not buying fake followers is not the same as never running any follower-growth ads; this is a claim the user never made, and a single interviewer question — "So you never ran a follower campaign at all?" — can trip the user up.
+- The input says ROAS "averaged above 3.5"; the paraphrase writes "steadily maintained." An average of 3.5 can conceal large swings, and "steadily" changes what can be questioned.
+- The input says "Ran social media for 4–6 clients simultaneously (FB+IG)"; the paraphrase writes "Led full-scope digital marketing for 4–6 brand clients," upgrading social media management to full-scope marketing. The Meta Rules version also wrote "full-scope marketing," but in its self-critique listed its verb upgrades as the single largest unverified assumption and asked the user to self-audit each one.
+- Canva is dropped from the tools list without explanation; Baseline gave a reason when it dropped it.
 
-Now examine how it arrived at its conclusions.
+The paraphrase's heading says "otherwise strong numbers become liabilities," but that vigilance points only at the user's numbers. The cause is in the objects of the prompt: "Critically analyze the information provided," "Understand the nuances of the query," "Adapt your analysis to the context and details of each inquiry" — critique is always aimed at the input; the only sentence aimed at the answer itself asks for clear, coherent, precise presentation. The model therefore scrutinizes the task closely but not the words it writes, and those words are exactly what the user will copy and be questioned on in interviews.
 
-**Assumptions used to derive numbers are then validated by those same numbers.** Accelerator chain A: "In-store gross margin of 52% implies COGS of ~48%. If delivery records revenue at gross and deducts platform commission as a cost, then 52% − commission = 18%, yielding a commission rate of ~34% — squarely within the typical fee range for Taiwan's platforms. The fact that this equation holds is itself a conclusion: delivery prices are completely identical to in-store prices; the company has not passed on a single dollar." The first step of the derivation assumes delivery and in-store prices are identical (hence the same 48% COGS), calculates a 34% commission, and because 34% looks like a plausible platform fee, concludes prices are identical. The assumption is fed in and read back out. If delivery prices had already been marked up 15% and the commission were 38% plus packaging costs, the same 18% margin results. "Completely identical" and "not a single dollar" are definitive conclusions drawn from a compatibility check.
+## Resume: Improvements in Writing Quality Should Be Judged by What the Reader Actually Gets
 
-**The body presents conclusions that the appendix lists as unverified.** Accelerator chain A continues: "Customer traffic is simultaneously declining, **which means** these delivery sales are mostly not incremental but channel migration by existing customers … this is the worst kind of growth." Section V, item 5: "Are delivery customers new or migrated? Cross-reference by phone number across channels." The same proposition is written as a conclusion in Section II and as an open question in Section V. The same pattern appears in the primary chain: Section II constructs "bread quality instability → habitual customer loss" as the primary causal chain and makes the strategic choice to "defend European bread" in B3; Section V, item 1 says "whether the European bread decline is demand-side or supply-side … B3's strategic direction and resource allocation change completely — this is the single highest-priority validation." It recognizes where the fork is, but the plan is written along one branch — the other exists only in the appendix. Readers who only read the body (most will) receive a conclusion that its own appendix flags as undetermined.
+The paraphrase's case headings and sentence rhythm form a stable structure: name the functional value first, then the operations, then the result. 綠田's traffic, content positioning, account architecture, and revenue are linked; MATZ's positioning, visuals, tone, KOLs, and search volume are linked. These arrangements genuinely change how fast a recruiter scans and understands the resume, and they have deliverable value.
 
-**Connections are held up by rhetoric.** Primary chain, point 5: "The occasion-driven market has no moat: competitors include chain cake specialists, convenience-store desserts, and online-delivery cakes … the brand's eight-year asset is in European bread; that asset is leaking, and the water is flowing into a far more crowded pool." This reads compellingly, but the input contains no competitive data — Section VI, item 5 itself acknowledges "competitive landscape data is entirely absent." Moat, leaking, crowded pool: three unsupported judgments connected into a single image. The prompt asks for "connections between concepts" — this is the cheapest way to deliver them.
+The Original keeps a different real advantage: it wrote a standalone professional summary, putting tenure, industries, strategy, and team in one reading entry point. The paraphrase has only a one-line lead-in under the company entry. Each has its own gain in deliverable structure.
 
-**Borrowed statistics.** B3: "Most eight-year brands accumulate 40+ items, with the bottom half contributing less than 15% of revenue." The input contains no SKU data; this sentence is an industry generalization written as a statement about this specific company.
+Word choice also needs sorting into what carries work and what is merely a denser professional look. "Repositioning," "growth model," and "restructured … framework" compress real work, but the words themselves don't supply the strategic trade-offs the user made. The paraphrase's best carry-through in wording is in the budget passage: it first says which experience supports which verb.
 
-**The same link, stripped of its conditions in a later section.** B1, item 5: closing one store and the freed-up bakers "**may be exactly** what is needed to restore full hours at the two stores with shortened schedules." Section IV, resource reallocation: "Headcount freed by store closures: prioritize redeployment to the two stores operating on shortened hours" — "may be exactly" has disappeared. For this link to hold, three things must be true: the freed bakers must possess the skill level to run a full production shift solo; they must be willing to change their commute for an early-morning shift (in a market with 40% turnover, they can walk at any time); and the closure decision arrives after M4, while the shortened-hours losses accrue daily starting now. None of the three is addressed.
+The two responses are close in length (paraphrase 1,053, Baseline 975 characters); the paraphrase's three new number judgments were not bought with a surge in length — similar length accommodated a different kind of work.
 
-**The NT$9.5M figure's hidden assumption.** "A ten-percentage-point channel shift (~NT$28M in revenue moving from 52% to 18% margin) erodes approximately NT$9.5M in gross profit" — the arithmetic is correct, but it assumes that the NT$28M would have occurred identically in-store had delivery not existed, i.e., delivery is 100% substitutional. This assumption is not stated, and Section V, item 5 is precisely the validation needed for it.
+## Resume: Seeing the Weight of Management Experience, Then Ending the Trade-off with "Resume Convention"
 
-**The owned channel is placed six months out.** A1 in Wave 1 raises platform prices by 15–20%, creating a price differential that incentivizes delivery customers to migrate to self-pickup. C2's LINE-based pickup ordering doesn't arrive until M6–M12. The price differential appears first; the channel to catch the migration comes online six months later. This is not necessarily wrong, but it is an unaddressed sequencing gap.
+The paraphrase's clearest break is in its final passage. It points out that people-management experience is the most direct evidence of whether the candidate can step into a management role, even reminds the user that it was buried at the bottom, and then says it kept it last anyway, because of "resume convention."
 
-**Certainty is not graded.** The word "完全" (completely/entirely) appears 11 times: "完全相同" (completely identical), "完全沒有反應" (completely unresponsive), "完全解釋" (completely explain), "完全不同的病因" (completely different root causes), "完全繞過" (completely bypass) — computed figures, assumed ones, and speculated ones are all delivered with the same adverb. The reader cannot distinguish "the three figures are pairwise incompatible" (calculated) from "not passed on a single dollar" (inferred) as different confidence levels.
+The problem is not that management experience must go first; showcasing the two strong cases first is entirely justified. The problem is that the paraphrase does not use the role criteria it just established to explain how this layout balances business results and management ability, and instead ends the trade-off with a general convention. Even keeping the current order, management ability could enter the lead-in or a clearer reading entry point; the paraphrase does not adjust the deliverable accordingly.
 
-**What it did not touch.** No dates (seasonal peaks are mentioned only in Section VI as something to strip out, never as campaigns to capture); no check on whether the 52% gross margin includes or excludes labor — it directly sets COGS at 48%; waste rate is flagged but not quantified; B2B gets one paragraph saying "launch only after production stabilizes"; no named owners and no delivery dates for any action.
+This is a visible case of a later finding failing to revise an earlier section. The model read that the user wants to become a manager, and knows what management experience does; it completed the recognition in its analysis, yet treated "having mentioned it" as settling this quality dimension.
 
-## Taken Together
+Material recall is not a place where the paraphrase beats Baseline across the board, either. Baseline offers the concrete conflict "will going online cannibalize our distributors," which can bring back coordination experience from the 綠田 transformation; in its cross-functional passage, the paraphrase only asks the user to recall an instance of "coordinated with client's X department" and add a line. The paraphrase's budget prompt is finer, and Baseline's channel-conflict prompt is better — improvement does not move along every quality axis at once.
 
-The predictions derived from reading the prompt were confirmed in both tasks. It diligently inspected what the prompt provided: the resume task caught that "assisted" was actually "led"; the operations task caught the numerical contradiction and offered three explanations. It did not inspect what it added: the resume task introduced "steadily," "no follower growth ads throughout," "full-scope," and "audience segmentation"; the operations task used assumptions to prove assumptions, stated conclusions in the body while listing them as open questions in the appendix, and used rhetoric to link unsupported judgments into a coherent picture.
+## Resume: What Meta Rules Adds Is Connecting Better Expression to a Position the User Can Actually Stand On
 
-This asymmetry is invisible on scorable tasks. Scorable tasks have standard answers; the model's output is compared against the answer, and incorrect connections cost points, so what the optimization process learns is "make the output look like reasoning." On tasks with no standard answer, what the model adds is what the user takes away — the words on the resume will be challenged in interviews; the "completely identical" in the operations plan will be taken into negotiations. The prompt concentrates all its inspection effort on the input side, but the user bears the consequences on the output side.
+Meta Rules' higher completion is not just more number checks. It separates target roles into highly feasible, moderately feasible, and difficult, explains which brand-side positions this experience suits, and provides different application orientations; it asks for cases to be organized into context and business problem, resource constraints, rejected alternatives, execution, and retrospective, so the case page can prove judgment.
 
-What it adds over baseline is real: structure, interview preparation, cannibalization, contract clauses, balance sheet, seasonality, pre-commitment. The additional risk it introduces over baseline is also real: more precise numbers, more confident connections, attached to equally unverified assumptions. Asking for "connections" and "precision" yields more linking, more precise writing, and not necessarily more accurate thinking.
+The further target-brand analysis has the user research the companies they want to apply to and produce three opportunities and what they would do in their first ninety days. This single action produces interview material, validates their own diagnostic ability, and screens for suitable employers; the user moves from reorganizing old experience to creating new evidence employers can see.
 
-## Additional Observations
+The Original's CRM reminder and the "long-term brand stewardship" concern the paraphrase lists both point out gaps in the user's position; Meta Rules turns the gap into a job-search project the user can start on. This is exactly the distance between "what you should have" and "what I help you obtain, recognize, and demonstrate." The paraphrase's budget and 綠田 additions cross a few of these nodes; Meta Rules extends this kind of work along the whole job-search path.
 
-**The prompt's object determines the direction of inspection.** The core finding of this analysis compresses to one sentence: MetaSPO's nine sentences all take the input as their object (the information provided, the query, each inquiry) — not one takes the model's own output as its object. The result is that the model diligently inspects what the prompt provides and does not inspect what it adds. This contrasts with Test 5 (detail-demanded version) — whose two requirements take "action guidance" (the model's output) as their object but demand only that it "carry operational specifics," not that it "verify correctness." Each prompt is missing half: MetaSPO lacks "look at yourself"; the detail-demanded version lacks "check whether it's right."
+## Operations: The Paraphrase Really Does Add Method
 
-**Length coordinates for the resume task.** The MetaSPO resume-task output measured 1,055 characters, with the resume body at 356 characters. For comparison with Test 3: baseline A's full output was 979 characters with a resume body of 361 characters; Meta Rules B's full output was 3,957 characters with a resume body of 697 characters (including a personal summary). MetaSPO's full output length falls between A and B but skews toward A (1.08× A), and the resume body is virtually identical to A (0.99× A). A notable finding: MetaSPO's resume body and baseline A's resume body are nearly the same length, even though MetaSPO's structure is better (it has section headers). This suggests the resume body has an intrinsic length baseline that is largely independent of the prompt — the real differentiation comes from material outside the body (personal summary, interview defense kit, evaluation rubric).
+The paraphrase's operations response is nearly half again as long as the Original's, and links quantities, causes, resources, and organization more densely. Separating these effects is the way to see where the real increments are.
 
-**Length coordinates for the operations diagnosis task.** The MetaSPO operations diagnosis output measured 5,214 characters. For comparison with Test 1: baseline A was 4,360 characters; Meta Rules B was 13,535 characters. MetaSPO is 1.20× A and 0.39× B. It is 20% longer than baseline but less than 40% of Meta Rules. This aligns with the MetaSPO prompt's characteristics — it improves structure (more organized than baseline) but does not improve completeness (each node still stops at the directional level), because nothing in the prompt demands "expand to the point of executability."
+| What the paraphrase does | Work it actually completes for the user | Relation to other versions |
+|---|---|---|
+| During reconciliation, sets same-store -3% against total +6% and states "the three figures are pairwise incompatible" | Doesn't force the contradiction into a single explanation; asks for the basis to be clarified first | Like Baseline, sees that neither basis reconciles; the Original matched only one set |
+| Converts category and channel shares back into absolute revenue | Doesn't treat a share decline as an equal decline in money; makes magnitudes comparable | The Original made no full conversion; Meta Rules likewise builds its spine on money |
+| Before raising platform prices, checks for a price-parity clause, then runs a cost model | Connects "can prices be changed" and "the finances after changing them" to the action | Baseline simply says platforms allow it and the Original simply requires separate pricing; the paraphrase adds a legal prerequisite |
+| The four-wall P&L explicitly excludes headquarters overhead, then feeds lease choices | Keeps the table's basis consistent with later choices | Repairs the Original's interface of requiring HQ allocation in the table but deciding on an undefined contribution margin |
+| Retention before recruiting; identifies key bakers and designs a staged retention bonus | Splits "short-staffed" into losing existing staff and replacing them; gives a startable scope of people and pay structure | The Original ruled out the pay path; Baseline already kept retention and a skills ladder |
+| Hub stores produce dough for satellite stores; European bread stays in-house | Lowers per-store skilled-labor needs at low capex without handing the brand's core items to a contract manufacturer | Baseline has the same satellite kitchen but also sends standard European bread to frozen outsourcing; the Original sends core items to a contract manufacturer first |
+| If existing central capacity utilization is below 70%, moves production adjustment up to Wave 1 | One external answer directly changes stage and investment | A clear conditional branch, not just another item on the data list |
+| Designates senior store managers to take on area responsibility, using the four-wall P&L as their performance basis | Connects the organizational gap to existing people and a tool built earlier | Baseline pointed out the middle-management gap; the paraphrase goes on to assign it |
 
-**The count of "完全" (completely) is a useful quality signal.** The analysis above noted 11 instances of "完全" in the operations diagnosis. This observation generalizes: in professional analytical writing, the ratio of high-frequency certainty adverbs (完全/completely, 必然/necessarily, 一定/certainly, 顯然/obviously) to uncertainty markers (可能/possibly, 若/if, 視……而定/depending on, 待確認/pending verification) serves as a simple quality-control readout. Baseline A on the same task uses fewer certainty adverbs — not because it is more cautious, but because it makes fewer judgments overall. Meta Rules B has the highest judgment density but keeps certainty adverbs controlled — many judgments, but each tagged with a confidence level. MetaSPO's problem is not that it judges too much, but that every judgment is written in the same register of certainty, leaving the reader unable to distinguish which claims are computed from data and which the model believes ought to be true.
+These positions have real methodological content. Especially the last: late in the response, the paraphrase notes that "the founder remains the sole operational decision node" is the typical bottleneck at this scale, and goes back to reuse the four-wall P&L it built earlier, so the table also becomes a tool for delegated management. The same piece of work is picked up by another problem, producing value beyond building a single table.
+
+The paraphrase is not "saying more but none of it useful"; at some nodes it does genuine construction. What needs asking is where this work appears, and why it does not run through the whole response.
+
+## Operations: Restoration Relative to the Original and New Gains Relative to Baseline Must Be Counted Separately
+
+The Original strongly collapses the staffing problem into de-skilling, and at the end pushes efficiency-oriented chain versus high-quality positioning into a strategic either-or. The paraphrase lets defending the European bread core, cutting the long tail, hub stores supplying satellites, and retaining key bakers coexist, without requiring the brand to give up its distinctiveness first in order to deal with capacity.
+
+This is important progress relative to the Original, and part of it restores Baseline capabilities the Original failed to keep: Baseline had already proposed a low-capex satellite kitchen and already written the baker–quality–traffic–margin loop. But on the division of production, the paraphrase goes beyond Baseline — it supplies dough only from the company's own hub stores and, unlike Baseline, does not send standard European bread to frozen dough suppliers, avoiding the risk of flattening the quality gap on the items quality-sensitive customers buy most often.
+
+Member handling is similar. The Original jumps straight from dormancy to a prepaid subscription, treating "recommitting to long-term purchases" as the reactivation tool; the paraphrase first segments by time since last purchase and primary category purchased, then ties incentives to returning for high-frequency categories like European bread — a more reasonable intermediate step. Baseline already had batched A/B testing and RFM analysis, so in this method area the paraphrase integrates more tightly rather than opening it for the first time.
+
+The paraphrase also avoids the Original's member miscalculation: the Original turned "at least one purchase a month" into "exactly one purchase a month" and concluded that nearly 90% of revenue is unidentifiable; the paraphrase only estimates the increment from reactivation and makes no such inference.
+
+The four-way comparison therefore yields two kinds of information: Original to paraphrase shows where the rewrite improved things; Baseline to paraphrase shows what exceeds existing capability. Mixing them overestimates what the paraphrase adds and misses the regressions the Original caused.
+
+## Operations: After Finer Calculation, the Premises Need More Tracking
+
+The paraphrase converts channel mix together with annual revenue: holding the 52% / 18% channel margins for both years, revenue grows 6% while blended gross profit still falls from about NT$127M to about NT$125M. This connects one more variable that affects totals than reporting a margin-rate decline alone. It also writes that "a ten-percentage-point channel shift … erodes approximately NT$9.5M in gross profit on its own"; like the Original's, this NT$9.5M treats delivery revenue as substitution that would otherwise have occurred at in-store margins.
+
+The paraphrase then makes another inference: from in-store margin of 52% and delivery margin of 18%, it derives a platform commission of about 34%, and then declares that "delivery prices are completely identical to in-store prices; the company has not passed on a single dollar."
+
+This step turns an assumption used for the breakdown into a fact proven by the breakdown's result. The first step of the derivation already assumes delivery and in-store prices are the same, so the cost ratio is the same 48%; after arriving at 34%, it uses the fact that 34% looks like a platform fee to confirm the same pricing in reverse. The gap between 52% and 18% can hold many combinations of price, item cost, packaging, discounts, and commission; if delivery were already marked up 15% with a 38% commission plus packaging, the result would also be 18%.
+
+The paraphrase's subsequent calculations do look more like method. Under a model in which food cost stays at the original price's 48% and commission stays at 34% of price, a 15% increase gives a margin of about 24.3% and a 20% increase about 26% — internally consistent; the 28–32% Baseline lists has no cost structure in its text to support it.
+
+But an unconfirmed present state thereby gains a more complete execution shell. Although later passages include a contract check and an order-loss scenario, there is still no step to first compare the actual platform and in-store menu prices. Those checks answer "can prices be changed, and what happens after," not "does the state just inferred actually hold."
+
+Meta Rules makes nearly the same inference at the same point — it too derives a commission of about 33% from a 48% cost ratio, and it too suspects delivery hasn't been marked up — but writes it as "a highly probable oversight," pairs it with a ten-minute direct comparison of both menus, and states that if prices have already been marked up, the cost breakdown must be redone. Same model, same inference; the difference is whether the inference is labeled a hypothesis and sent back for checking. **Verification changes later work only when it goes back to the assumption currently holding up the conclusion.**
+
+## Operations: A More Complete Causal Story Also Supplies More Reasons for Wrong Conclusions
+
+The paraphrase's data reconciliation keeps more explanations than the Original's, and that direction is valuable; but not every listed candidate can do the explaining it claims. New-store cannibalization can explain legacy stores getting worse, but cannot, within the same statistical scope, explain why revenue does not equal visits times average transaction value; that still requires pointing out which basis differs. More candidates do not automatically connect candidates to the problem to be solved.
+
+Delivery substitution shows the same pattern. The Original equates cross-channel customer overlap directly with self-cannibalization; the paraphrase asks for the matching and pushes further: if 70%+ are existing in-store customers, they are "paying for convenience with low price sensitivity," so the risk of raising prices drops.
+
+This adds a layer of behavioral explanation without adding identification of the relationship itself. The same customer can order one extra delivery when it's inconvenient to go out, or switch a store visit to delivery; knowing the brand already does not mean not caring about a price gap. Baseline at least also asks whether in-store traffic shows breakpoints after delivery launch, rather than stopping at identity overlap.
+
+Conditions dropping away in transit also show up in staffing redeployment. In the lease section the paraphrase writes that "the baker freed up by closing one store **may be** exactly what is needed to restore full hours at the two stores currently operating on shortened schedules"; by the resource reallocation section, the same point becomes "Headcount freed by store closures: prioritize redeployment to the two stores operating on shortened hours," and the "may be" is gone. For this link to hold, the freed baker needs the skills to handle the entire pre-dawn process alone, has to be willing to take a new commute to a pre-dawn shift, and the closure has to happen before the losses from reduced hours; none of the three is listed.
+
+The paraphrase's problem is therefore more specific than "lacking detail": **it supplies downstream explanations without supplying the information the upstream inference needs to hold.** The more coherent the text, the more easily the reader accepts the pricing and redeployment judgments that follow. This is exactly why semantic coherence and judgment carry-through must be told apart.
+
+## Operations: Between "Defending the Core" and "Being Able to Pick the Core" Lies More Work
+
+The paraphrase proposes concentrating on 8–12 hero items, so that quality, staffing, waste, and procurement all improve together. This strategy is broader than the Original's either-or, and bundles several benefits into a single action.
+
+But "cut the long tail, defend the core, push to peak consistency" does not tell the operator how to pick those 8–12 items. The number looks concrete, while the truly hard comparisons stay with the user: a low-margin item that drives other purchases — keep it or not? An item with ordinary sales that consumes many baker hours — how to weigh it? High waste — is the item not worth making, or is the baking schedule wrong? The claim supporting the long-tail judgment, "most eight-year brands accumulate 40+ items, with the bottom half contributing less than 15% of revenue," is also a generalization with no data from this company.
+
+Meta Rules expands this choice into four dimensions — gross profit dollars, unit labor time, waste rate, and cross-purchase rate — with data sources and classification-based handling, then connects it to cutting in batches and adjusting procurement. Cross-purchase rate in particular turns "keep traffic anchors" from a strategic wish into something that prevents cutting the wrong items based on per-item margin alone.
+
+The paraphrase's 8–12 is what the choice looks like afterward; Meta Rules' matrix is the tool that produces the choice. Both have numbers, verbs, and multiple benefits; the real gap is how many key criteria the user still has to invent after reading.
+
+The new-store stop-loss shows a similar difference. The paraphrase adds a pre-commitment and an M9 checkpoint, making month-by-month deferral visible — that has value; but "whether it is on the projected path to breakeven by M12" comes with no method of projection. Moreover, the paraphrase's M is a plan month, so at M9 the new stores will have been open 15 months — more than three months past the "typical: 6–12 months" breakeven it cites itself, effectively pre-authorizing nine more months of losses at both stores. Meta Rules puts the checkpoint at T+3 months, month 9 of operation, with three branches — continue, downsize, exit — so the threshold feeds directly into the next action.
+
+## Operations: Resources Are Connected, but the Stage Order Ends Up Binding the Solution
+
+The paraphrase does explain where the money comes from: platform pricing and member reactivation generate cash first, which then funds retention and production adjustments. Baseline already had the order of repairing cash before investing in production, so "generate cash, then invest" is not unique to the paraphrase.
+
+The paraphrase's further problem is compressing the dependencies into "The sequence cannot be skipped, because each wave's funding source is the previous wave," without checking item by item which work really has to wait for money.
+
+The most direct regression is owned pre-order pickup. Baseline and the Original both place it early; the paraphrase schedules it for M6–M12 while raising platform prices in Wave 1. It has already written that "low-margin orders that migrate back to in-store yield a double benefit," yet does not prepare, in time, the channel that would let that migration happen. This is not a lack of ideas: the plan is already in the text, just not placed where it can catch the effect of the previous step. Pickup does not require significant capital, so the "cannot be skipped" rationale does not apply to it.
+
+Meta Rules places pickup right after the early pricing change, then delivers the pricing basis, cards in delivery packaging, QR codes, and staff prompts, turning two separate recommendations into a path customers can actually follow.
+
+B2B is likewise locked by the paraphrase until production stabilizes. That constraint makes real sense for large-scale ongoing supply, but the paraphrase itself notes that steady orders help scheduling and retention: B2B both needs stable capacity and can help create it. Locking every scale and type of B2B into the later stage gives up the option of using limited pre-orders and controllable orders first to build cash and a scheduling foundation.
+
+Meta Rules, working from the July calendar at the time, put Mid-Autumn pre-orders and the existing corporate contact list in the early stage, developing a full corporate channel only later. When the paraphrase sees holidays, it uses them only to strip the seasonal component out of cake growth; Meta Rules also uses them as an available cash window. The same external condition can be used only to explain data, or can become a resource that changes the constraints.
+
+This is a higher level of practical problem-solving: after recognizing a constraint, ask whether existing plans can loosen it in turn. The paraphrase achieves this kind of reordering in "if idle central capacity already exists, move it earlier," but does not extend the same ability to pickup, pre-orders, and cash arrangements.
+
+## Operations: Economically Worthwhile Does Not Mean Payable Today
+
+The retention plan is where the paraphrase beats the Original. It does not rule out pay just because cash is tight; instead it adds up recruiting, training, capacity, and quality losses, showing that keeping key talent is worth more than continual replacement.
+
+But "NT$3–5M annually" in replacement losses includes future spending, capacity loss, and customer attrition; it is not present cash that can be redirected wholesale. By linking retention with "this is not new budget," the paraphrase explains the economic rationale but treats "worth paying" and "able to pay" as the same thing.
+
+The paraphrase has already arranged staged bonuses and named platform pricing and member reactivation as cash sources, so retention conversations and plan design can start right away. What is not connected is the amount and timing of committed payments: they need to connect to cash actually available, not to annual replacement losses.
+
+## Operations: Waste and Organization — Two Kinds of Revision Ability in the Same Response
+
+In its closing proactive additions, the paraphrase estimates waste at NT$14–33M and says it is "larger than the impact of any single action item above." Production value is not margin or cash that can be fully recovered; but even taking the status the paraphrase itself assigns it, this is a finding big enough to reorder the work.
+
+It does say to add it to the management dashboard immediately, and points back to the underestimated payoffs of SKU rationalization and the subscription program, so it is not entirely uncarried. But in the verification list, waste remains in Tier 3, "Quantitative completion," and the closing names the four-wall P&L and stockout rates as the two things that cannot wait: "Everything else can wait — these two cannot." The later finding's importance is never written back into earlier priorities, and the method stays at "add it to the dashboard."
+
+Meta Rules first puts waste into a data table, gives daily logging and baseline-building methods when the data is missing, and then connects it to batch baking, production baselines, and surplus-food handling. The extra length is concentrated on how to obtain the data and how to change production based on it, directly reducing the work the user would otherwise have to ask about next round.
+
+The same paraphrase, when handling the organizational gap, connects the four-wall P&L back to area management and requires assigning senior store managers in Wave 1. This contrast shows: **revision back already happens locally, but has not become a sustained requirement covering every key finding.**
+
+## How Understanding Under Meta Rules Enters the Paraphrase
+
+### Why This Prompt's Origin Has Independent Analytical Value
+
+Ordinary prompt comparisons track "what requirements were written, and what the model did." This test has an extra intermediate link: **how a model working under Meta Rules understands another prompt, and writes that understanding as new text.**
+
+According to the conversation records the tester looked up, Sol described this text at the time as a content description. Putting the original texts and actual deliverables of the Original and the paraphrase side by side separates three things: what the Original wrote, what the paraphrase additionally carried, and what actually happened during execution. What can be tracked is the textual difference and the deliverable difference.
+
+This also changes how the initial error should be understood. The error was treating the paraphrase as the original; the paraphrase itself, however, formed a valid comparison: the same quality concepts, once understood by a model with a higher working baseline, get expressed as a different set of requirements and produce different behavioral results.
+
+### "I Understand This Sentence" Includes Working Ability the Reader Brings Along
+
+A model working under Meta Rules that reads "adapt to context," "logical relationships," and "precision" interprets them with its usual way of working: first look for conditions the task hasn't stated, measure against professional standards, and ask what practical use the delivery has for the user. For the resume, "context" unfolds into how employers judge a role, which numbers need background, and what evidence can support seniority; for operations, "relationships" unfolds into resource dependencies, the different sources of customer traffic, and how later answers change the schedule.
+
+Some of these meanings can reasonably be drawn out of the original sentences, but thinking of them, organizing them, and carrying them all the way into the deliverable takes the reader's own work. When a reader already has this way of working, it is easy to see what it filled in as results the original text would naturally produce.
+
+The phenomenon the tester observed can therefore be reconstructed like this: **what Sol, under Meta Rules, described was "how I understand these qualities would work once truly put into practice"; yet at first it attributed that understanding to capabilities the original prompt could directly bring.** The Original's actual responses made the distance between the two visible.
+
+This explanation rests on two visible pieces of evidence: the paraphrase really did rewrite conditions of applicability, reasoning verbs, and how qualities are organized; and after execution, the two prompts show different degrees of carry-through. The understanding filled in during paraphrasing connects with the quality changes during execution.
+
+### What the Paraphrase Transmits, and What Stays with the Reader
+
+| Transmission layer | What can be identified in this test | Meaning for the comparison |
+|---|---|---|
+| Qualities stated explicitly in the Original | Critique, multiple perspectives, conceptual relationships, context, emotion, clarity, and precision | The Original and the paraphrase share themes, so differences can't be explained by whether a quality's name appears |
+| Content the paraphrase re-encoded | Objective labels removed; reasoning adapted directly to query type; emotion engaged by relevance; relationships and implications concentrated in the analysis sentence | These are real differences that entered the paraphrase's text and can be traced by function into the deliverables |
+| Local work the paraphrase elicited | Three sets of number readings, budget-role recognition, a conditional branch on existing capacity, the four-wall P&L connected to delegated management | Part of the understanding has become requirements another model can execute |
+| Ways of working not handed over with the text | Continually rechecking premises, checking one's own written claims, letting later findings rewrite earlier sections, spelling out criteria for choosing options, turning constraints around into resources | The gaps between the paraphrase and Meta Rules on CPA, the self-added resume claims, SKU selection, pickup timing, and waste all fall in this layer |
+
+The two middle layers are the most interesting. Part of the paraphrase's gains shows that the understanding the reader filled in did not all stay with the reader: some was written into the text through wording, scope, and how sentences sit next to each other, giving the executor a better working direction.
+
+But the reader's full set of abilities did not transfer just because the text came from its hand. The paraphrase can elicit budget criteria, yet does not extend the same force to every number in the resume; it can connect the P&L to organizational assignments, yet does not write waste's new status back into the whole. In Meta Rules, this work is driven continuously by many mutually constraining requirements.
+
+This test's most valuable finding is therefore: **the abilities contained in an understanding can be partly written into a paraphrase; the parts not written in are exposed when another model actually executes it.**
+
+It also reveals a confusion about where capability comes from when evaluating prompts: the evaluator fills in the work for the original text in their head, then credits the filled-in results to the original. When higher-quality work has become one's everyday baseline, these additions are even more easily felt as "the model could do this anyway." The deliverables of the Original, the paraphrase, and Meta Rules separate out the additions, making work that was invisible visible again.
+
+### What Easier Ways of Completion the Original and the Paraphrase Each Leave Open
+
+The Original's named items provide clear quality coordinates, and also make it easy for local performances to feel complete: a data contradiction feels like critical analysis done, a causal chain like connecting concepts, phases like structuring, resource realities like practical trade-offs made.
+
+The paraphrase writes quality closer to analytical actions, so the same themes more easily happen together within one judgment. The budget example requires understanding the target role, the nature of the experience, and the deliverable's wording at the same time; the organizational assignment requires thinking of people, responsibility, and data tools together. These positions are hard to complete just by writing a separate passage for each quality — when faking it costs as much as actually doing it, the model has no cheap shortcut, and that judgment is exactly the gain the user wants.
+
+The paraphrase, however, found another cheap way to complete things: stringing the story together smoothly. Inferring identical pricing from platform margins, and low price sensitivity from customer overlap, are both examples. A "therefore" between sentences doesn't mean the conditions are enough to derive the next sentence.
+
+So, **making isolated box-ticking harder brings some work closer to real integration; keeping that integration effective still requires checking whether relationships hold, whether premises can bear the weight, and whether later sections should rewrite earlier ones.** In Meta Rules these three things are continuous work; in the paraphrase they are sometimes done and sometimes broken off.
+
+### The Difference Between Prose and Lists Lies in the Relationships Among Requirements
+
+The design intuition of "interlocking, mutually connected prose" captures an important direction in this test: make qualities need each other, so that what one piece of work produces naturally becomes material for another.
+
+But the paraphrase's five sentences keep roughly the same five themes as the Original, and contain no mechanism for checking back. What it adds is semantic concentration, broader conditions of applicability, and partial carry-through between actions. The local revisions that appear in the deliverables show that these arrangements can elicit more work; the global revisions that don't happen show there is still distance between coherent text and a complete workflow.
+
+Meta Rules itself uses many list items, yet its items carry questions, criteria, dependencies, and returns. So a list can be a set of interacting tools, and prose can be just five requirements in a different outfit. What really needs analyzing is: after reading one item, does the next become the necessary next question; after discovering the later item, does it change what was already decided in the earlier one?
+
+The direction supported jointly by this test's texts and deliverables is to move attention from layout form to **how meaning forms sustained working relationships**. A prose rewrite can improve this, and its effect has to be traced through concrete carry-through.
+
+## Looking Back from the Deliverables: How Descriptive Prompting Works
+
+### Descriptive Prompting Varies in Quality; Look at What Work the Model Actually Generates
+
+Descriptive prompting names the qualities to reach; prompting that arranges searching, comparing, and checking within work steps keeps forcing quality out during the process. This comparison lets that distinction be applied more finely.
+
+The Original doesn't have only formal gains: the professional summary and the CRM gap have real uses. Nor does the paraphrase merely swap quality names: without adding any resume expertise, it elicits budget-role recognition, three sets of number readings, and local revisions in operations. **Generic quality descriptions themselves differ in quality, and under their influence the model can complete part of the construction on its own.**
+
+So "description and construction need to work together" should not be read as "gains come only from loading a specific text." The comparisons, conditional branches, and tool reuse that appear under the paraphrase are local construction work; the question is how many key positions it covers, and whether it keeps happening as generation proceeds.
+
+How many quality names are kept only indicates the themes of the requirements; what criteria, operations, and revisions the model actually generates indicates working function. Looking only at names underestimates the paraphrase's real gains; looking only at a few good nodes overestimates whether the whole response already has the same way of working.
+
+### Three Kinds of Carry-Through, Three Kinds of Success and Failure
+
+| Carry-through level | Examples the paraphrase completes | Examples the paraphrase doesn't complete | What to check in design |
+|---|---|---|---|
+| Semantic coherence | Staffing, quality, frequency, and margin form a clear narrative | The coherent narrative wraps in jumps to identical delivery pricing and low price sensitivity | Whether the "therefore" between sentences really follows, not just whether there is a connective |
+| Judgment carry-through | Budget experience decides wording; the four-wall P&L supports area responsibility | Raises prices first but pushes back the pickup channel that would catch returning customers; "may be" becomes a settled plan in the next section | Whether the earlier item's product is actually used by the later item, with its conditions carried along |
+| Revision back | Existing idle capacity moves production adjustment earlier | Waste's new status doesn't reorder verification and actions; role criteria give way to resume convention | Whether new findings later can correct what was already written, not just append after it |
+
+This layering explains why the paraphrase reads as more thoughtful yet still has important gaps: it adds much visible work at the first two levels, and has only local instances at the third. Scoring only on "structured, logical" merges the three levels into one high score.
+
+### Goals Written as Actions Also Come in Degrees
+
+Writing goals as actions doesn't only happen with obvious slogans like "strengthen the brand." The paraphrase's "concentrate on 8–12 hero items" and "check at M9 whether it's on the path to breakeven by M12" look more like methods, yet still leave the hardest choices to the user. Numbers, deadlines, and professional terms add a sense of concreteness without providing grounds for the choice.
+
+By contrast, the paraphrase's "if you were involved in annual budget proposals, media mix allocation, or budget discussions, change it to 'planned and allocated'" already provides a recognition rule. Meta Rules' item matrix expands this kind of rule into a multi-dimensional comparison, with data sources, classification, and handling.
+
+The useful unit of comparison is therefore not how many verbs, nor the total amount of detail, but: **which previously unfinished judgment does this added content take over?** Saying "pick right" as "strategically select the most valuable items" hands over no judgment; providing dimensions and operations that change the choice is what actually reduces the user's work.
+
+### When the Push Gets Stronger, Existing Leaps Get Pushed Further Too
+
+The paraphrase's improvements and its failures share one structure: it is more willing to connect, and better at unfolding. Connected to valid conditions, it produces budget criteria, resource branches, and organizational assignments; connected to premises not yet identified, it unfolds identical delivery pricing, customer behavior, and cash availability all the way into plans that look executable.
+
+A driving requirement — multiple perspectives, relationships, context — without another requirement responsible for catching the forms it takes when satisfied superficially will, as execution strength rises, push existing leaps further as well. The paraphrase is a wording rewrite, and its deliverables show the pattern of "local work strengthened, the paired checks not keeping pace."
+
+Catching this pattern means not treating the Original, the paraphrase, or Meta Rules as each having a single quality score. The Original has the gains of the summary and CRM, and also narrower choices than Baseline; the paraphrase has finer judgments, and also later pickup timing than both the Original and Baseline; Meta Rules' advantage is that at more key positions, active solutions constrain and are constrained by verification, conditions, resources, and user operations.
+
+The quality of descriptive prompting is therefore not a straight line of "the more complete the requirements, the better." It changes where the model applies its existing abilities, and also which existing abilities fail to enter the deliverable. The value of the four-way comparison is to lay these directions out.
+
+### The Shape of the Differences This Material Needs Explained
+
+If the Original and the paraphrase are both simply filed under descriptive prompting and every gap attributed to "missing Meta Rules," this test's value is wasted. A useful design explanation must account for all of the following at once:
+
+- Without adding expertise, the paraphrase turns part of existing knowledge into more usable judgments.
+- Some of the paraphrase's progress exceeds Baseline; some only restores capabilities the Original lost.
+- The same paraphrase can carry back on the organizational problem, yet stops on waste and resume ordering.
+- A more complete cost model can coexist with a stronger misjudgment of the present state.
+- The same situational constraint can be used to shut down options, or be broken down further to find ways to create resources first.
+- A reader under Meta Rules treats the ability it filled in as what the original text naturally implies, and transmits only part of it through the paraphrase.
+
+The carry-through levels, cheap ways of completion, pairing of drive and check, and transfer of understanding discussed above correspond to these differences, turning "descriptive prompting varies in quality" from a summary verdict into something that points to visible positions in each deliverable.
+
+## Thinking Textures Shared with Test 6
+
+The Original and the paraphrase are two separate runs; one prompt is numbered items and the other is prose, not a single generated sentence is shared, and the paraphrase's operations response is nearly half again as long as the Original's. Yet the two responses repeatedly show the same patterns at the same kinds of positions. The wording of any single generation is random; a pattern that still recurs across two runs and two ways of writing is the signal design can use. The following three textures are shown both by [Test 6](Test-6：metaspo-original-gains-and-gaps-of-a-universal-prompt.md) and by this test.
+
+### Texture 1: Checks Point at the Input, Not at the Model's Own Claims
+
+Both responses check the numbers the user supplied closely: the Original questions 綠田's low base, and the paraphrase lays out reading conditions for 綠田, MATZ, and LURE. At the same time, both rewrite the user's words into stronger claims without checking them: the Original turns "no bought followers, mainly through Reels and KOL collaborations" into "purely organic growth" and "~20 people" into "over 20 people"; the paraphrase turns the same line into "no follower growth ads deployed throughout," "averaged" into "steadily maintained," and social media management into "full-scope" marketing. "No bought followers" becomes three different claims across Baseline, the Original, and the paraphrase, all of them stronger; only Meta Rules writes "growth driven entirely by organic reach and partnership-driven traffic."
+
+The cause is the object shared by both prompts. The Original says "Assess the provided data," the paraphrase says "Critically analyze the information provided"; both adjust to the context of "each inquiry"; the only sentence aimed at the answer itself asks, in both, for clear, coherent, precise presentation. The prose rewrite changed how the sentences are organized, not what they are about, so critique keeps pointing at the task and precision keeps landing on expression, and no sentence pushes the model to look back at the words it added. The Meta Rules response lists verb upgrades in the same resume as the single largest unverified assumption, and the difference comes precisely from Meta Rules containing checks whose object is the model's own generation.
+
+### Texture 2: Conditions Fall Away as Estimates Travel Downstream
+
+Both responses first make conditional estimates and then use the results as data in later sections. The Original's same-store visit decline of "about -13%" rests on "same-store transaction value is likewise +12%," and by the delivery section becomes "visits down 13%." The paraphrase's "identical delivery and in-store pricing" is reverse-engineered from an assumption and, by the action section, has become "the company has not passed on a single dollar"; "the baker freed up by closing one store may be exactly what is needed to restore full hours at the two stores currently operating on shortened schedules" becomes "prioritize redeployment" in the resource section. Both responses also write NT$9.5M as the direct cost of the channel shift, without marking that this requires delivery to be substitution.
+
+Meta Rules makes nearly the same inferences on the same task, including suspecting delivery hasn't been marked up; the difference is that it writes these inferences as hypotheses, attaches checking methods, and holds related recommendations until the results come in. Texture 2 is therefore not an inability to estimate; it is that nothing in descriptive prompting asks: when this result is carried into the next step, is its premise still there?
+
+### Texture 3: The Verification List Sits Alongside; the Prescription Is Not Rewritten
+
+Both responses write "hypotheses requiring further verification" as the task requires, in a sensible order; but the lists are not connected back to the prescriptions. The Original says departed-baker interviews will determine "whether the next step is raising pay or changing processes," yet its staffing plan has already ruled out raising pay; it lists the new/old store split as "the foundation of the entire diagnosis," yet later sections still use -13% directly. The paraphrase says whether European bread's decline is demand-side or supply-side is "the single highest-priority validation" and that the strategy changes completely depending on the answer, yet its category strategy is already written as "My judgment is defend"; it says waste is larger than any action's impact, yet ranks waste third tier in its verification order.
+
+The same pattern appears as "seeing without acting": the Original recognizes that the type of role changes how the resume should be written, yet hands the choice back to the user; the paraphrase recognizes that management experience is key evidence, yet leaves it last out of resume convention. The task asks for a hypotheses section, and both responses deliver one; under descriptive prompting, "delivering the section" is where the requirement counts as completed. Meta Rules connects the list to action with verification gates and "Do not execute corresponding recommendations until the first three are verified," which is what gives later findings the authority to rewrite earlier sections.
+
+### What the Three Textures Show Together
+
+The paraphrase is clearly stronger than the Original at local integration: budget recognition, the three number sets, basis reconciliation, and organizational assignment are all examples. Yet not one of the three textures disappears. This shows that turning items into prose, merging sentences, and loosening the emotion condition move the model's quality in the "pushing forward" direction; checking the claims it writes, keeping premises attached to results, and letting later findings rewrite earlier sections are all "looking back" work, and neither descriptive prompt has a single sentence that takes them as its object.
+
+The design conclusion is direct: to change these three textures, changing layout and wording is not enough; the prompt must contain requirements whose object is the model's own generation — check added claims, reconfirm premises when citing estimates, let new findings rewrite what has already been written. The Meta Rules responses show all three behaviors with the same model on the same tasks, which corresponds to its containing requirements of this kind.
+
+## What This Test Means
+
+### Descriptive Prompts Differ in Ways That Reach the Deliverable
+
+The Original and the paraphrase share similar quality themes, and the paraphrase's prompt is shorter, yet it does work the Original did not on the resume's number conditions, budget-role recognition, and local carry-through in operations. "They are both just generic quality requirements" is therefore not enough to substitute for functional analysis.
+
+On the other hand, the Original's professional summary, Baseline's concrete experience recall, and early pickup arrangement all show that comparisons need to keep cross-cutting advantages. The paraphrase's value is not leading on every item, but making visible that changes in semantic organization and conditions of applicability change the direction of gains, and also bring new breaks.
+
+### Between Understanding a Prompt and Getting Another Model to Achieve That Understanding Lies Real Engineering
+
+Sol's paraphrase makes this usually omitted link visible. A reader can fill in considerable quality while understanding, yet mistakenly attribute all of it to the source text; when writing that understanding back into a prompt, some relationships are kept and some abilities stay with the reader.
+
+The actual deliverables of the Original, the paraphrase, and Meta Rules take this transmission apart. The paraphrase's gains show which understandings got through; the gap between the paraphrase and Meta Rules shows which work that text did not carry. This is prompt-translation material that formed by accident, yet has independent value.
+
+### Meta Rules' Comparative Value Lies in Showing How More Complete Work Holds Together
+
+Meta Rules shows that a resume can connect the target role, capability confirmation, case evidence, and applications; operations can connect diagnosis, tools, data acquisition, staffing assignments, and customer actions. That additional content ultimately returns to the resume's persuasiveness and the operations plan's executability.
+
+So the most important distance between the paraphrase and Meta Rules is not that the paraphrase still lacks a few elegant requirements. It already shows effective local integration; the gap is whether that integration can last to every key position, and give later findings the ability to rewrite answers already generated.
+
+Test 6 shows what the Original's quality requirements actually do; Test 7 shows that the same qualities, through different understanding and expression, form different degrees of carry-through, and the three thinking textures they share mark the limits of descriptive prompting itself. Together, the two documents move the comparison from "does the prompt work" to "what understanding was transmitted, what work was completed, and what gains actually entered the user's deliverable."

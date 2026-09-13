@@ -601,6 +601,34 @@ The Original prompt is presented as five numbered objectives, and each item alre
 
 [Test 7](Test-7：metaspo-prose-rewrite-carry-through-and-quality-differences-in-descriptive-prompting.md) rewrites the same quality directions as prose, directly testing how numbering, wording, scope, and the organization of requirements change quality together.
 
+## Thinking Textures Shared with Test 7
+
+[Test 7](Test-7：metaspo-prose-rewrite-carry-through-and-quality-differences-in-descriptive-prompting.md) runs the same model on a paraphrased version of the prompt that rewrites MetaSPO as prose. It is a separate run: not a single generated sentence is shared with this test, and the paraphrase's operations response is nearly half again as long as the Original's here. Yet the two responses repeatedly show the same patterns at the same kinds of positions. The wording of any single generation is random; a pattern that recurs across two runs and two ways of writing is the signal design can use. Both prompts write the desired qualities directly as requirement sentences, and the following three textures are what they leave behind in common.
+
+### Texture 1: Checks Point at the Input, Not at the Model's Own Claims
+
+The Original here checks the 綠田 numbers the user supplied, yet turns "no bought followers, mainly through Reels and KOL collaborations" into "purely organic growth," "~20 people" into "over 20 people," and "I wrote the entire digital transformation marketing strategy" into "independently planned." The paraphrase, in the same resume, turns the same line into "no follower growth ads deployed throughout," and ROAS "averaged" into "steadily maintained." "No bought followers" becomes three different claims across Baseline, the Original, and the paraphrase, all of them stronger; only Meta Rules writes "growth driven entirely by organic reach and partnership-driven traffic."
+
+Both prompts make the input the object of critique: the Original says "Assess the provided data," the paraphrase says "Critically analyze the information provided"; the only sentence aimed at the answer itself asks, in both, for clear and precise presentation. The model therefore scrutinizes the task closely but not the words it adds itself. The Meta Rules response lists its own verb upgrades as the single largest unverified assumption, and the difference comes precisely from Meta Rules containing checks whose object is the model's own generation.
+
+### Texture 2: Conditions Fall Away as Estimates Travel Downstream
+
+The Original's same-store visit decline of "about -13%" rests on "same-store transaction value is likewise +12%," yet by the delivery section it has become "visits down 13%"; NT$9.5M is written as the direct cost of the channel shift, and the substitution premise does not travel with it. The paraphrase takes "delivery prices are completely identical to in-store prices," reverse-engineered from an assumption, as the basis for a price increase, and "the baker freed up by closing one store may be exactly what is needed to restore full hours at the two stores currently operating on shortened schedules" becomes, in the resource section, "prioritize redeployment to the two stores operating on shortened hours."
+
+Meta Rules makes a similar inference on the same task, including suspecting that delivery prices haven't been marked up, but writes it as a hypothesis, attaches a ten-minute menu comparison, and holds the related recommendations until confirmation. Texture 2 is not an inability to estimate; it is that nothing in this kind of prompt asks: when an estimate is carried into the next step, is its premise still there?
+
+### Texture 3: The Verification List Sits Alongside; the Prescription Is Not Rewritten
+
+The Original says departed-baker interviews will determine "whether the next step is raising pay or changing processes," yet its staffing plan has already ruled out raising pay; it recognizes that the type of role changes how the resume should be written, yet hands the choice back to the user. The paraphrase lists whether the European bread decline is demand-side or supply-side as "the single highest-priority validation," yet its category strategy is already fixed as "My judgment is defend"; it says waste is larger than the impact of any single action item, yet ranks waste in the third tier of its verification list.
+
+The task asks for a hypotheses section, and both responses deliver one; under this kind of prompt, delivering the section is where the requirement counts as completed. Meta Rules uses verification gates and "do not execute corresponding recommendations until the first three are verified" to connect the list to action, which is what gives later findings the authority to rewrite earlier sections.
+
+### What These Textures Show
+
+The paraphrase is clearly stronger than the Original here at local integration, yet not one of the three textures disappears. Moving from a numbered list to prose, merging sentences, and loosening the emotion condition move the model's quality in the "pushing forward" direction; checking the claims it adds, keeping premises attached to results, and letting later findings rewrite earlier sections are all "looking back" work, and neither prompt has a single sentence that takes them as its object.
+
+This document's earlier observation about "item-by-item box-ticking" shows where the Original completes things locally; these three textures show which breaks remain even after the list format is gone. Changing them requires a prompt to contain requirements whose object is the model's own generation: check added claims, reconfirm the premise when citing an estimate, and let new findings go back and rewrite what has already been written.
+
 ## What This Test Means
 
 ### A Universal Prompt's Effectiveness Has Direction

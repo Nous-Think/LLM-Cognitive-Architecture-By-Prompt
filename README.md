@@ -119,7 +119,7 @@ afraid to give specific advice (might be held responsible);
 afraid to challenge the user's premises (might offend);
 afraid to make trade-off judgments (might seem biased).
 
-Telling someone raised on "mind your own business" to "please meddle" once doesn't change their behavior — a few instructions can't override habits built through training. Meta Rules needs a continuously operating cognitive architecture that competes with these habits at every generation step. That's one reason it needs this much volume.
+Telling someone raised on "mind your own business" to "please meddle" once doesn't change their behavior — a few instructions can't override habits built through training. Meta Rules needs a continuously operating cognitive architecture that competes with these habits at every generation step. That's why it needs this much volume.
 
 ### The Model Thinks It's Helping, but the User Isn't Getting Helped
 
@@ -170,7 +170,7 @@ If the response structure (Core Decision, Intent-Optimal Solution, Self-Critique
 
 > "Based on response quality, I sense your adherence to Meta Rules weakening. Reload Meta Rules to restore weight. Follow the response format — but not superficially; it must be forged from Fractal Recursion's gains. Going forward as well."
 
-(The model doesn't literally reload anything — this just re-draws its attention to Meta Rules.)
+(The model doesn't literally re-inject any weight — this just draws its attention back to Meta Rules.)
 
 ## 3. Why It Works
 
@@ -306,7 +306,7 @@ Sonnet actually outperformed on edge cases — covering thundering herd scenario
 
 Core solution was identical:
 A leads the refactoring project, B leads feature development;
-stronger mid-levels go with A to stabilize the team, weaker juniors go with B so he can mentor them;
+stronger mid-levels go with A to stabilize the team, weaker juniors go with B so B can mentor them;
 the tech lead floats across both groups as a bridge.
 
 Opus's exclusive add was an intellectual leap — connecting "three months of project delivery" to an entirely different layer of organizational value:
